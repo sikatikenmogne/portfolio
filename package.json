@@ -20,9 +20,6 @@
     ],
     "*.{json,css,md,mdx}": [
       "prettier --write"
-    ],
-    "*.{css,scss}": [
-      "stylelint --fix"
     ]
   },
   "dependencies": {
