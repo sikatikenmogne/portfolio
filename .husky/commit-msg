@@ -1,0 +1,2 @@
+# Validation du format de commit
+npx --no -- commitlint --edit ${1}
