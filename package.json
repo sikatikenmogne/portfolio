@@ -7,11 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "check": "next build && next export",
-    "fix": "eslint --fix . && stylelint --fix '**/*.{css,scss}'",
-    "verify": "eslint . && stylelint '**/*.{css,scss}' && prettier --check .",
+    "fix": "eslint --fix . && prettier --write .",
+    "verify": "eslint . && prettier --check .",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "test": "jest --passWithNoTests",
+    "export": "next export",
+    "deploy:preview": "vercel",
+    "deploy:production": "vercel --prod",
+    "release": "git checkout master && git merge develop && git push origin master",
+    "release:create": "gh pr create --base main --head develop --title \"Release: $(date +'%Y-%m-%d')\" --body \"Production release\"",
+    "release:check": "gh pr status",
+    "clean": "rimraf .next out .vercel"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -66,6 +76,7 @@
     "lint-staged": "^16.1.5",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
     "stylelint": "^16.23.1",
     "tailwindcss": "^4.1.12"
   }
