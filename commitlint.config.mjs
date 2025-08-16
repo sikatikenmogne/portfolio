@@ -14,6 +14,7 @@ const commitlintConfig = {
         'chore',    // Tâches de maintenance
         'perf',     // Amélioration de performance
         'ci',       // Configuration CI/CD
+        'revert',
       ],
     ],
     'subject-max-length': [2, 'always', 72],
