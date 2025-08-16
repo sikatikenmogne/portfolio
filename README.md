@@ -1,320 +1,111 @@
 # Full Stack Developer Portfolio
 
-Modern personal portfolio built with Next.js, automatically deployed to Vercel via GitHub Actions.
+![Build Status](https://github.com/sikatikenmogne/portfolio/workflows/CI%2FCD%20Pipeline/badge.svg)
+![Vercel](https://img.shields.io/badge/Vercel-Production-brightgreen)
+![Next.js](https://img.shields.io/badge/Next.js-15.0-black?logo=next.js)
+![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)
+![Development Status](https://img.shields.io/badge/Status-In%20Development-orange)
+![Maintenance](https://img.shields.io/badge/Maintained-Yes-green.svg)
+
+Modern personal portfolio built with JAMstack architecture principles, leveraging static site generation for optimal performance and deployed automatically to Vercel.
+
+## Features
+
+**Core Portfolio Features:**
+- Professional first impression with clear value proposition
+- Comprehensive project showcase with detailed case studies
+- Professional background and skills evaluation system
+- Responsive mobile-optimized experience across all devices
+- Simple contact system with professional networking links
+
+**User Experience:**
+- Intuitive navigation with active section indicators
+- Dark/Light theme toggle with system preference detection
+- Performance optimized (Lighthouse score > 90)
+- Full accessibility compliance (WCAG 2.1 AA)
+- SEO optimized with proper meta tags and structured data
+
+**Developer Experience:**
+- Live project demonstrations and source code access
+- Automated CI/CD pipeline with GitHub Actions
+- Type-safe development with TypeScript
+- Modern development tooling and best practices
+
+---
 
 ## Tech Stack
 
-- **Framework**: Next.js 14+ (JavaScript + ES Modules)
-- **Styling**: Tailwind CSS
-- **Content**: Markdown + Git-based CMS
-- **Deployment**: Vercel
-- **CI/CD**: GitHub Actions
-- **Package Manager**: pnpm
+This portfolio follows JAMstack architecture principles with modern tooling for optimal performance, maintainability, and developer experience:
+
+| **Category** | **Technology** | **Version** | **Role** | **Why This Choice** |
+|--------------|----------------|-------------|----------|-------------------|
+| **Frontend** | **Next.js** | 15.0 | React framework with App Router | SSG capabilities, performance, modern routing |
+| | **React** | 18+ | UI library | Mature ecosystem, reusable components |
+| | **Tailwind CSS** | 3+ | Utility-first CSS framework | Rapid development, consistent design system |
+| | **Lucide Icons** | Latest | Icon system | Lightweight, optimized SVGs, tree-shaking |
+| **Business Logic** | **React Hooks** | - | State management | Simple, performant state handling |
+| | **Custom Hooks** | - | Reusable logic | Clean separation of concerns |
+| | **ES Modules** | - | Modern JavaScript modules | Native standards, optimization |
+| **Development Tools** | **Node.js** | 18+ | JavaScript runtime | npm ecosystem, modern tooling |
+| | **pnpm** | 8+ | Package manager | Performance, disk space efficiency |
+| | **TypeScript** | 5+ | Typed language | Type safety, better DX |
+| | **ESLint + Prettier** | Latest | Code quality | Consistent coding standards |
+| **Services & APIs** | **Formspree** | - | Form handling | No backend required, spam protection |
+| | **GitHub API** | v4 | Repository data | Dynamic project information |
+| | **Vercel Analytics** | - | Performance monitoring | Privacy-friendly, built-in |
+| **CI/CD & Deployment** | **GitHub Actions** | - | CI/CD pipeline | Native integration, automated workflows |
+| | **Vercel** | - | Hosting and deployment | Edge network, preview deployments |
+| | **Git** | - | Version control | Collaboration, history tracking |
+| **Content Management** | **Markdown + MDX** | - | Content format | Rich content, component embedding |
+| | **JSON** | - | Configuration | Type-safe, easy maintenance |
+| | **Git-based CMS** | - | Content management | Version control, developer-friendly |
 
 ## Prerequisites
 
-- Node.js 18+ 
-- pnpm 8+
-- Git
-- GitHub Account
-- Vercel Account
+- **Node.js** 18+ (LTS recommended)
+- **pnpm** 8+ (package manager)
+- **Git** (version control)
+- **GitHub Account** (for GitHub Actions)
+- **Vercel Account** (for deployment)
 
-### Installing Prerequisites (Windows)
+## Quick Start
 
-```powershell
-# Via Chocolatey (recommended)
-choco install nodejs pnpm git
-
-# Or manual installation from official websites
-```
-
-## Local Installation
-
-### 1. Clone the Project
-
-```powershell
-# Clone the repository
-git clone https://github.com/your-username/portfolio.git
+```bash
+# Clone repository
+git clone https://github.com/sikatikenmogne/portfolio.git
 cd portfolio
 
 # Install dependencies
 pnpm install
-```
 
-### 2. Environment Configuration
-
-```powershell
-# Copy the example file
-Copy-Item .env.example .env.local
-
-# Edit .env.local with your values
-```
-
-```bash
-# .env.local
-NODE_ENV=development
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_SITE_NAME="Your Name - Portfolio"
-NEXT_PUBLIC_FORMSPREE_ID=your_formspree_id
-```
-
-### 3. Start Development
-
-```powershell
-# Start the development server
+# Start development server
 pnpm run dev
+# → Open http://localhost:3000
 
-# Open http://localhost:3000
+# Build for production
+pnpm run build
+
+# Start production server
+pnpm run start
 ```
 
-## GitHub + Vercel Deployment Tutorial
+## Preview
 
-### Step 1: Project Preparation
+<details>
+<summary><strong>Portfolio Screenshots</strong></summary>
 
-```powershell
-# Verify everything works locally
-pnpm run check  # Lint + Build
-pnpm run build  # Build test
+### Desktop View
+![Desktop Homepage](public/images/preview/desktop-home.png)
+![Desktop Projects](public/images/preview/desktop-projects.png)
 
-# Install Git hooks
-pnpm run prepare
-```
+### Mobile View
+![Mobile Homepage](public/images/preview/mobile-home.png)
+![Mobile Navigation](public/images/preview/mobile-nav.png)
 
-### Step 2: GitHub Repository Creation
+### Dark Mode
+![Dark Mode](public/images/preview/dark-mode.png)
 
-#### Option A: Via GitHub Interface
-
-1. Go to https://github.com/new
-2. Repository name: `portfolio`
-3. Description: `Personal Portfolio - Full Stack Developer`
-4. Visibility: `Public` or `Private`
-5. **DO NOT** initialize with README (you already have one)
-6. Click `Create repository`
-
-#### Option B: Via GitHub CLI
-
-```powershell
-# Install GitHub CLI
-winget install GitHub.cli
-
-# Create the repository
-gh repo create portfolio --public --description "Personal Portfolio - Full Stack Developer"
-```
-
-### Step 3: Branch Configuration
-
-```powershell
-# You're on master, create develop branch
-git checkout -b develop
-
-# Add all files
-git add .
-git commit -m "feat: initial portfolio setup"
-
-# Configure origin
-git remote add origin https://github.com/your-username/portfolio.git
-
-# Push both branches
-git push -u origin master
-git push -u origin develop
-
-# Set develop as default working branch
-git checkout develop
-```
-
-### Step 4: GitHub Repository Configuration
-
-#### Master Branch Protection
-
-1. Repository → `Settings` → `Branches`
-2. Add rule for `master`:
-   - Branch name pattern: `master`
-   - ✓ Require pull request reviews before merging
-   - ✓ Require status checks to pass before merging
-   - ✓ Include administrators
-3. Save changes
-
-#### Repository Settings
-
-1. Repository → `Settings` → `General`
-   - Default branch: `develop`
-   - ✓ Allow squash merging
-   - ✗ Allow merge commits
-   - ✓ Allow rebase merging
-
-### Step 5: Vercel Configuration
-
-#### Installation and Connection
-
-```powershell
-# Install Vercel CLI
-pnpm add -g vercel
-
-# Connect to Vercel
-vercel login
-# Choose GitHub and authorize access
-```
-
-#### Project Linking
-
-```powershell
-# Link the Vercel project
-vercel link
-
-# Answer the questions:
-# ? Set up and deploy "~/portfolio"? Y
-# ? Which scope do you want to deploy to? [your-team]
-# ? Link to existing project? N
-# ? What's your project's name? portfolio
-# ? In which directory is your code located? ./
-```
-
-#### Environment Variables Configuration
-
-```powershell
-# Add environment variables
-vercel env add NEXT_PUBLIC_SITE_URL
-# Value: https://portfolio-your-username.vercel.app
-
-vercel env add NEXT_PUBLIC_FORMSPREE_ID
-# Value: your_formspree_id
-
-vercel env add NEXT_PUBLIC_SITE_NAME
-# Value: Your Name - Portfolio
-
-# Download variables locally
-vercel env pull .env.local
-```
-
-### Step 6: Retrieve Vercel Identifiers
-
-```powershell
-# Display project information
-cat .vercel/project.json
-```
-
-The file contains your identifiers:
-```json
-{
-  "orgId": "team_xxxxxxxxxxxxx",
-  "projectId": "prj_xxxxxxxxxxxxx"
-}
-```
-
-#### Get Vercel Token
-
-1. Go to https://vercel.com/account/tokens
-2. Create Token → Name: `GitHub Actions Portfolio`
-3. Copy the generated token
-
-### Step 7: GitHub Secrets Configuration
-
-#### Via GitHub Interface
-
-1. Repository → `Settings` → `Secrets and variables` → `Actions`
-2. New repository secret → Add these 3 secrets:
-
-```
-VERCEL_TOKEN=your_vercel_token
-VERCEL_ORG_ID=orgId_value_from_project_json_file
-VERCEL_PROJECT_ID=projectId_value_from_project_json_file
-```
-
-#### Via GitHub CLI (Alternative)
-
-```powershell
-# Configure secrets
-gh secret set VERCEL_TOKEN
-# Paste your Vercel token
-
-gh secret set VERCEL_ORG_ID
-# Paste the orgId value
-
-gh secret set VERCEL_PROJECT_ID  
-# Paste the projectId value
-```
-
-### Step 8: Pipeline Testing
-
-```powershell
-# Make a test change
-echo "# Portfolio Test" > test-deploy.md
-git add test-deploy.md
-git commit -m "test: pipeline deployment"
-git push origin develop
-
-# Check the deployment
-# 1. GitHub → Actions (see the workflow)
-# 2. Vercel Dashboard (see the preview)
-```
-
-### Step 9: First Production Deployment
-
-```powershell
-# After preview validation, deploy to production
-git checkout master
-git merge develop
-git push origin master
-
-# Check production deployment
-# 1. GitHub Actions → production workflow
-# 2. Vercel → deployment to main domain
-```
-
-## Useful Commands
-
-### Development
-
-```powershell
-pnpm run dev          # Development server
-pnpm run build        # Production build
-pnpm run check        # Lint + Build
-pnpm run fix          # Auto-fix code
-pnpm run verify       # Configuration check
-```
-
-### Git Workflow
-
-```powershell
-# New feature
-git checkout develop
-git pull origin develop
-git checkout -b feature/new-feature
-
-# Development...
-git add .
-git commit -m "feat: feature description"
-git push -u origin feature/new-feature
-
-# Create Pull Request: feature → develop (auto preview)
-# After validation: develop → master (auto production)
-```
-
-### Vercel
-
-```powershell
-vercel                # Manual preview deployment
-vercel --prod         # Manual production deployment
-vercel logs           # View logs
-vercel env pull       # Sync variables
-vercel domains        # Manage custom domains
-```
-
-### Debugging
-
-```powershell
-# Check configuration
-node scripts/verify-setup.mjs
-
-# Clean project
-pnpm run clean
-
-# Complete reinstall
-pnpm run clean
-Remove-Item node_modules -Recurse -Force
-Remove-Item pnpm-lock.yaml
-pnpm install
-```
+</details>
 
 ## Project Structure
 
@@ -322,154 +113,47 @@ pnpm install
 portfolio/
 ├── .github/workflows/     # GitHub Actions CI/CD
 ├── src/
-│   ├── app/              # Next.js App Router
-│   ├── components/       # React components
-│   ├── hooks/            # Custom hooks
-│   ├── lib/              # Utilities
-│   └── data/             # Configuration
-├── content/              # Markdown content
-│   ├── projects/         # Projects
-│   ├── blog/             # Articles
-│   └── profile/          # Profile
-├── public/               # Static assets
-├── scripts/              # Utility scripts
-├── .env.local           # Local variables
-├── .env.example         # Variables template
-├── next.config.mjs      # Next.js configuration
-├── vercel.json          # Vercel configuration
-└── README.md            # This file
+│   ├── app/              # Next.js App Router (pages & layouts)
+│   ├── components/       # Reusable React components
+│   │   ├── navigation/   # Header, footer, navigation
+│   │   ├── projects/     # Project cards, filters, details
+│   │   ├── profile/      # About, skills, experience
+│   │   ├── contact/      # Contact form, social links
+│   │   └── shared/       # Layout, SEO, error boundaries
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility functions and services
+│   └── data/             # Configuration and static data
+├── content/              # Git-based CMS (Markdown files)
+│   ├── projects/         # Project case studies
+│   ├── blog/             # Technical articles
+│   └── profile/          # About, experience, education
+├── public/               # Static assets (images, icons, docs)
+├── scripts/              # Build and utility scripts
+├── .env.example          # Environment variables template
+└── next.config.mjs       # Next.js configuration
 ```
 
-## Development Workflow
+## Project Status
 
-### Branches
+This portfolio is currently under active development. Some features may be incomplete or under implementation.
 
-- **`master`**: Production (automatic deployment)
-- **`develop`**: Integration (automatic preview)  
-- **`feature/*`**: New features
+### Development Progress
 
-### Process
+- [ ] User Interface
+- [ ] Navigation System
+- [ ] Contact Form
+- [ ] Dark/Light Theme
+- [ ] Projects Showcase
+- [ ] Technical Blog
+- [ ] Automated Testing
+- [ ] Internationalization
 
-1. **Development**: `feature/my-feature` from `develop`
-2. **Preview**: Pull Request to `develop` → auto preview deployment
-3. **Production**: Merge `develop` → `master` → auto production deployment
-
-## Project URLs
-
-- **Production**: https://portfolio-your-username.vercel.app
-- **Preview**: https://portfolio-git-develop-your-username.vercel.app
-- **Repository**: https://github.com/your-username/portfolio
-
-## Content Management
-
-### Add a Project
-
-```markdown
-<!-- content/projects/new-project.md -->
----
-title: "Project Name"
-description: "Short description"
-technologies: ["React", "Node.js", "Tailwind CSS"]
-status: "completed"
-featured: true
-date: "2024-01-15"
-demo: "https://demo.example.com"
-github: "https://github.com/username/project"
-image: "/images/projects/project.jpg"
----
-
-# Project Name
-
-Detailed description...
-```
-
-### Add an Article
-
-```markdown
-<!-- content/blog/new-article.md -->
----
-title: "Article Title"
-description: "Article description"
-date: "2024-01-15"
-tags: ["React", "JavaScript"]
-featured: false
----
-
-# Article Title
-
-Article content...
-```
-
-## Customization
-
-### Modify Colors
-
-```javascript
-// tailwind.config.js - customize theme
-theme: {
-  extend: {
-    colors: {
-      primary: {
-        50: '#eff6ff',
-        500: '#3b82f6',  // Your main color
-        600: '#2563eb',
-        900: '#1e3a8a',
-      }
-    }
-  }
-}
-```
-
-### Site Configuration
-
-```json
-// src/data/config/site.json
-{
-  "name": "Your Name",
-  "title": "Full Stack Developer",
-  "description": "Professional portfolio...",
-  "email": "your.email@domain.com",
-  "social": {
-    "github": "https://github.com/your-username",
-    "linkedin": "https://linkedin.com/in/your-profile"
-  }
-}
-```
-
-## Troubleshooting
-
-### Common Errors
-
-**Windows Build Error:**
-```powershell
-# Clean and rebuild
-Get-Process -Name "node" -ErrorAction SilentlyContinue | Stop-Process -Force
-Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue
-pnpm run build
-```
-
-**Git Permissions Error:**
-```powershell
-# Reset permissions
-git config --global user.name "Your Name"
-git config --global user.email "your.email@domain.com"
-```
-
-**Vercel Deploy Error:**
-```powershell
-# Check configuration
-vercel whoami
-vercel env ls
-cat .vercel/project.json
-```
-
-### Support
-
-- **Next.js Documentation**: https://nextjs.org/docs
-- **Vercel Documentation**: https://vercel.com/docs
-- **Tailwind Documentation**: https://tailwindcss.com/docs
+**Last Update:** August 2025
 
 ## Contributing
+
+This project follows the [Contributor Covenant](https://www.contributor-covenant.org/) code of conduct.
+By participating, you are expected to uphold this code.
 
 1. Fork the project
 2. Create a branch (`git checkout -b feature/improvement`)
@@ -477,10 +161,86 @@ cat .vercel/project.json
 4. Push (`git push origin feature/improvement`)
 5. Open a Pull Request
 
+### Branch Strategy
+
+- **`main`**: Production-ready code, auto-deployed to live site
+- **`develop`**: Integration branch, auto-deployed to preview environment
+- **`feature/*`**: Feature branches, merged to develop via PR
+- **`hotfix/*`**: Critical production fixes, merged directly to main and back to develop
+
+### Development Workflow
+
+```mermaid
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#ffffff',
+    'primaryTextColor': '#333333',
+    'primaryBorderColor': '#E60012',
+    'lineColor': '#333333',
+    'git0': '#E60012',
+    'git1': '#E3F2FD',
+    'git2': '#E8F5E8',
+    'git3': '#FFF3E0',
+    'git4': '#F3E5F5',
+    'gitBranchLabel0': '#ffffff',
+    'gitBranchLabel1': '#333333',
+    'gitBranchLabel2': '#333333',
+    'gitBranchLabel3': '#333333',
+    'gitBranchLabel4': '#333333',
+    'commitLabelFontSize': '10px'
+  }
+}}%%
+gitGraph
+    commit id: "Initial"
+    branch develop
+    checkout develop
+    commit id: "Setup"
+    commit id: "Feature A"
+    
+    branch feature/auth
+    checkout feature/auth
+    commit id: "Auth System"
+    checkout develop
+    merge feature/auth
+    
+    commit id: "Feature B"
+    checkout main
+    merge develop
+    commit id: "Release v1.0"
+    
+    branch hotfix/critical-bug
+    checkout hotfix/critical-bug
+    commit id: "Fix Bug"
+    checkout main
+    merge hotfix/critical-bug
+    commit id: "Hotfix v1.0.1"
+    checkout develop
+    merge main
+    
+    checkout develop
+    commit id: "Feature C"
+    
+    branch feature/new-component
+    checkout feature/new-component
+    commit id: "New Component"
+    checkout develop
+    merge feature/new-component
+    
+    checkout main
+    merge develop
+    commit id: "Release v1.1"
+```
+
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This portfolio is licensed under [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
----
+See the [LICENSE](LICENSE) file for full details.
+
+## Contact
+
+- **LinkedIn**: [Samuel SIKATI](https://www.linkedin.com/in/samuel-sikati-kenmogne-57953a1b7/)
+- **Email**: sikatikenmogne@gmail.com
 
 **Built with ❤️ by [Samuel SIKATI](https://github.com/sikatikenmogne)**
