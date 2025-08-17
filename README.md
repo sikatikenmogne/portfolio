@@ -1,66 +1,48 @@
-# Full Stack Developer Portfolio
+<div align="center">
 
-![Build Status](https://github.com/sikatikenmogne/portfolio/workflows/CI%2FCD%20Pipeline/badge.svg)
-![Vercel](https://img.shields.io/badge/Vercel-Production-brightgreen)
-![Next.js](https://img.shields.io/badge/Next.js-15.0-black?logo=next.js)
-![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)
-![Development Status](https://img.shields.io/badge/Status-In%20Development-orange)
-![Maintenance](https://img.shields.io/badge/Maintained-Yes-green.svg)
+# Portfolio
 
-Modern personal portfolio built with JAMstack architecture principles, leveraging static site generation for optimal performance and deployed automatically to Vercel.
+![Build](https://img.shields.io/github/actions/workflow/status/sikatikenmogne/portfolio/ci-cd.yml?branch=main&style=for-the-badge&logo=github) ![Vercel](https://img.shields.io/badge/Vercel-Production-brightgreen?style=for-the-badge) ![Next.js](https://img.shields.io/badge/Next.js-15.0-000?style=for-the-badge&logo=next.js&logoColor=white)  ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?style=for-the-badge) ![Development Status](https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge) ![Maintenance](https://img.shields.io/badge/Maintained-Yes-green.svg?style=for-the-badge)
 
-## Features
+A modern professional developer portfolio Built with **Next.js** following a **JAMstack architecture**, leveraging **static site generation** for optimal performance and deployed automatically on **Vercel**.
 
-**Core Portfolio Features:**
+</div>
+
+## ✨ Features
+
 - Professional first impression with clear value proposition
 - Comprehensive project showcase with detailed case studies
 - Professional background and skills evaluation system
 - Responsive mobile-optimized experience across all devices
 - Simple contact system with professional networking links
 
-**User Experience:**
-- Intuitive navigation with active section indicators
-- Dark/Light theme toggle with system preference detection
-- Performance optimized (Lighthouse score > 90)
-- Full accessibility compliance (WCAG 2.1 AA)
-- SEO optimized with proper meta tags and structured data
-
-**Developer Experience:**
-- Live project demonstrations and source code access
-- Automated CI/CD pipeline with GitHub Actions
-- Type-safe development with TypeScript
-- Modern development tooling and best practices
-
----
-
-## Tech Stack
+## 🛠️ Tech Stack
 
 This portfolio follows JAMstack architecture principles with modern tooling for optimal performance, maintainability, and developer experience:
 
 | **Category** | **Technology** | **Version** | **Role** | **Why This Choice** |
 |--------------|----------------|-------------|----------|-------------------|
-| **Frontend** | **Next.js** | 15.0 | React framework with App Router | SSG capabilities, performance, modern routing |
+| **🖥️ Frontend** | **Next.js** | 15.0 | React framework with App Router | SSG capabilities, performance, modern routing |
 | | **React** | 18+ | UI library | Mature ecosystem, reusable components |
-| | **Tailwind CSS** | 3+ | Utility-first CSS framework | Rapid development, consistent design system |
+| | **Tailwind CSS** | 4 | Utility-first CSS framework | Rapid development, consistent design system |
 | | **Lucide Icons** | Latest | Icon system | Lightweight, optimized SVGs, tree-shaking |
-| **Business Logic** | **React Hooks** | - | State management | Simple, performant state handling |
+| **⚙️ Business Logic** | **React Hooks** | - | State management | Simple, performant state handling |
 | | **Custom Hooks** | - | Reusable logic | Clean separation of concerns |
 | | **ES Modules** | - | Modern JavaScript modules | Native standards, optimization |
-| **Development Tools** | **Node.js** | 18+ | JavaScript runtime | npm ecosystem, modern tooling |
+| **🔧 Development Tools** | **Node.js** | 18+ | JavaScript runtime | npm ecosystem, modern tooling |
 | | **pnpm** | 8+ | Package manager | Performance, disk space efficiency |
-| | **TypeScript** | 5+ | Typed language | Type safety, better DX |
 | | **ESLint + Prettier** | Latest | Code quality | Consistent coding standards |
-| **Services & APIs** | **Formspree** | - | Form handling | No backend required, spam protection |
+| **🚀 Services & APIs** | **Formspree** | - | Form handling | No backend required, spam protection |
 | | **GitHub API** | v4 | Repository data | Dynamic project information |
 | | **Vercel Analytics** | - | Performance monitoring | Privacy-friendly, built-in |
-| **CI/CD & Deployment** | **GitHub Actions** | - | CI/CD pipeline | Native integration, automated workflows |
+| **📦 CI/CD & Deployment** | **GitHub Actions** | - | CI/CD pipeline | Native integration, automated workflows |
 | | **Vercel** | - | Hosting and deployment | Edge network, preview deployments |
 | | **Git** | - | Version control | Collaboration, history tracking |
-| **Content Management** | **Markdown + MDX** | - | Content format | Rich content, component embedding |
+| **📄 Content Management** | **Markdown + MDX** | - | Content format | Rich content, component embedding |
 | | **JSON** | - | Configuration | Type-safe, easy maintenance |
 | | **Git-based CMS** | - | Content management | Version control, developer-friendly |
 
-## Prerequisites
+## 📋 Prerequisites
 
 - **Node.js** 18+ (LTS recommended)
 - **pnpm** 8+ (package manager)
@@ -68,7 +50,7 @@ This portfolio follows JAMstack architecture principles with modern tooling for 
 - **GitHub Account** (for GitHub Actions)
 - **Vercel Account** (for deployment)
 
-## Quick Start
+## 🚀 Quick Start
 
 ```bash
 # Clone repository
@@ -89,7 +71,7 @@ pnpm run build
 pnpm run start
 ```
 
-## Preview
+## 📖 Preview
 
 <details>
 <summary><strong>Portfolio Screenshots</strong></summary>
@@ -107,7 +89,7 @@ pnpm run start
 
 </details>
 
-## Project Structure
+## 🏗️ Project Structure
 
 ```
 portfolio/
@@ -133,7 +115,7 @@ portfolio/
 └── next.config.mjs       # Next.js configuration
 ```
 
-## Project Status
+## 🚧 Project Status
 
 This portfolio is currently under active development. Some features may be incomplete or under implementation.
 
@@ -150,25 +132,43 @@ This portfolio is currently under active development. Some features may be incom
 
 **Last Update:** August 2025
 
-## Contributing
+## 🤝 Contributing
 
 This project follows the [Contributor Covenant](https://www.contributor-covenant.org/) code of conduct.
 By participating, you are expected to uphold this code.
 
+### 🔄 How to Contribute
+
 1. Fork the project
 2. Create a branch (`git checkout -b feature/improvement`)
-3. Commit (`git commit -m 'feat: add improvement'`)
+3. Commit using conventional commits (`git commit -m 'feat: add improvement'`)
 4. Push (`git push origin feature/improvement`)
 5. Open a Pull Request
 
-### Branch Strategy
+### 📝 Commit Convention
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/) specification for commit messages. This leads to more readable messages that are easy to follow when looking through the project history.
+
+**Format:** `<type>[optional scope]: <description>`
+
+**Common types:**
+
+- `feat:` new feature for the user
+- `fix:` bug fix for the user
+- `docs:` changes to documentation
+- `style:` formatting, missing semi colons, etc
+- `refactor:` refactoring production code
+- `test:` adding missing tests, refactoring tests
+- `chore:` updating grunt tasks etc
+
+### 🌿 Branch Strategy
 
 - **`main`**: Production-ready code, auto-deployed to live site
 - **`develop`**: Integration branch, auto-deployed to preview environment
 - **`feature/*`**: Feature branches, merged to develop via PR
 - **`hotfix/*`**: Critical production fixes, merged directly to main and back to develop
 
-### Development Workflow
+### ⚡ Development Workflow
 
 ```mermaid
 %%{init: {
@@ -232,15 +232,17 @@ gitGraph
     commit id: "Release v1.1"
 ```
 
-## License
+## 📄 License
 
-This portfolio is licensed under [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+This portfolio is licensed under [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). See the [LICENSE](LICENSE) file for full details.
 
-See the [LICENSE](LICENSE) file for full details.
+## 📞 Contact
 
-## Contact
+For any questions or support, please email us via:
 
-- **LinkedIn**: [Samuel SIKATI](https://www.linkedin.com/in/samuel-sikati-kenmogne-57953a1b7/)
-- **Email**: sikatikenmogne@gmail.com
+- [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sikatikenmogne@gmail.com)
+- [![Linkedin Badge](https://img.shields.io/badge/-linkedin-blue?style=for-the-badge&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/samuel-sikati-kenmogne-57953a1b7/)](https://www.linkedin.com/in/samuel-sikati-kenmogne-57953a1b7/)
+
+---
 
 **Built with ❤️ by [Samuel SIKATI](https://github.com/sikatikenmogne)**
