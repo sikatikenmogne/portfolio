@@ -1,7 +1,28 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
+  "description": "A modern professional developer portfolio Built with Next.js following a JAMstack architecture",
   "private": true,
+  "author": {
+    "name": "Samuel SIKATI KENMOGNE",
+    "email": "sikatikenmogne@gmail.com",
+    "url": "https://github.com/sikatikenmogne"
+  },
+  "license": "CC-BY-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sikatikenmogne/portfolio.git"
+  },
+  "homepage": "https://portfolio-sikati-samuels-projects.vercel.app",
+  "keywords": [
+    "portfolio",
+    "next.js",
+    "react",
+    "javascript",
+    "tailwindcss",
+    "vercel",
+    "jamstack"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

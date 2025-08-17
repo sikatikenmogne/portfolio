@@ -1,0 +1,145 @@
+@startuml CI CD Pipeline Sequence Diagram
+
+!theme plain
+skinparam participant {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+skinparam sequence {
+    ArrowColor DarkBlue
+    LifeLineBorderColor DarkBlue
+}
+
+title JAMstack Portfolio Website CI/CD Pipeline
+
+actor Developer as dev #LightGreen
+participant "Local Environment" as local #LightCyan
+participant Git as git #Orange
+participant GitHub as github #LightGray
+participant "GitHub Actions" as actions #Yellow
+participant "Release Please" as release #Orchid
+participant Vercel as vercel #LightPink
+participant Users as users #LightGreen
+
+== Development Phase ==
+dev -> local : Create feature branch
+activate local
+local -> local : pnpm run dev
+note right : Next.js development server\nHot module replacement
+dev -> local : Code React/JavaScript
+local -> local : Auto-reload and validation
+dev -> git : git commit -m "feat: add feature"
+activate git
+git -> git : Pre-commit hooks
+note right : ESLint + Prettier
+git -> github : git push origin feature/branch
+activate github
+deactivate git
+deactivate local
+
+== Quality Gates ==
+dev -> github : Create Pull Request
+github -> actions : Trigger CI workflow
+activate actions
+actions -> actions : Environment setup
+note right : Node.js 20 + pnpm 9
+actions -> actions : Run quality checks
+note right : ESLint validation\nUnit tests\nNext.js build
+alt Tests pass
+    actions -> github : Mark PR as ready
+    note right : Success status
+else Tests fail
+    actions -> github : Block PR merge
+    note right : Error logs available
+end
+deactivate actions
+
+== Preview Deployment ==
+dev -> github : Merge to develop branch
+github -> actions : Check commit eligibility
+activate actions
+actions -> actions : Analyze commit prefixes
+note right : feat:, fix:, perf:, revert:
+alt Eligible commits found
+    actions -> actions : Run quality gates
+    actions -> vercel : Deploy to preview
+    activate vercel
+    vercel -> vercel : Create preview deployment
+    note right : Develop branch preview\nUnique URL generated
+    vercel -> actions : Return preview URL
+    actions -> github : Log successful deployment
+    deactivate vercel
+else No eligible commits
+    actions -> github : Skip deployment
+    note right : No deployment-worthy changes
+end
+deactivate actions
+
+== Release Management ==
+dev -> github : Merge develop to main
+github -> release : Analyze new commits
+activate release
+release -> release : Calculate semantic version
+note right : feat: MINOR bump\nfix: PATCH bump\nBREAKING: MAJOR bump
+release -> github : Create release and tag
+note right : Auto-generated CHANGELOG\nGitHub release created
+github -> actions : Trigger release deployment
+activate actions
+actions -> actions : Build production assets
+actions -> vercel : Deploy to production
+activate vercel
+vercel -> vercel : Production deployment
+note right : Atomic deployment\nZero downtime
+vercel -> actions : Deployment successful
+actions -> github : Update release notes
+note right : Production URL added\nDeployment confirmed
+deactivate actions
+deactivate vercel
+deactivate release
+
+== Emergency Hotfix ==
+dev -> git : Critical fix commit
+git -> github : Direct push to main
+github -> actions : Detect hotfix deployment
+activate actions
+actions -> actions : Run essential checks
+actions -> vercel : Emergency deployment
+vercel -> vercel : Hotfix to production
+note right : Bypass normal release process
+vercel -> actions : Hotfix deployed
+actions -> github : Create hotfix notification
+note right : Recommend proper release later
+deactivate actions
+
+== Production Usage ==
+users -> vercel : Access website
+activate users
+vercel -> vercel : Serve content
+note right : Global CDN delivery\nEdge optimization
+vercel -> users : Fast response
+note right : Sub-300ms response time
+users -> vercel : Submit contact form
+vercel -> vercel : Process via Formspree
+vercel -> users : Confirmation response
+deactivate users
+
+note over dev, users
+    Pipeline Metrics:
+    • Quality Gates: 2-4 minutes
+    • Preview Deploy: 1-2 minutes (conditional)
+    • Release Process: 5-8 minutes
+    • Hotfix Deploy: 2-3 minutes
+    
+    Key Features:
+    • Conditional preview deployments
+    • Automated semantic versioning
+    • Separate hotfix workflow
+    • Zero-downtime releases
+    
+    Production SLA:
+    • Uptime: 99.9%
+    • Response time: <300ms
+    • Deployment frequency: On-demand
+end note
+
+@enduml

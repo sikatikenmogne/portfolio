@@ -3,6 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [ main, develop ]
+    # Ignore release commits from Release Please
+    paths-ignore:
+      - 'CHANGELOG.md'
+      - 'package.json'
   pull_request:
     branches: [ main ]
 
@@ -12,11 +16,40 @@ env:
 
 jobs:
   # ===============================================
+  # JOB 0: SKIP IF RELEASE COMMIT
+  # ===============================================
+  check-release-commit:
+    name: Check Release Commit
+    runs-on: ubuntu-latest
+    outputs:
+      skip-ci: ${{ steps.check.outputs.skip }}
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Check if release commit
+      id: check
+      run: |
+        COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")
+        echo "Commit message: $COMMIT_MESSAGE"
+        
+        # Skip CI for Release Please commits
+        if [[ "$COMMIT_MESSAGE" =~ ^chore\(main\):\ release || "$COMMIT_MESSAGE" =~ ^Release-please ]]; then
+          echo "This is a release commit, skipping CI"
+          echo "skip=true" >> $GITHUB_OUTPUT
+        else
+          echo "Regular commit, proceeding with CI"
+          echo "skip=false" >> $GITHUB_OUTPUT
+        fi
+  # ===============================================
   # JOB 1: QUALITY GATES (all branches)
   # ===============================================
   quality:
     name: Quality Gates
     runs-on: ubuntu-latest
+    needs: check-release-commit
+    if: needs.check-release-commit.outputs.skip-ci == 'false'
     
     steps:
     - name: Checkout
@@ -60,7 +93,8 @@ jobs:
   check-commits:
     name: Check Commit Eligibility
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop'
+    needs: check-release-commit
+    if: github.ref == 'refs/heads/develop' && needs.check-release-commit.outputs.skip-ci == 'false'
     outputs:
       should-deploy: ${{ steps.check.outputs.deploy }}
       commit-details: ${{ steps.check.outputs.details }}
@@ -88,7 +122,7 @@ jobs:
         DEPLOY_PREFIXES="^(feat|fix|perf|revert)(\(.+\))?:"
         
         if echo "$COMMITS" | grep -qE "$DEPLOY_PREFIXES"; then
-          echo "Found commits with deployment-worthy prefixes"
+          echo "✅ Found commits with deployment-worthy prefixes"
           echo "deploy=true" >> $GITHUB_OUTPUT
           
           # Extract and format eligible commits
@@ -97,7 +131,7 @@ jobs:
           echo "$ELIGIBLE_COMMITS" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
         else
-          echo "No commits found with required prefixes (feat, fix, perf, revert)"
+          echo "❌ No commits found with required prefixes (feat, fix, perf, revert)"
           echo "deploy=false" >> $GITHUB_OUTPUT
           echo "details=No deployment-worthy commits found" >> $GITHUB_OUTPUT
         fi
@@ -119,7 +153,7 @@ jobs:
       
     - name: Log deployment reason
       run: |
-        echo "Deploying to preview because of eligible commits:"
+        echo "🚀 Deploying to preview because of eligible commits:"
         echo "${{ needs.check-commits.outputs.commit-details }}"
         
     - name: Deploy to Vercel Preview
@@ -133,7 +167,7 @@ jobs:
         
     - name: Preview Deployment Success
       run: |
-        echo "Preview deployment successful!"
+        echo "✅ Preview deployment successful!"
         echo "Preview URL: ${{ steps.vercel-preview.outputs.preview-url }}"
 
   # ===============================================
@@ -148,7 +182,7 @@ jobs:
     steps:
     - name: Log skip reason
       run: |
-        echo "Skipping preview deployment"
+        echo "⏭️ Skipping preview deployment"
         echo "Reason: No commits found with required prefixes"
         echo "Required prefixes: feat, fix, perf, revert"
         echo "Current commits: ${{ needs.check-commits.outputs.commit-details }}"
@@ -159,7 +193,7 @@ jobs:
         script: |
           const sha = context.sha.substring(0, 7);
           console.log(`
-          **Preview Deployment Skipped**
+          ⏭️ **Preview Deployment Skipped**
           
           **Commit**: \`${sha}\`
           **Branch**: \`develop\`
@@ -179,22 +213,32 @@ jobs:
           `);
 
   # ===============================================
-  # JOB 5: DEPLOY PRODUCTION (main after merge)
+  # JOB 5: DEPLOY HOTFIXES (main direct pushes only)
   # ===============================================
-  deploy-production:
-    name: Deploy Production
+  deploy-hotfix:
+    name: Deploy Hotfix
     runs-on: ubuntu-latest
-    needs: quality
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [check-release-commit, quality]
+    if: |
+      github.ref == 'refs/heads/main' && 
+      github.event_name == 'push' && 
+      needs.check-release-commit.outputs.skip-ci == 'false' &&
+      !contains(github.event.head_commit.message, 'chore(main): release')
     environment: production
     
     steps:
     - name: Checkout
       uses: actions/checkout@v4
       
+    - name: Log Hotfix Deployment
+      run: |
+        echo "🚨 Deploying hotfix to production"
+        echo "Commit: ${{ github.event.head_commit.message }}"
+        echo "This is a direct push to main (not via release)"
+        
     - name: Deploy to Vercel Production
       uses: amondnet/vercel-action@v25
-      id: vercel-production
+      id: vercel-hotfix
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
         vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
@@ -202,27 +246,34 @@ jobs:
         vercel-args: '--prod'
         working-directory: ./
         
-    - name: Production Deployment Notification
+    - name: Hotfix Deployment Notification
       uses: actions/github-script@v6
       with:
         script: |
           github.rest.issues.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            title: `Production Deployment - ${new Date().toISOString().split('T')[0]}`,
-            body: `## Production Deployment Successful
+            title: `🚨 Hotfix Deployment - ${new Date().toISOString().split('T')[0]}`,
+            body: `## Hotfix Deployment Successful
             
-            - **Live URL**: ${{ steps.vercel-production.outputs.preview-url }}
+            > ⚠️ **This is a hotfix deployment** (direct push to main, not via release process)
+            
+            - **Live URL**: ${{ steps.vercel-hotfix.outputs.preview-url }}
             - **Commit**: ${context.sha.substring(0, 7)}
+            - **Message**: "${context.payload.head_commit.message}"
             - **Deployed**: ${new Date().toISOString()}
             
-            ### Verification Checklist
-            - [ ] Homepage loads correctly
-            - [ ] Navigation works
-            - [ ] Contact form functional
-            - [ ] Mobile responsive
+            ### 🔄 Recommended Actions
+            - [ ] Create a proper release after testing
+            - [ ] Update develop branch with this hotfix
+            - [ ] Document the hotfix in CHANGELOG
+            - [ ] Verify production stability
+            
+            ---
+            
+            **Note**: For regular deployments, prefer the release process via Release Please.
             `,
-            labels: ['deployment', 'production']
+            labels: ['deployment', 'hotfix', 'production']
           });
 
   # ===============================================
@@ -231,8 +282,8 @@ jobs:
   pr-preview-comment:
     name: PR Preview Comment
     runs-on: ubuntu-latest
-    needs: quality
-    if: github.event_name == 'pull_request'
+    needs: [check-release-commit, quality]
+    if: github.event_name == 'pull_request' && needs.check-release-commit.outputs.skip-ci == 'false'
     
     steps:
     - name: Comment PR with Preview
