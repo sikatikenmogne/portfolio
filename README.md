@@ -1,36 +1,248 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+# Portfolio
 
-First, run the development server:
+![Build](https://img.shields.io/github/actions/workflow/status/sikatikenmogne/portfolio/ci-cd.yml?branch=main&style=for-the-badge&logo=github) ![Vercel](https://img.shields.io/badge/Vercel-Production-brightgreen?style=for-the-badge) ![Next.js](https://img.shields.io/badge/Next.js-15.0-000?style=for-the-badge&logo=next.js&logoColor=white)  ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?style=for-the-badge) ![Development Status](https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge) ![Maintenance](https://img.shields.io/badge/Maintained-Yes-green.svg?style=for-the-badge)
+
+A modern professional developer portfolio Built with **Next.js** following a **JAMstack architecture**, leveraging **static site generation** for optimal performance and deployed automatically on **Vercel**.
+
+</div>
+
+## ✨ Features
+
+- Professional first impression with clear value proposition
+- Comprehensive project showcase with detailed case studies
+- Professional background and skills evaluation system
+- Responsive mobile-optimized experience across all devices
+- Simple contact system with professional networking links
+
+## 🛠️ Tech Stack
+
+This portfolio follows JAMstack architecture principles with modern tooling for optimal performance, maintainability, and developer experience:
+
+| **Category** | **Technology** | **Version** | **Role** | **Why This Choice** |
+|--------------|----------------|-------------|----------|-------------------|
+| **🖥️ Frontend** | **Next.js** | 15.0 | React framework with App Router | SSG capabilities, performance, modern routing |
+| | **React** | 18+ | UI library | Mature ecosystem, reusable components |
+| | **Tailwind CSS** | 4 | Utility-first CSS framework | Rapid development, consistent design system |
+| | **Lucide Icons** | Latest | Icon system | Lightweight, optimized SVGs, tree-shaking |
+| **⚙️ Business Logic** | **React Hooks** | - | State management | Simple, performant state handling |
+| | **Custom Hooks** | - | Reusable logic | Clean separation of concerns |
+| | **ES Modules** | - | Modern JavaScript modules | Native standards, optimization |
+| **🔧 Development Tools** | **Node.js** | 18+ | JavaScript runtime | npm ecosystem, modern tooling |
+| | **pnpm** | 8+ | Package manager | Performance, disk space efficiency |
+| | **ESLint + Prettier** | Latest | Code quality | Consistent coding standards |
+| **🚀 Services & APIs** | **Formspree** | - | Form handling | No backend required, spam protection |
+| | **GitHub API** | v4 | Repository data | Dynamic project information |
+| | **Vercel Analytics** | - | Performance monitoring | Privacy-friendly, built-in |
+| **📦 CI/CD & Deployment** | **GitHub Actions** | - | CI/CD pipeline | Native integration, automated workflows |
+| | **Vercel** | - | Hosting and deployment | Edge network, preview deployments |
+| | **Git** | - | Version control | Collaboration, history tracking |
+| **📄 Content Management** | **Markdown + MDX** | - | Content format | Rich content, component embedding |
+| | **JSON** | - | Configuration | Type-safe, easy maintenance |
+| | **Git-based CMS** | - | Content management | Version control, developer-friendly |
+
+## 📋 Prerequisites
+
+- **Node.js** 18+ (LTS recommended)
+- **pnpm** 8+ (package manager)
+- **Git** (version control)
+- **GitHub Account** (for GitHub Actions)
+- **Vercel Account** (for deployment)
+
+## 🚀 Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone repository
+git clone https://github.com/sikatikenmogne/portfolio.git
+cd portfolio
+
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm run dev
+# → Open http://localhost:3000
+
+# Build for production
+pnpm run build
+
+# Start production server
+pnpm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📖 Preview
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+<details>
+<summary><strong>Portfolio Screenshots</strong></summary>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Desktop View
+![Desktop Homepage](public/images/preview/desktop-home.png)
+![Desktop Projects](public/images/preview/desktop-projects.png)
 
-## Learn More
+### Mobile View
+![Mobile Homepage](public/images/preview/mobile-home.png)
+![Mobile Navigation](public/images/preview/mobile-nav.png)
 
-To learn more about Next.js, take a look at the following resources:
+### Dark Mode
+![Dark Mode](public/images/preview/dark-mode.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+</details>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🏗️ Project Structure
 
-## Deploy on Vercel
+```
+portfolio/
+├── .github/workflows/     # GitHub Actions CI/CD
+├── src/
+│   ├── app/              # Next.js App Router (pages & layouts)
+│   ├── components/       # Reusable React components
+│   │   ├── navigation/   # Header, footer, navigation
+│   │   ├── projects/     # Project cards, filters, details
+│   │   ├── profile/      # About, skills, experience
+│   │   ├── contact/      # Contact form, social links
+│   │   └── shared/       # Layout, SEO, error boundaries
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility functions and services
+│   └── data/             # Configuration and static data
+├── content/              # Git-based CMS (Markdown files)
+│   ├── projects/         # Project case studies
+│   ├── blog/             # Technical articles
+│   └── profile/          # About, experience, education
+├── public/               # Static assets (images, icons, docs)
+├── scripts/              # Build and utility scripts
+├── .env.example          # Environment variables template
+└── next.config.mjs       # Next.js configuration
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚧 Project Status
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This portfolio is currently under active development. Some features may be incomplete or under implementation.
+
+### Development Progress
+
+- [ ] User Interface
+- [ ] Navigation System
+- [ ] Contact Form
+- [ ] Dark/Light Theme
+- [ ] Projects Showcase
+- [ ] Technical Blog
+- [ ] Automated Testing
+- [ ] Internationalization
+
+**Last Update:** August 2025
+
+## 🤝 Contributing
+
+This project follows the [Contributor Covenant](https://www.contributor-covenant.org/) code of conduct.
+By participating, you are expected to uphold this code.
+
+### 🔄 How to Contribute
+
+1. Fork the project
+2. Create a branch (`git checkout -b feature/improvement`)
+3. Commit using conventional commits (`git commit -m 'feat: add improvement'`)
+4. Push (`git push origin feature/improvement`)
+5. Open a Pull Request
+
+### 📝 Commit Convention
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/) specification for commit messages. This leads to more readable messages that are easy to follow when looking through the project history.
+
+**Format:** `<type>[optional scope]: <description>`
+
+**Common types:**
+
+- `feat:` new feature for the user
+- `fix:` bug fix for the user
+- `docs:` changes to documentation
+- `style:` formatting, missing semi colons, etc
+- `refactor:` refactoring production code
+- `test:` adding missing tests, refactoring tests
+- `chore:` updating grunt tasks etc
+
+### 🌿 Branch Strategy
+
+- **`main`**: Production-ready code, auto-deployed to live site
+- **`develop`**: Integration branch, auto-deployed to preview environment
+- **`feature/*`**: Feature branches, merged to develop via PR
+- **`hotfix/*`**: Critical production fixes, merged directly to main and back to develop
+
+### ⚡ Development Workflow
+
+```mermaid
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#ffffff',
+    'primaryTextColor': '#333333',
+    'primaryBorderColor': '#E60012',
+    'lineColor': '#333333',
+    'git0': '#E60012',
+    'git1': '#E3F2FD',
+    'git2': '#E8F5E8',
+    'git3': '#FFF3E0',
+    'git4': '#F3E5F5',
+    'gitBranchLabel0': '#ffffff',
+    'gitBranchLabel1': '#333333',
+    'gitBranchLabel2': '#333333',
+    'gitBranchLabel3': '#333333',
+    'gitBranchLabel4': '#333333',
+    'commitLabelFontSize': '10px'
+  }
+}}%%
+gitGraph
+    commit id: "Initial"
+    branch develop
+    checkout develop
+    commit id: "Setup"
+    commit id: "Feature A"
+    
+    branch feature/auth
+    checkout feature/auth
+    commit id: "Auth System"
+    checkout develop
+    merge feature/auth
+    
+    commit id: "Feature B"
+    checkout main
+    merge develop
+    commit id: "Release v1.0"
+    
+    branch hotfix/critical-bug
+    checkout hotfix/critical-bug
+    commit id: "Fix Bug"
+    checkout main
+    merge hotfix/critical-bug
+    commit id: "Hotfix v1.0.1"
+    checkout develop
+    merge main
+    
+    checkout develop
+    commit id: "Feature C"
+    
+    branch feature/new-component
+    checkout feature/new-component
+    commit id: "New Component"
+    checkout develop
+    merge feature/new-component
+    
+    checkout main
+    merge develop
+    commit id: "Release v1.1"
+```
+
+## 📄 License
+
+This portfolio is licensed under [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). See the [LICENSE](LICENSE) file for full details.
+
+## 📞 Contact
+
+For any questions or support, please email us via:
+
+- [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sikatikenmogne@gmail.com)
+- [![Linkedin Badge](https://img.shields.io/badge/-linkedin-blue?style=for-the-badge&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/samuel-sikati-kenmogne-57953a1b7/)](https://www.linkedin.com/in/samuel-sikati-kenmogne-57953a1b7/)
+
+---
+
+**Built with ❤️ by [Samuel SIKATI](https://github.com/sikatikenmogne)**

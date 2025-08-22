@@ -1,0 +1,194 @@
+{
+  "main": {
+    "id": "844df7f77314a3d7",
+    "type": "split",
+    "children": [
+      {
+        "id": "fbe67c31546475fa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2bb4b2aa7efa7357",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "LOGICAL_COMPONENTS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "LOGICAL_COMPONENTS"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "88f5517a6020bfab",
+    "type": "split",
+    "children": [
+      {
+        "id": "227c41fc54341043",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c1ac7781317f368e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorateur de fichiers"
+            }
+          },
+          {
+            "id": "07e7bd13da92e4ca",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Rechercher"
+            }
+          },
+          {
+            "id": "1bee150d81cf99ec",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Signet"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a8a5e550e8dae2f1",
+    "type": "split",
+    "children": [
+      {
+        "id": "9678e534d5528e85",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4775c9338cd397b0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "LOGICAL_COMPONENTS.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Rétrolien pour LOGICAL_COMPONENTS"
+            }
+          },
+          {
+            "id": "b288ee2ff367512a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "LOGICAL_COMPONENTS.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Liens sortants de LOGICAL_COMPONENTS"
+            }
+          },
+          {
+            "id": "b8ebd6389c13568b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Mots-clés"
+            }
+          },
+          {
+            "id": "89bba5845e69da12",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "LOGICAL_COMPONENTS.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Plan de LOGICAL_COMPONENTS"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Ouvrir le sélecteur rapide": false,
+      "graph:Ouvrir la vue graphique": false,
+      "canvas:Créer une nouvelle toile": false,
+      "daily-notes:Ouvrir la note quotidienne": false,
+      "templates:Insérer le modèle": false,
+      "command-palette:Ouvrir la palette de commandes": false
+    }
+  },
+  "active": "2bb4b2aa7efa7357",
+  "lastOpenFiles": [
+    "assets/images/diagrams/diagrams/plantuml/Portfolio Use Case Diagram.png",
+    "assets/images/diagrams/diagrams/plantuml",
+    "assets/images/diagrams/diagrams",
+    "assets/images/diagrams",
+    "assets/images",
+    "assets",
+    "OVERVIEW.md",
+    "LOGICAL_COMPONENTS.md",
+    "NON_FUNCTIONAL_REQUIREMENTS.md",
+    "ADR.md",
+    "logical_components_analysis.md",
+    "diagrams/plantuml/portfolio_use_case_diagram.puml",
+    "diagrams/plantuml/portfolio_use_case_diagram.txt",
+    "diagrams/plantuml",
+    "diagrams",
+    "architecture_composants_logiques.png",
+    "4FEFA820",
+    "SPRINT_PLANNING.md",
+    "USER_STORIES.md",
+    "non-functional-requirements.md"
+  ]
+}

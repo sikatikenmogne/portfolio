@@ -1,23 +1,104 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
+  "description": "A modern professional developer portfolio Built with Next.js following a JAMstack architecture",
   "private": true,
+  "author": {
+    "name": "Samuel SIKATI KENMOGNE",
+    "email": "sikatikenmogne@gmail.com",
+    "url": "https://github.com/sikatikenmogne"
+  },
+  "license": "CC-BY-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sikatikenmogne/portfolio.git"
+  },
+  "homepage": "https://portfolio-sikati-samuels-projects.vercel.app",
+  "keywords": [
+    "portfolio",
+    "next.js",
+    "react",
+    "javascript",
+    "tailwindcss",
+    "vercel",
+    "jamstack"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "check": "next build && next export",
+    "fix": "eslint --fix . && prettier --write .",
+    "verify": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "test": "jest --passWithNoTests",
+    "export": "next export",
+    "deploy:preview": "vercel",
+    "deploy:production": "vercel --prod",
+    "release": "git checkout master && git merge develop && git push origin master",
+    "release:create": "gh pr create --base main --head develop --title \"Release: $(date +'%Y-%m-%d')\" --body \"Production release\"",
+    "release:check": "gh pr status",
+    "clean": "rimraf .next out .vercel"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,mdx}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
+    "@formspree/react": "^3.0.0",
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@next/mdx": "^15.4.6",
+    "@next/third-parties": "^15.4.6",
+    "clsx": "^2.1.1",
+    "d3": "^7.9.0",
+    "date-fns": "^4.1.0",
+    "gray-matter": "^4.0.3",
+    "lodash-es": "^4.17.21",
+    "lucide-react": "^0.539.0",
+    "next": "15.4.6",
+    "next-intl": "^4.3.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.6"
+    "recharts": "^3.1.2",
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-html": "^16.0.1",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.4.6",
+    "@playwright/test": "^1.54.2",
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
-    "eslint": "^9",
+    "@tailwindcss/typography": "^0.5.16",
+    "@testing-library/jest-dom": "^6.7.0",
+    "@testing-library/react": "^16.3.0",
+    "autoprefixer": "^10.4.21",
+    "cross-env": "^10.0.0",
+    "eslint": "^9.33.0",
     "eslint-config-next": "15.4.6",
-    "@eslint/eslintrc": "^3"
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "husky": "^9.1.7",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
+    "lint-staged": "^16.1.5",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "stylelint": "^16.23.1",
+    "tailwindcss": "^4.1.12"
   }
 }

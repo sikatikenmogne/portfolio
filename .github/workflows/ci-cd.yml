@@ -1,0 +1,319 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+    # Ignore release commits from Release Please
+    paths-ignore:
+      - 'CHANGELOG.md'
+      - 'package.json'
+  pull_request:
+    branches: [ main ]
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '9'
+
+jobs:
+  # ===============================================
+  # JOB 0: SKIP IF RELEASE COMMIT
+  # ===============================================
+  check-release-commit:
+    name: Check Release Commit
+    runs-on: ubuntu-latest
+    outputs:
+      skip-ci: ${{ steps.check.outputs.skip }}
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Check if release commit
+      id: check
+      run: |
+        COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")
+        echo "Commit message: $COMMIT_MESSAGE"
+        
+        # Skip CI for Release Please commits
+        if [[ "$COMMIT_MESSAGE" =~ ^chore\(main\):\ release || "$COMMIT_MESSAGE" =~ ^Release-please ]]; then
+          echo "This is a release commit, skipping CI"
+          echo "skip=true" >> $GITHUB_OUTPUT
+        else
+          echo "Regular commit, proceeding with CI"
+          echo "skip=false" >> $GITHUB_OUTPUT
+        fi
+  # ===============================================
+  # JOB 1: QUALITY GATES (all branches)
+  # ===============================================
+  quality:
+    name: Quality Gates
+    runs-on: ubuntu-latest
+    needs: check-release-commit
+    if: needs.check-release-commit.outputs.skip-ci == 'false'
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: ${{ env.PNPM_VERSION }}
+        
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-
+          
+    - name: Install dependencies
+      run: |
+        if [ -f pnpm-lock.yaml ]; then
+          pnpm install --frozen-lockfile
+        else
+          pnpm install --no-frozen-lockfile
+        fi
+      
+    - name: Lint code
+      run: pnpm run lint
+      
+    - name: Build application
+      run: pnpm run build
+
+  # ===============================================
+  # JOB 2: CHECK COMMIT ELIGIBILITY (develop only)
+  # ===============================================
+  check-commits:
+    name: Check Commit Eligibility
+    runs-on: ubuntu-latest
+    needs: check-release-commit
+    if: github.ref == 'refs/heads/develop' && needs.check-release-commit.outputs.skip-ci == 'false'
+    outputs:
+      should-deploy: ${{ steps.check.outputs.deploy }}
+      commit-details: ${{ steps.check.outputs.details }}
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch full history for commit analysis
+        
+    - name: Check commit prefixes
+      id: check
+      run: |
+        echo "=== Checking commit eligibility for preview deployment ==="
+        
+        # Get commits since last merge to main (or last 10 commits as fallback)
+        BASE_COMMIT=$(git merge-base origin/main HEAD 2>/dev/null || git rev-parse HEAD~10)
+        
+        # Get commit messages since base
+        COMMITS=$(git log --pretty=format:"%h: %s" $BASE_COMMIT..HEAD)
+        echo "Commits to analyze:"
+        echo "$COMMITS"
+        
+        # Check for deployment-worthy prefixes
+        DEPLOY_PREFIXES="^(feat|fix|perf|revert)(\(.+\))?:"
+        
+        if echo "$COMMITS" | grep -qE "$DEPLOY_PREFIXES"; then
+          echo "✅ Found commits with deployment-worthy prefixes"
+          echo "deploy=true" >> $GITHUB_OUTPUT
+          
+          # Extract and format eligible commits
+          ELIGIBLE_COMMITS=$(echo "$COMMITS" | grep -E "$DEPLOY_PREFIXES" || echo "No eligible commits found")
+          echo "details<<EOF" >> $GITHUB_OUTPUT
+          echo "$ELIGIBLE_COMMITS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+        else
+          echo "❌ No commits found with required prefixes (feat, fix, perf, revert)"
+          echo "deploy=false" >> $GITHUB_OUTPUT
+          echo "details=No deployment-worthy commits found" >> $GITHUB_OUTPUT
+        fi
+        
+        echo "=== Eligible commit prefixes: feat, fix, perf, revert ==="
+
+  # ===============================================
+  # JOB 3: DEPLOY PREVIEW (develop only, conditional)
+  # ===============================================
+  deploy-preview:
+    name: Deploy Preview
+    runs-on: ubuntu-latest
+    needs: [quality, check-commits]
+    if: github.ref == 'refs/heads/develop' && needs.check-commits.outputs.should-deploy == 'true'
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Log deployment reason
+      run: |
+        echo "🚀 Deploying to preview because of eligible commits:"
+        echo "${{ needs.check-commits.outputs.commit-details }}"
+        
+    - name: Deploy to Vercel Preview
+      uses: amondnet/vercel-action@v25
+      id: vercel-preview
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: ./
+        
+    - name: Preview Deployment Success
+      run: |
+        echo "✅ Preview deployment successful!"
+        echo "Preview URL: ${{ steps.vercel-preview.outputs.preview-url }}"
+
+  # ===============================================
+  # JOB 4: SKIP PREVIEW NOTIFICATION (develop only)
+  # ===============================================
+  skip-preview:
+    name: Skip Preview Notification
+    runs-on: ubuntu-latest
+    needs: [quality, check-commits]
+    if: github.ref == 'refs/heads/develop' && needs.check-commits.outputs.should-deploy == 'false'
+    
+    steps:
+    - name: Log skip reason
+      run: |
+        echo "⏭️ Skipping preview deployment"
+        echo "Reason: No commits found with required prefixes"
+        echo "Required prefixes: feat, fix, perf, revert"
+        echo "Current commits: ${{ needs.check-commits.outputs.commit-details }}"
+        
+    - name: Create Skip Comment
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const sha = context.sha.substring(0, 7);
+          console.log(`
+          ⏭️ **Preview Deployment Skipped**
+          
+          **Commit**: \`${sha}\`
+          **Branch**: \`develop\`
+          **Reason**: No deployment-worthy commits found
+          
+          ### Required Commit Prefixes
+          Preview deployments are only triggered by commits with these prefixes:
+          - \`feat:\` - New features
+          - \`fix:\` - Bug fixes  
+          - \`perf:\` - Performance improvements
+          - \`revert:\` - Reverts
+          
+          ### Current Commits
+          ${{ needs.check-commits.outputs.commit-details }}
+          
+          *To trigger a preview deployment, ensure at least one commit uses the required prefixes.*
+          `);
+
+  # ===============================================
+  # JOB 5: DEPLOY HOTFIXES (main direct pushes only)
+  # ===============================================
+  deploy-hotfix:
+    name: Deploy Hotfix
+    runs-on: ubuntu-latest
+    needs: [check-release-commit, quality]
+    if: |
+      github.ref == 'refs/heads/main' && 
+      github.event_name == 'push' && 
+      needs.check-release-commit.outputs.skip-ci == 'false' &&
+      !contains(github.event.head_commit.message, 'chore(main): release')
+    environment: production
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Log Hotfix Deployment
+      run: |
+        echo "🚨 Deploying hotfix to production"
+        echo "Commit: ${{ github.event.head_commit.message }}"
+        echo "This is a direct push to main (not via release)"
+        
+    - name: Deploy to Vercel Production
+      uses: amondnet/vercel-action@v25
+      id: vercel-hotfix
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        vercel-args: '--prod'
+        working-directory: ./
+        
+    - name: Hotfix Deployment Notification
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `🚨 Hotfix Deployment - ${new Date().toISOString().split('T')[0]}`,
+            body: `## Hotfix Deployment Successful
+            
+            > ⚠️ **This is a hotfix deployment** (direct push to main, not via release process)
+            
+            - **Live URL**: ${{ steps.vercel-hotfix.outputs.preview-url }}
+            - **Commit**: ${context.sha.substring(0, 7)}
+            - **Message**: "${context.payload.head_commit.message}"
+            - **Deployed**: ${new Date().toISOString()}
+            
+            ### 🔄 Recommended Actions
+            - [ ] Create a proper release after testing
+            - [ ] Update develop branch with this hotfix
+            - [ ] Document the hotfix in CHANGELOG
+            - [ ] Verify production stability
+            
+            ---
+            
+            **Note**: For regular deployments, prefer the release process via Release Please.
+            `,
+            labels: ['deployment', 'hotfix', 'production']
+          });
+
+  # ===============================================
+  # JOB 6: PR PREVIEW COMMENT
+  # ===============================================
+  pr-preview-comment:
+    name: PR Preview Comment
+    runs-on: ubuntu-latest
+    needs: [check-release-commit, quality]
+    if: github.event_name == 'pull_request' && needs.check-release-commit.outputs.skip-ci == 'false'
+    
+    steps:
+    - name: Comment PR with Preview
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const prNumber = context.issue.number;
+          const commitSha = context.payload.pull_request.head.sha;
+          
+          github.rest.issues.createComment({
+            issue_number: prNumber,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## Pull Request Preview
+            
+            **Branch**: \`${context.payload.pull_request.head.ref}\`
+            **Commit**: \`${commitSha.substring(0, 7)}\`
+            
+            ### Preview URLs
+            **Develop Preview**: https://portfolio-git-develop-sikati-samuels-projects.vercel.app
+            
+            > **Note**: Preview deployments are only triggered by commits with prefixes: \`feat\`, \`fix\`, \`perf\`, \`revert\`
+            
+            ### Review Checklist
+            - [ ] Code reviewed and approved
+            - [ ] Tests pass
+            - [ ] Preview deployed successfully (if eligible commits)
+            - [ ] No breaking changes
+            - [ ] Ready for production
+            
+            *This preview will be automatically deployed to production when merged to main.*
+            `
+          });

@@ -1,0 +1,14 @@
+echo "Verification du code avant commit..."
+
+# Lint et format du code
+npx lint-staged
+
+# Vérification des tests
+echo "Test unitaires..."
+pnpm run test
+
+# Vérification que le build fonctionne
+echo "Test de build..."
+pnpm run build
+
+echo "Pre-commit valide !"

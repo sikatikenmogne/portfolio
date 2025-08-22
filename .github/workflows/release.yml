@@ -1,0 +1,203 @@
+name: Release Management
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allow manual triggers
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  # ===============================================
+  # JOB 1: RELEASE PLEASE - Version Management
+  # ===============================================
+  release-please:
+    name: Release Please
+    runs-on: ubuntu-latest
+    outputs:
+      release-created: ${{ steps.release.outputs.release_created }}
+      tag-name: ${{ steps.release.outputs.tag_name }}
+      version: ${{ steps.release.outputs.version }}
+      upload-url: ${{ steps.release.outputs.upload_url }}
+    
+    steps:
+      - name: Run Release Please
+        id: release
+        uses: google-github-actions/release-please-action@v4
+        with:
+          # Point vers le fichier de configuration
+          config-file: .release-please-config.json
+          # Type de projet (défini aussi dans le config file)
+          release-type: node
+          
+      - name: Log Release Information
+        if: steps.release.outputs.release_created
+        run: |
+          echo "🎉 New release created!"
+          echo "Version: ${{ steps.release.outputs.version }}"
+          echo "Tag: ${{ steps.release.outputs.tag_name }}"
+          echo "Upload URL: ${{ steps.release.outputs.upload_url }}"
+
+  # ===============================================
+  # JOB 2: BUILD RELEASE ASSETS (if release created)
+  # ===============================================
+  build-assets:
+    name: Build Release Assets
+    runs-on: ubuntu-latest
+    needs: release-please
+    if: needs.release-please.outputs.release-created
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '9'
+          
+      - name: Install dependencies
+        run: |
+            if [ -f pnpm-lock.yaml ]; then
+            pnpm install --frozen-lockfile
+            else
+            pnpm install --no-frozen-lockfile
+            fi
+        
+      - name: Build production
+        run: pnpm run build
+        
+      - name: Create release archive
+        run: |
+          # Create a clean build archive
+          tar -czf portfolio-${{ needs.release-please.outputs.version }}.tar.gz \
+            .next/ \
+            package.json \
+            pnpm-lock.yaml \
+            README.md \
+            LICENSE
+            
+      - name: Upload release assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.release-please.outputs.upload-url }}
+          asset_path: ./portfolio-${{ needs.release-please.outputs.version }}.tar.gz
+          asset_name: portfolio-${{ needs.release-please.outputs.version }}.tar.gz
+          asset_content_type: application/gzip
+
+  # ===============================================
+  # JOB 3: DEPLOY PRODUCTION (if release created)
+  # ===============================================
+  deploy-production:
+    name: Deploy Production Release
+    runs-on: ubuntu-latest
+    needs: [release-please, build-assets]
+    if: needs.release-please.outputs.release-created
+    environment: production
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Deploy to Vercel Production
+        uses: amondnet/vercel-action@v25
+        id: vercel-production
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./
+          
+      - name: Update Release with Production URL
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const tag = '${{ needs.release-please.outputs.tag-name }}';
+            
+            // Get the release by tag
+            const { data: release } = await github.rest.repos.getReleaseByTag({
+              owner,
+              repo,
+              tag
+            });
+            
+            // Append production URL to release body
+            const updatedBody = release.body + `\n\n---\n\n### 🚀 Production Deployment\n\n**Live URL**: ${{ steps.vercel-production.outputs.preview-url }}\n**Deployed**: ${new Date().toISOString()}\n\n✅ This release has been automatically deployed to production.`;
+            
+            // Update the release
+            await github.rest.repos.updateRelease({
+              owner,
+              repo,
+              release_id: release.id,
+              body: updatedBody
+            });
+            
+            console.log(`✅ Release ${tag} updated with production URL`);
+
+  # ===============================================
+  # JOB 4: NOTIFICATION & CLEANUP
+  # ===============================================
+  post-release:
+    name: Post-Release Actions
+    runs-on: ubuntu-latest
+    needs: [release-please, deploy-production]
+    if: needs.release-please.outputs.release-created
+    
+    steps:
+      - name: Create Release Summary Issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const version = '${{ needs.release-please.outputs.version }}';
+            const tag = '${{ needs.release-please.outputs.tag-name }}';
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🎉 Release ${version} Published`,
+              body: `## Release ${version} Successfully Published
+              
+              ### 📋 Release Details
+              - **Version**: ${version}
+              - **Tag**: ${tag}
+              - **Release URL**: https://github.com/${context.repo.owner}/${context.repo.repo}/releases/tag/${tag}
+              - **Production URL**: Coming soon...
+              
+              ### ✅ Actions Completed
+              - [x] Version calculated from conventional commits
+              - [x] CHANGELOG.md updated
+              - [x] GitHub release created
+              - [x] Production deployment initiated
+              - [x] Release assets built and uploaded
+              
+              ### 🔄 Post-Release Checklist
+              - [ ] Verify production deployment
+              - [ ] Update documentation if needed
+              - [ ] Announce release to team
+              - [ ] Monitor for issues
+              
+              ---
+              
+              This release was automatically created by Release Please based on conventional commits.
+              `,
+              labels: ['release', 'published', `v${version}`]
+            });
+            
+      - name: Log Release Summary
+        run: |
+          echo "🎊 Release ${{ needs.release-please.outputs.version }} completed successfully!"
+          echo "📦 GitHub Release: https://github.com/${{ github.repository }}/releases/tag/${{ needs.release-please.outputs.tag-name }}"
+          echo "🚀 Production deployment in progress..."

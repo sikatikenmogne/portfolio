@@ -1,26 +1,86 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+/* Design System CSS Variables */
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* TECH BLUE PALETTE - Light Mode (Default) */
+    --tech-light: 144 213 255;
+    /* #90D5FF */
+    --tech-medium: 87 185 255;
+    /* #57B9FF */
+    --tech-accent: 37 99 235;
+    /* #2563eb */
+    --tech-muted: 119 177 212;
+    /* #77B1D4 */
+    --tech-deep: 81 120 145;
+    /* #517891 */
+    --tech-code: 30 64 175;
+    /* #1e40af */
+
+    /* SHADCN SEMANTIC TOKENS - Light Mode */
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: var(--tech-medium);
+    /* #57B9FF */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: var(--tech-accent);
+    /* Focus ring */
+    --radius: 0.5rem;
+
+    /* Success/Warning colors */
+    --success: 142 76% 36%;
+    --success-foreground: 355 7% 97%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 26 83% 14%;
+  }
+
+  /* DARK MODE THEME */
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: var(--tech-light);
+    /* Lighter in dark mode */
+    --primary-foreground: 224 71.4% 4.1%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: var(--tech-light);
+    /* Lighter focus ring */
+
+    /* Adjusted colors for dark mode */
+    --success: 142 71% 45%;
+    --success-foreground: 144 61% 20%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 26 83% 14%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
 }
