@@ -1,4 +1,4 @@
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 
 // Configuration des polices avec next/font
@@ -8,20 +8,19 @@ const inter = Inter({
   variable: '--font-sans',
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const Mono = Inter({
   subsets: ['latin'],
-  display: 'swap',
   variable: '--font-mono',
 });
 
 export const metadata = {
-  title: 'Portfolio',
-  description: 'Mon portfolio personnel',
+  title: 'Portfolio - Samuel SIKATI',
+  description: 'Découvrez Samuel SIKATI, Ingénieur logiciel, Développeur web full stack',
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${Mono.variable}`}>
       <body className={inter.className}>{children}</body>
     </html>
   );

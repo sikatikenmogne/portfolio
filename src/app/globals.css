@@ -1,147 +1,86 @@
-/* src/app/globals.css - Sans imports Google Fonts */
 @import 'tailwindcss';
-@import 'tailwindcss/preflight';
 
-/* Supprimé les imports Google Fonts - remplacés par next/font */
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap'); */
-
-@theme {
-  /* Couleurs personnalisées */
-  --color-primary-50: #eff6ff;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-900: #1e3a8a;
-
-  --color-secondary-50: #f0fdf4;
-  --color-secondary-500: #22c55e;
-  --color-secondary-600: #16a34a;
-  --color-secondary-700: #15803d;
-  --color-secondary-900: #14532d;
-
-  /* Polices utilisant les variables next/font */
-  --font-family-sans: var(--font-sans);
-  --font-family-mono: var(--font-mono);
-
-  /* Variables pour typography */
-  --color-prose: inherit;
-  --color-prose-links: inherit;
-}
-
-/* Variables CSS pour système de thème */
-:root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
-}
-
-.dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-  --primary: 217.2 91.2% 59.8%;
-  --primary-foreground: 222.2 84% 4.9%;
-}
-
-/* Classes utilitaires personnalisées */
-@layer components {
-  .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
-  }
-
-  .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 text-gray-900 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
-  }
-
-  .card {
-    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700;
-  }
-
-  .prose-custom {
-    @apply max-w-none text-gray-700 dark:text-gray-300 leading-relaxed;
-  }
-
-  /* Remplacement des classes prose pour Tailwind v4 */
-  .prose {
-    @apply max-w-none text-gray-700 dark:text-gray-300 leading-relaxed;
-  }
-
-  .prose h1 {
-    @apply text-3xl font-bold text-gray-900 dark:text-white mb-6 mt-8;
-  }
-
-  .prose h2 {
-    @apply text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-6;
-  }
-
-  .prose h3 {
-    @apply text-xl font-medium text-gray-900 dark:text-white mb-3 mt-5;
-  }
-
-  .prose p {
-    @apply mb-4;
-  }
-
-  .prose a {
-    @apply text-primary-600 hover:text-primary-700 underline font-medium;
-  }
-
-  .prose ul {
-    @apply list-disc list-inside mb-4 space-y-2;
-  }
-
-  .prose ol {
-    @apply list-decimal list-inside mb-4 space-y-2;
-  }
-
-  .prose li {
-    @apply text-gray-700 dark:text-gray-300;
-  }
-
-  .prose code {
-    @apply bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1 py-0.5 rounded text-sm font-mono;
-  }
-
-  .prose pre {
-    @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4;
-  }
-
-  .prose blockquote {
-    @apply border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic text-gray-600 dark:text-gray-400 mb-4;
-  }
-
-  .prose img {
-    @apply rounded-lg mb-4;
-  }
-}
-
-/* Styles de base */
+/* Design System CSS Variables */
 @layer base {
-  html {
-    font-family: var(--font-sans);
+  :root {
+    /* TECH BLUE PALETTE - Light Mode (Default) */
+    --tech-light: 144 213 255;
+    /* #90D5FF */
+    --tech-medium: 87 185 255;
+    /* #57B9FF */
+    --tech-accent: 37 99 235;
+    /* #2563eb */
+    --tech-muted: 119 177 212;
+    /* #77B1D4 */
+    --tech-deep: 81 120 145;
+    /* #517891 */
+    --tech-code: 30 64 175;
+    /* #1e40af */
+
+    /* SHADCN SEMANTIC TOKENS - Light Mode */
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: var(--tech-medium);
+    /* #57B9FF */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: var(--tech-accent);
+    /* Focus ring */
+    --radius: 0.5rem;
+
+    /* Success/Warning colors */
+    --success: 142 76% 36%;
+    --success-foreground: 355 7% 97%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 26 83% 14%;
   }
 
-  body {
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: var(--font-sans);
+  /* DARK MODE THEME */
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: var(--tech-light);
+    /* Lighter in dark mode */
+    --primary-foreground: 224 71.4% 4.1%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: var(--tech-light);
+    /* Lighter focus ring */
+
+    /* Adjusted colors for dark mode */
+    --success: 142 71% 45%;
+    --success-foreground: 144 61% 20%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 26 83% 14%;
   }
 }
 
-/* Scrollbar personnalisée */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-800;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-gray-400 dark:bg-gray-600 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-500 dark:bg-gray-500;
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
 }
