@@ -30,14 +30,16 @@
 
 ### US-001: Première Impression
 **En tant que** recruteur visitant le portfolio pour la première fois  
-**Je veux** comprendre immédiatement qui est la personne et ses compétences principales  
+
+**Je veux** comprendre immédiatement qui est la personne et son profil (software engineer)  
 **Afin de** décider rapidement si le profil correspond au poste  
 
 **Critères d'acceptation:**
 - [ ] Le nom et titre professionnel sont visibles dans les 3 secondes
-- [ ] Les technologies principales sont affichées visuellement
 - [ ] Une phrase d'accroche résume la proposition de valeur
 - [ ] La photo professionnelle inspire confiance
+- [ ] Un call to action incitant à télécharger le CV
+- [ ] La liste des reseaux sociaux professionnel avec lies pour suivre
 - [ ] Le temps de chargement initial < 2 secondes
 
 **Points d'effort:** 5  

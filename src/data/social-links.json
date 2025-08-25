@@ -1,0 +1,28 @@
+{
+  "socialLinks": [
+    {
+      "id": "linkedin",
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/in/samuel-sikati-kenmogne-57953a1b7",
+      "displayText": "LinkedIn Profile",
+      "isProfessional": true,
+      "priority": 1
+    },
+    {
+      "id": "github",
+      "platform": "GitHub",
+      "url": "https://github.com/sikatikenmogne",
+      "displayText": "GitHub Portfolio",
+      "isProfessional": true,
+      "priority": 2
+    },
+    {
+      "id": "x",
+      "platform": "Twitter",
+      "url": "https://x.com/KenmogneSikati",
+      "displayText": "@KenmogneSikati",
+      "isProfessional": true,
+      "priority": 3
+    }
+  ]
+}

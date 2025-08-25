@@ -1,0 +1,29 @@
+{
+  "personal": {
+    "fullName": "Samuel SIKATI",
+    "title": "Ingénieur logiciel",
+    "tagline": "Je conçois des solutions numériques sur mesure qui résolvent vos défis et donnent vie à vos projets les plus ambitieux.",
+    "location": "Douala, Cameroun",
+    "email": "sikatikenmogne@email.com",
+    "phone": "+237 6XX XX XX XX",
+    "profileImage": "/images/profile-photo.jpg"
+  },
+  "professional": {
+    "yearsExperience": 3,
+    "availability": "Disponible pour nouvelles opportunités",
+    "specializations": [
+      "Développement web Full Stack",
+      "Développement web Back-end",
+      "Redaction technique",
+      "Conception de site web wordpress",
+      ".NET",
+      "React.js",
+      "Tailwind CSS"
+    ],
+    "currentFocus": "Solutions web performantes et accessibles"
+  },
+  "documents": {
+    "cvPath": "/cv/CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf",
+    "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf"
+  }
+}
