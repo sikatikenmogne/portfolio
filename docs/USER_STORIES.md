@@ -30,6 +30,7 @@
 
 ### US-001: Première Impression
 **En tant que** recruteur visitant le portfolio pour la première fois  
+
 **Je veux** comprendre immédiatement qui est la personne et son profil (software engineer)  
 **Afin de** décider rapidement si le profil correspond au poste  
 

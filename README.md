@@ -42,6 +42,7 @@ This portfolio follows JAMstack architecture principles with modern tooling for 
 | | ![JSON](https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white) | - | Configuration | Type-safe, easy maintenance |
 | | ![Git CMS](https://img.shields.io/badge/Git_CMS-F05033.svg?logo=git&logoColor=white&style=for-the-badge) | - | Content management | Version control, developer-friendly |
 
+
 ## 📋 Prerequisites
 
 - **Node.js** 18+ (LTS recommended)
