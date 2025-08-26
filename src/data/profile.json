@@ -6,7 +6,8 @@
     "location": "Douala, Cameroun",
     "email": "sikatikenmogne@email.com",
     "phone": "+237 6XX XX XX XX",
-    "profileImage": "/images/profile-photo.jpg"
+    "profileImage": "/images/profile-photo.jpg",
+    "githubUsername": "sikatikenmogne"
   },
   "professional": {
     "yearsExperience": 3,
@@ -23,7 +24,13 @@
     "currentFocus": "Solutions web performantes et accessibles"
   },
   "documents": {
-    "cvPath": "/cv/CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf",
-    "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf"
+    "cvPath": "/api/download?user=sikatikenmogne&repo=Awesome-CV&resource=CV-Samuel-SIKATI-KENMOGNE-Ingenieur-Logiciel-FR.pdf",
+    "cvPathEn": "/api/download?user=sikatikenmogne&repo=Awesome-CV&resource=CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-EN.pdf",
+    "cvPathFallback": "/cv/CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf",
+    "cvGithubRepo": "Awesome-CV",
+    "cvGithubReleaseName": "CV-Samuel-SIKATI-KENMOGNE-Ingenieur-Logiciel-FR.pdf",
+    "cvGithubReleaseNameEn": "CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-EN.pdf",
+    "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf",
+    "cvFilenameEn": "CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-Full-Stack-Developer-[EN].pdf"
   }
 }
