@@ -30,10 +30,11 @@ export function HeroSection({ profileData, socialLinks }) {
           <DownloadButton
             githubUser={profileData.personal.githubUsername}
             githubRepo={profileData.documents.cvGithubRepo}
-            githubResource={profileData.documents.cvGithubReleaseName}
+            githubFilename={profileData.documents.cvGithubReleaseName}
             fallbackPath={profileData.documents.cvPathFallback}
             fallbackFilename={profileData.documents.cvFilename}
             showStatus={true}
+            showReleaseInfo={true}
           >
             Télécharger mon CV
           </DownloadButton>
