@@ -8,28 +8,28 @@ export default {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/lib/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  
+
   // Dark mode configuration
   darkMode: ['class'],
-  
+
   theme: {
     extend: {
       // TECH BLUE PALETTE - Your custom colors
       colors: {
         tech: {
           50: '#f0f9ff',
-          100: '#e0f2fe', 
+          100: '#e0f2fe',
           200: '#bae6fd',
-          300: '#90D5FF',  // Your base color
-          400: '#57B9FF',  // Your primary color
-          500: '#2563eb',  // Technical accent
-          600: '#77B1D4',  // Your secondary color
-          700: '#517891',  // Your professional color
-          800: '#1e40af',  // Code emphasis
-          900: '#1e293b',  // Dark shades
+          300: '#90D5FF', // Your base color
+          400: '#57B9FF', // Your primary color
+          500: '#2563eb', // Technical accent
+          600: '#77B1D4', // Your secondary color
+          700: '#517891', // Your professional color
+          800: '#1e40af', // Code emphasis
+          900: '#1e293b', // Dark shades
           950: '#0f172a',
         },
-        
+
         // Shadcn-compatible semantic colors (optional in v4)
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -65,11 +65,13 @@ export default {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
-      
+
       // Typography - Inter + system fallbacks
       fontFamily: {
+        incognito: ['var(--incognito)'],
+        inter: ['var(--inter)'],
         sans: [
-          'var(--font-sans)',
+          'var(--gitlabmono)',
           'Inter',
           'ui-sans-serif',
           'system-ui',
@@ -99,14 +101,14 @@ export default {
           'monospace',
         ],
       },
-      
+
       // Border radius with CSS variables
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      
+
       // Animation keyframes
       keyframes: {
         'accordion-down': {
@@ -118,23 +120,23 @@ export default {
           to: { height: '0' },
         },
         'fade-in-up': {
-          from: { 
+          from: {
             opacity: '0',
-            transform: 'translateY(20px)'
+            transform: 'translateY(20px)',
           },
-          to: { 
+          to: {
             opacity: '1',
-            transform: 'translateY(0)'
+            transform: 'translateY(0)',
           },
         },
         'slide-in-from-top': {
           from: {
             opacity: '0',
-            transform: 'translateY(-100%)'
+            transform: 'translateY(-100%)',
           },
           to: {
             opacity: '1',
-            transform: 'translateY(0)'
+            transform: 'translateY(0)',
           },
         },
         'pulse-tech': {
@@ -148,7 +150,7 @@ export default {
           },
         },
       },
-      
+
       // Animations
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -157,21 +159,24 @@ export default {
         'slide-in-from-top': 'slide-in-from-top 0.3s ease-out',
         'pulse-tech': 'pulse-tech 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
-      
+
       // Custom spacing (if needed)
       spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
+        18: '4.5rem',
+        88: '22rem',
       },
-      
+
       // Custom shadows with Tech Blue
       boxShadow: {
         'tech-sm': '0 1px 2px 0 rgba(87, 185, 255, 0.05)',
-        'tech-md': '0 4px 6px -1px rgba(87, 185, 255, 0.1), 0 2px 4px -1px rgba(87, 185, 255, 0.06)',
-        'tech-lg': '0 10px 15px -3px rgba(87, 185, 255, 0.1), 0 4px 6px -2px rgba(87, 185, 255, 0.05)',
-        'tech-xl': '0 20px 25px -5px rgba(87, 185, 255, 0.1), 0 10px 10px -5px rgba(87, 185, 255, 0.04)',
+        'tech-md':
+          '0 4px 6px -1px rgba(87, 185, 255, 0.1), 0 2px 4px -1px rgba(87, 185, 255, 0.06)',
+        'tech-lg':
+          '0 10px 15px -3px rgba(87, 185, 255, 0.1), 0 4px 6px -2px rgba(87, 185, 255, 0.05)',
+        'tech-xl':
+          '0 20px 25px -5px rgba(87, 185, 255, 0.1), 0 10px 10px -5px rgba(87, 185, 255, 0.04)',
       },
-      
+
       // Custom gradients
       backgroundImage: {
         'gradient-tech': 'linear-gradient(135deg, #57B9FF 0%, #77B1D4 100%)',
@@ -180,9 +185,9 @@ export default {
       },
     },
   },
-  
+
   // Plugins (empty for now, add as needed)
   plugins: [
     // Optional: Add plugins like @tailwindcss/typography, @tailwindcss/forms, etc.
   ],
-}
+};

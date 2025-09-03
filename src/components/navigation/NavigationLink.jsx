@@ -58,7 +58,8 @@ const NavigationLink = ({
           : [
               // État inactif : couleur muted
               'text-muted-foreground hover:text-foreground',
-              'hover:bg-secondary/80',
+              'hover:bg-primary/80',
+              'hover:text-white',
               // Focus visible pour l'accessibilité
               'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
             ],

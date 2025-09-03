@@ -58,7 +58,7 @@ export function SocialLinkItem({ link }) {
       >
         <IconComponent className="h-4 w-4 text-primary group-hover:scale-110 transition-transform" />
         <span className="text-sm font-medium text-primary transition-colors">{link.platform}</span>
-        <ExternalLink className="hidden h-3 w-3 opacity-0 group-hover:inline group-hover:opacity-100  transition-opacity" />
+        <ExternalLink className="max-sm:hidden h-3 w-3 opacity-0 group-hover:inline group-hover:opacity-100  transition-opacity" />
       </a>
     </Button>
   );

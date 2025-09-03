@@ -2,7 +2,9 @@ import './globals.css';
 import profileData from '../data/profile.json';
 import socialLinksData from '../data/social-links.json';
 import { Inter, Geist } from 'next/font/google';
-import { NavigationHeader } from '@/components/navigation/Navigation';
+import { incognito } from './assets/font/font';
+import { gitlabmono } from './assets/font/font';
+import { NavigationHeader, Footer } from '@/components/navigation/Navigation';
 import { cn } from '@/lib/utils';
 
 // Configuration des polices avec next/font
@@ -90,9 +92,10 @@ export default function RootLayout({ children }) {
       lang="fr"
       className={cn(
         // Variables CSS pour les fonts
+        incognito.variable,
+        gitlabmono.variable,
         inter.variable,
         geist.variable,
-        Mono.variable,
         // Support du thème sombre
         'h-full'
       )}
@@ -100,7 +103,7 @@ export default function RootLayout({ children }) {
       <body
         className={cn(
           // Application du thème depuis globals.css
-          'min-h-full bg-background font-sans antialiased',
+          'min-h-screen flex flex-col bg-background font-sans antialiased',
           // Smooth scrolling
           'scroll-smooth'
         )}
@@ -108,7 +111,7 @@ export default function RootLayout({ children }) {
         {/* Navigation principale - Couche Présentation */}
         <NavigationHeader
           sticky={true}
-          logoText="Portfolio"
+          logoText="Samuel"
           ctaText="Me contacter"
           ctaHref="/contact"
           className="border-primary/20"
@@ -126,32 +129,4 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
-
-  function Footer() {
-    return (
-      <footer className="border-t border-border/50 bg-muted/20 mt-auto">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
-              © 2025 Samuel SIKATI. Tous droits réservés.
-            </p>
-            <div className="flex space-x-4 text-sm">
-              <a
-                href="/mentions-legales"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Mentions légales
-              </a>
-              <a
-                href="/contact"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Contact
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    );
-  }
 }

@@ -1,7 +1,8 @@
 {
   "personal": {
+    "hello": "Salut, je m'appelle",
     "fullName": "Samuel SIKATI",
-    "title": "Ingénieur logiciel",
+    "title": "Ingénieur logiciel, Développeur web full Stack",
     "tagline": "Je conçois des solutions numériques sur mesure qui résolvent vos défis et donnent vie à vos projets les plus ambitieux.",
     "location": "Douala, Cameroun",
     "email": "sikatikenmogne@email.com",
@@ -14,12 +15,8 @@
     "availability": "Disponible pour nouvelles opportunités",
     "specializations": [
       "Développement web Full Stack",
-      "Développement web Back-end",
       "Redaction technique",
-      "Conception de site web wordpress",
-      ".NET",
-      "React.js",
-      "Tailwind CSS"
+      "Conception de site web wordpress"
     ],
     "currentFocus": "Solutions web performantes et accessibles"
   },

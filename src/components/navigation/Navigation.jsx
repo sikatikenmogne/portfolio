@@ -8,7 +8,7 @@ import { useNavigation } from './hooks/useNavigation';
 import NavigationLink from './NavigationLink';
 import MobileNavigation from './MobileNavigation';
 import { Button } from '@/components/ui/button';
-
+import { SunIcon } from 'lucide-react';
 /**
  * 🧭 Composant Navigation Principal
  *
@@ -34,7 +34,7 @@ const Navigation = ({
   showLogo = true,
   showCTA = true,
   logoHref = '/',
-  logoText = 'Portfolio',
+  logoText = 'Samuel',
   ctaText = 'Me contacter',
   ctaHref = '/contact',
 }) => {
@@ -91,23 +91,7 @@ const Navigation = ({
       {/* 📱 Section droite : CTA + Menu Mobile */}
       <div className="flex items-center space-x-2">
         {/* 🎯 Bouton Call-to-Action (desktop seulement) */}
-        {showCTA && (
-          <Button
-            asChild
-            variant="default"
-            size="sm"
-            className={cn(
-              // 🖥️ Masquer sur mobile pour économiser l'espace
-              'hidden md:inline-flex',
-              // 🎨 Style CTA avec couleur primary (thème océan)
-              'bg-primary hover:bg-primary/90 text-primary-foreground',
-              // ⚡ Animation subtile
-              'hover:scale-105 transition-transform duration-150'
-            )}
-          >
-            <Link href={ctaHref}>{ctaText}</Link>
-          </Button>
-        )}
+        {/* {showCTA && <SunIcon />} */}
 
         {/* 📱 Menu mobile */}
         <MobileNavigation />
@@ -144,7 +128,7 @@ export const NavigationHeader = ({
           'px-4 sm:px-6 lg:px-8'
         )}
       >
-        <Navigation {...props} className="py-0" />
+        <Navigation {...props} className="py-3" />
       </div>
     </header>
   );
@@ -207,6 +191,34 @@ export const DesktopSidebarNavigation = ({ className = '', ...props }) => {
     </nav>
   );
 };
+
+export function Footer() {
+  return (
+    <footer className="border-t border-border/50 bg-muted/20 mt-auto">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground">
+            © 2025 Samuel SIKATI. Tous droits réservés.
+          </p>
+          {/* <div className="flex space-x-4 text-sm">
+              <a
+                href="/mentions-legales"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Mentions légales
+              </a>
+              <a
+                href="/contact"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Contact
+              </a>
+            </div> */}
+        </div>
+      </div>
+    </footer>
+  );
+}
 
 export default Navigation;
 

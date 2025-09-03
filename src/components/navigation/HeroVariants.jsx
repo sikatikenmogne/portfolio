@@ -6,6 +6,7 @@ import { MapPin, Calendar, ExternalLink, Star, ArrowRight, BriefcaseBusiness } f
 
 import { DownloadButton } from '../shared/DownloadButton';
 import { SocialLinkItem } from '@/components/navigation/SocialLinks';
+// import { getInitials } from '@/components/navigation/HeroSection';
 /**
  * Hero Section Variants - CENTRAGE HORIZONTAL CORRIGÉ
  *
@@ -81,9 +82,13 @@ export function HeroWithSubtleAvatar({ profileData, socialLinks }) {
         <div className="mx-auto flex max-w-4xl flex-col gap-8">
           {/* Avatar centré automatiquement par parent text-center */}
           <div className="mx-auto">
-            <Avatar className="h-16 w-16 border-2">
-              <AvatarImage src={personal.profileImage} alt={personal.fullName} />
-              <AvatarFallback className="bg-primary/10 text-primary font-semibold">
+            <Avatar className="w-full max-w-xs mx-auto rounded-full border-2 flex items-center justify-center">
+              <AvatarImage
+                src={personal.profileImage}
+                alt={personal.fullName}
+                className="w-full h-full object-cover rounded-full"
+              />
+              <AvatarFallback className="bg-primary/10 text-primary font-semibold w-full h-full flex items-center justify-center rounded-full aspect-square">
                 {getInitials(personal.fullName)}
               </AvatarFallback>
             </Avatar>
@@ -136,92 +141,97 @@ export function HeroSplit({ profileData, socialLinks }) {
 
   const professionalLinks = socialLinks?.filter((link) => link.isProfessional) || [];
 
+  // Fonction utilitaire pour générer les initiales
+  const getInitials = (fullName) => {
+    return fullName
+      .split(' ')
+      .map((name) => name.charAt(0))
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
   return (
-    <section className="py-20 lg:py-32">
+    <section className="lg:py-32">
       {/* 
-        🎯 CORRECTION CENTRAGE - Pattern différent pour layout grid :
-        container mx-auto = centre le conteneur principal
-        px-4 sm:px-6 lg:px-8 = padding responsive
-        PAS de text-center car c'est un layout en colonnes
+        Conteneur principal centré avec padding responsive
+        - container : largeur responsive prédéfinie
+        - mx-auto : centrage horizontal automatique  
+        - px-4 sm:px-6 lg:px-8 : padding qui s'adapte à la taille d'écran
       */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* 
-          Grid centré :
-          grid gap-12 lg:grid-cols-2 = colonnes avec espacement
-          items-center = centrage vertical entre colonnes
-          max-w-6xl mx-auto = largeur maximale centrée
+          Grille responsive avec 2 colonnes sur grand écran
+          - grid : active le système de grille CSS
+          - gap-12 : espacement entre les éléments de la grille
+          - lg:grid-cols-[2fr_1fr] : sur grand écran, première colonne 2x plus large
+          - items-center : centrage vertical des colonnes
+          - max-w-6xl mx-auto : largeur maximale avec centrage
         */}
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center max-w-6xl mx-auto">
-          {/* Left column - Main info */}
-          <div>
-            <h1 className="text-4xl font-bold tracking-tight lg:text-6xl text-center">
-              {personal.fullName}
-            </h1>
-            <h2 className="mt-4 text-2xl font-semibold text-primary text-center">
+        <div className="grid gap-12 lg:grid-cols-[2fr_1fr] lg:gap-8 items-center max-w-6xl mx-auto">
+          {/* Colonne gauche - Informations principales */}
+          <div className="space-y-4">
+            <p className="text-lg leading-8 text-muted-foreground">{personal.hello}</p>
+
+            <h1 className="text-3xl font-bold tracking-tight lg:text-4xl">{personal.fullName}</h1>
+
+            <h2 className="mt-4 font-semibold text-primary tracking-tight text-4xl sm:text-5xl lg:leading-[3.7rem] leading-tight lg:min-w-[700px] min-w-full">
               {personal.title}
             </h2>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground text-center">
-              {personal.tagline}
-            </p>
 
-            {/* Boutons alignés à gauche pour desktop, centrés sur mobile */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <DownloadButton cvPath={documents.cvPath} filename={documents.cvFilename} />
+            <p className="mt-6 text-lg leading-8 text-muted-foreground">{personal.tagline}</p>
 
-              <Button variant="outline" size="lg" asChild>
-                <a href="#contact">Me contacter</a>
+            {/* Boutons d'action */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <DownloadButton
+                githubUser={profileData.personal.githubUsername}
+                githubRepo={profileData.documents.cvGithubRepo}
+                githubFilename={profileData.documents.cvGithubReleaseName}
+                fallbackPath={profileData.documents.cvPathFallback}
+                fallbackFilename={profileData.documents.cvFilename}
+                showStatus={true}
+                showReleaseInfo={true}
+              >
+                Télécharger mon CV
+              </DownloadButton>
+
+              <Button
+                className="text-primary hover:bg-primary/10"
+                variant="outline"
+                size="lg"
+                asChild
+              >
+                <a href="#contact">En savoir plus</a>
               </Button>
             </div>
           </div>
 
-          {/* Right column - Context & social - Centré dans sa colonne */}
-          <div className="space-y-8">
-            {/* Professional context */}
-            <div>
-              <h2 className="font-semibold mb-4 h2">Expérience</h2>
-              <div className="space-y-3 flex flex-wrap gap-2 max-sm:items-center max-sm:justify-center">
-                <Badge variant="outline" className="gap-2">
-                  <BriefcaseBusiness className="h-4 w-4 text-muted-foreground gap-2" />
-                  <span>Junior / Graduate</span>
-                </Badge>
-                <Badge variant="outline" className="gap-2">
-                  <MapPin className="h-4 w-4 text-muted-foreground" />
-                  <span>{personal.location}</span>
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className="gap-2 bg-green-50 text-green-700 border-green-200"
-                >
-                  <div className="h-2 w-2 rounded-full bg-green-500" />
-                  <span className="text-green-600 font-medium">{professional.availability}</span>
-                </Badge>
-              </div>
-            </div>
-
-            {/* Skills */}
-            <div>
-              <h3 className="font-semibold mb-4">Spécialisations</h3>
-              <div className="flex flex-wrap gap-2 max-sm:items-center max-sm:justify-center">
-                {professional.specializations?.slice(0, 6).map((skill, index) => (
-                  <Badge
-                    key={index}
-                    variant="secondary"
-                    className="bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
-                  >
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            {/* Social links */}
-            <div>
-              <h3 className="font-semibold mb-4">Liens professionnels</h3>
-              <div className="flex flex-wrap gap-3 items-center justify-center">
-                {professionalLinks.slice(0, 3).map((link) => (
-                  <SocialLinkItem link={link} key={link.id} />
-                ))}
-              </div>
+          {/* 
+            Colonne droite - Avatar 
+            SOLUTION AU PROBLÈME AVATAR :
+            1. On crée un conteneur avec aspect-square pour forcer un carré
+            2. On override les classes par défaut de Avatar avec className
+            3. On utilise w-full h-full pour remplir le conteneur
+          */}
+          <div className="order-first lg:order-last flex justify-center lg:justify-end">
+            {/* 
+              Conteneur de l'avatar avec ratio 1:1 (carré parfait)
+              - aspect-square : force un ratio hauteur/largeur de 1:1
+              - w-full : prend toute la largeur disponible
+              - max-w-xs : limite la taille maximale sur petit écran
+              - lg:max-w-sm : taille plus grande sur grand écran
+            */}
+            <div className="aspect-square w-full max-w-[200px] lg:max-w-[350px] lg:mb-0">
+              <Avatar className="w-full h-full border-4 border-primary/20 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <AvatarImage
+                  src={profileData.personal.profileImage}
+                  alt={profileData.personal.fullName}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+                <AvatarFallback className="bg-primary/10 text-primary font-bold text-3xl lg:text-4xl">
+                  {getInitials(profileData.personal.fullName)}
+                </AvatarFallback>
+              </Avatar>
             </div>
           </div>
         </div>
