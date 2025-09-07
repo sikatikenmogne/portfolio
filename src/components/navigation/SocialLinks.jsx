@@ -6,6 +6,30 @@ import { Separator } from '@/components/ui/separator';
 import { ExternalLink, Github, Linkedin, Twitter, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Small } from '../shared/Typography';
+import {
+  BiLinkExternal,
+  BiLogoCodepen,
+  BiLogoDribbble,
+  BiLogoGithub,
+  BiLogoGitlab,
+  BiLogoInstagram,
+  BiLogoLinkedinSquare,
+  BiLogoStackOverflow,
+  BiLogoSteam,
+  BiLogoUnsplash,
+  BiLogoYoutube,
+} from 'react-icons/bi';
+import { FaFreeCodeCamp, FaProductHunt } from 'react-icons/fa';
+import { SiCodewars } from 'react-icons/si';
+import { SiRoadmapdotsh } from 'react-icons/si';
+import { SiWakatime } from 'react-icons/si';
+import { SiGithub } from 'react-icons/si';
+import { SiLinkedin } from 'react-icons/si';
+import { SlSocialLinkedin } from 'react-icons/sl';
+import { RiTwitterXLine } from 'react-icons/ri';
+import { RiTwitterXFill } from 'react-icons/ri';
+import { SiCredly } from 'react-icons/si';
+import { FaHashnode, FaHashtag, FaSquareXTwitter } from 'react-icons/fa6';
 
 /**
  * SocialLinks Component - Shadcn UI Integration
@@ -48,17 +72,19 @@ export function SocialLinkItem({ link }) {
       variant="outline"
       size="sm"
       asChild
-      className="group hover:bg-primary/10 transition-colors"
+      className="group hover:bg-primary/10 transition-colors rounded-sm"
     >
       <a
         href={link.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-2"
+        className="flex items-center gap-2 rounded-sm"
       >
         <IconComponent className="h-4 w-4 text-primary group-hover:scale-110 transition-transform" />
-        <span className="text-sm font-medium text-primary transition-colors">{link.platform}</span>
-        <ExternalLink className="max-sm:hidden h-3 w-3 opacity-0 group-hover:inline group-hover:opacity-100  transition-opacity" />
+        <span className="text-sm font-medium text-primary transition-colors">
+          {link.displayText}
+        </span>
+        {/* <ExternalLink className="hidden h-3 w-3 opacity-0 group-hover:inline group-hover:opacity-100  transition-opacity" /> */}
       </a>
     </Button>
   );
@@ -91,7 +117,7 @@ export function SocialBadges({ socialLinks, className }) {
               className="flex items-center gap-1.5"
             >
               <IconComponent className="h-3 w-3" />
-              <span>{link.platform}</span>
+              <span>{link.displayText}</span>
             </a>
           </Badge>
         );
@@ -105,9 +131,12 @@ export function SocialBadges({ socialLinks, className }) {
  */
 function getSocialIcon(platform) {
   const iconMap = {
-    LinkedIn: Linkedin,
-    GitHub: Github,
-    Twitter: Twitter,
+    LinkedIn: SiLinkedin,
+    GitHub: SiGithub,
+    Twitter: RiTwitterXLine,
+    Wakatime: SiWakatime,
+    Roadmapdotsh: SiRoadmapdotsh,
+    Credly: SiCredly,
     Portfolio: Globe,
   };
 

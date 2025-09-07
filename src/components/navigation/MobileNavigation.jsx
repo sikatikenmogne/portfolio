@@ -160,13 +160,13 @@ export const OverlayMobileNavigation = ({ className = '' }) => {
     <div className={cn('md:hidden', className)}>
       {/* 🍔 Bouton trigger */}
       <Button
-        variant="ghost"
-        size="icon"
+        variant="outline"
+        size="md"
         onClick={toggleMobileMenu}
-        className="h-10 w-10 p-2"
+        className="group bg-primary/10 transition-colors"
         aria-label="Menu de navigation"
       >
-        <Menu className="w-5 h-5" />
+        <Menu className="h-6 w-6 text-primary scale-110 transition-transform" />
       </Button>
 
       {/* 🌫️ Overlay modal plein écran */}
@@ -207,13 +207,13 @@ export const CompactMobileNavigation = ({ className = '' }) => {
 
   return (
     <Button
-      variant="ghost"
+      variant="outline"
       size="sm"
       onClick={toggleMobileMenu}
       className={cn('md:hidden p-2', className)}
       aria-label="Menu"
     >
-      <Menu className="w-4 h-4" />
+      <Menu className="w-5 h-5 scale-110 transition-transform" />
     </Button>
   );
 };

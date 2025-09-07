@@ -159,7 +159,7 @@ export function HeroSplit({ profileData, socialLinks }) {
         - mx-auto : centrage horizontal automatique  
         - px-4 sm:px-6 lg:px-8 : padding qui s'adapte à la taille d'écran
       */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 max-sm:pt-4 sm:px-6 lg:px-8">
         {/* 
           Grille responsive avec 2 colonnes sur grand écran
           - grid : active le système de grille CSS
@@ -171,18 +171,20 @@ export function HeroSplit({ profileData, socialLinks }) {
         <div className="grid gap-12 lg:grid-cols-[2fr_1fr] lg:gap-8 items-center max-w-6xl mx-auto">
           {/* Colonne gauche - Informations principales */}
           <div className="space-y-4">
-            <p className="text-lg leading-8 text-muted-foreground">{personal.hello}</p>
+            {/* <p className="text-lg leading-8 text-muted-foreground">{personal.hello}</p> */}
 
-            <h1 className="text-3xl font-bold tracking-tight lg:text-4xl">{personal.fullName}</h1>
+            <h1 className="text-2xl font-bold tracking-tight lg:text-3xl text-primary">
+              {personal.fullName}
+            </h1>
 
-            <h2 className="mt-4 font-semibold text-primary tracking-tight text-4xl sm:text-5xl lg:leading-[3.7rem] leading-tight lg:min-w-[700px] min-w-full">
+            <h2 className="mt-4 font-semibold tracking-tight text-4xl sm:text-5xl lg:leading-[3.7rem] leading-tight lg:min-w-[700px] min-w-full">
               {personal.title}
             </h2>
 
             <p className="mt-6 text-lg leading-8 text-muted-foreground">{personal.tagline}</p>
 
             {/* Boutons d'action */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <div className="my-8 flex flex-col sm:flex-row gap-4">
               <DownloadButton
                 githubUser={profileData.personal.githubUsername}
                 githubRepo={profileData.documents.cvGithubRepo}
@@ -191,18 +193,29 @@ export function HeroSplit({ profileData, socialLinks }) {
                 fallbackFilename={profileData.documents.cvFilename}
                 showStatus={true}
                 showReleaseInfo={true}
+                className={'rounded-2xl'}
               >
                 Télécharger mon CV
               </DownloadButton>
 
               <Button
-                className="text-primary hover:bg-primary/10"
+                className="text-primary bg-primary/10 rounded-2xl"
                 variant="outline"
                 size="lg"
                 asChild
               >
                 <a href="#contact">En savoir plus</a>
               </Button>
+            </div>
+
+            {/* <h2 className="block font-semibold mt-8">Suivez moi sur</h2> */}
+            <div className="mt-4 flex w-fit flex-col gap-6 sm:flex-row items-center justify-center">
+              {/* Social Links - Centrage amélioré */}
+              <div className="flex flex-wrap gap-3 items-center justify-center">
+                {professionalLinks.slice(0, 5).map((link) => (
+                  <SocialLinkItem link={link} key={link.id} />
+                ))}
+              </div>
             </div>
           </div>
 
@@ -213,7 +226,7 @@ export function HeroSplit({ profileData, socialLinks }) {
             2. On override les classes par défaut de Avatar avec className
             3. On utilise w-full h-full pour remplir le conteneur
           */}
-          <div className="order-first lg:order-last flex justify-center lg:justify-end">
+          <div className="order-first max-md:hidden lg:order-last flex justify-center lg:justify-end">
             {/* 
               Conteneur de l'avatar avec ratio 1:1 (carré parfait)
               - aspect-square : force un ratio hauteur/largeur de 1:1
@@ -221,7 +234,7 @@ export function HeroSplit({ profileData, socialLinks }) {
               - max-w-xs : limite la taille maximale sur petit écran
               - lg:max-w-sm : taille plus grande sur grand écran
             */}
-            <div className="aspect-square w-full max-w-[200px] lg:max-w-[350px] lg:mb-0">
+            <div className="aspect-square w-full max-w-[200px] md:max-w-[275px] lg:max-w-[525px] lg:mb-0">
               <Avatar className="w-full h-full border-4 border-primary/20 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <AvatarImage
                   src={profileData.personal.profileImage}

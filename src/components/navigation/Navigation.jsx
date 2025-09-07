@@ -78,7 +78,7 @@ const Navigation = ({
             href={link.href}
             className={cn(
               // 🎨 Adaptations desktop
-              'px-4 py-2 lg:px-5 lg:py-2.5',
+              'px-4 py-2 lg:px-5 lg:py-2.5 rounded-2xl',
               // 🎯 États interactifs améliorés
               'hover:scale-105 transition-transform duration-150'
             )}
