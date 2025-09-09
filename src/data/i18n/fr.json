@@ -1,26 +1,31 @@
 {
   "navLinks": [
     {
+      "target": "home",
       "label": "Accueil",
       "href": "/",
       "description": "Page d'accueil du portfolio"
     },
     {
+      "target": "projects",
       "label": "Projets",
       "href": "/projects",
       "description": "Mes réalisations et projets"
     },
     {
+      "target": "about",
       "label": "À propos",
       "href": "/about",
       "description": "En savoir plus sur moi"
     },
     {
+      "target": "blog",
       "label": "Blog",
       "href": "/blog",
       "description": "Articles et tutoriels"
     },
     {
+      "target": "contact",
       "label": "Contact",
       "href": "/contact",
       "description": "Me contacter"

@@ -1,26 +1,31 @@
 {
   "navLinks": [
     {
+      "target": "home",
       "label": "Home",
       "href": "/en/",
       "description": "Portfolio home page"
     },
     {
+      "target": "projects",
       "label": "Projects",
       "href": "/en/projects",
       "description": "My work and projects"
     },
     {
+      "target": "about",
       "label": "About",
       "href": "/en/about",
       "description": "About me"
     },
     {
+      "target": "blog",
       "label": "Blog",
       "href": "/en/blog",
       "description": "Articles & tutorials"
     },
     {
+      "target": "contact",
       "label": "Contact",
       "href": "/en/contact",
       "description": "Get in touch"

@@ -46,9 +46,6 @@ const Navigation = ({
   navLinks = [],
   ...props
 }) => {
-  // 🎣 Utilisation de notre hook personnalisé
-  const { navigationLinks, pathname } = useNavigation(navLinks);
-
   return (
     <nav
       className={cn(
@@ -80,7 +77,7 @@ const Navigation = ({
 
       {/* Section centre : Navigation Desktop */}
       <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
-        {navigationLinks.map((link) => (
+        {navLinks.map((link) => (
           <NavigationLink
             key={link.href}
             href={link.href}
@@ -103,7 +100,7 @@ const Navigation = ({
         <ThemeToggle />
         <LanguageSwitcher />
         {/* Menu mobile */}
-        <MobileNavigation />
+        <MobileNavigation navLinks={navLinks} />
       </div>
     </nav>
   );
@@ -117,6 +114,7 @@ export const NavigationHeader = ({
   className = '',
   variant = 'default',
   sticky = false,
+  navLinks = [],
   ...props
 }) => {
   return (
@@ -137,7 +135,7 @@ export const NavigationHeader = ({
           'px-4 sm:px-6 lg:px-8'
         )}
       >
-        <Navigation {...props} className="py-3" />
+        <Navigation className="py-3" {...props} navLinks={navLinks} />
       </div>
     </header>
   );

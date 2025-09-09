@@ -9,13 +9,13 @@ import {
   HiCamera,
   HiUser,
   HiGlobeAlt,
-  HiOutlineHome,
+  HiHome,
+  HiPhone,
 } from 'react-icons/hi';
 import { HiMiniLanguage } from 'react-icons/hi2';
 
-export default function MobileNavigation() {
-  const { navigationLinks, isMobileMenuOpen, toggleMobileMenu, closeMobileMenu, switchLang, lang } =
-    useNavigation();
+export default function MobileNavigation({ navLinks = [] }) {
+  const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu, switchLang, lang } = useNavigation();
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -43,18 +43,18 @@ export default function MobileNavigation() {
       {isMobileMenuOpen && (
         <div className="absolute right-0 mt-2 w-72 rounded-xl shadow-2xl bg-background border border-zinc-200 dark:border-zinc-800 z-50">
           <nav className="flex flex-col py-3">
-            {navigationLinks.map((link) => {
-              const IconComponent = getNavigationIcon(link.label);
+            {navLinks.map((link) => {
+              const IconComponent = getNavigationIcon(link.target);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="flex items-start gap-x-4 px-6 py-4 font-incognito font-medium text-lg hover:bg-primary/10 transition-colors rounded-lg"
+                  className="flex items-start align-middle gap-x-4 px-6 py-4 font-medium text-lg hover:bg-primary/10 transition-colors rounded-lg"
                   onClick={closeMobileMenu}
                 >
-                  <IconComponent className="text-primary mt-1 text-2xl" aria-hidden="true" />
+                  <IconComponent className="text-primary mt-2 text-2xl " aria-hidden="true" />
                   <span>
-                    <span className="block text-left">{link.label}</span>
+                    <span className="block text-left font-incognito">{link.label}</span>
                     <span className="block text-xs text-muted-foreground font-normal">
                       {link.description}
                     </span>
@@ -64,12 +64,14 @@ export default function MobileNavigation() {
             })}
             <button
               onClick={switchLang}
-              className="flex items-start gap-x-4 px-6 py-4 font-incognito font-medium text-lg hover:bg-primary/10 transition-colors rounded-lg"
+              className="flex items-start gap-x-4 px-6 py-4 font-medium text-lg hover:bg-primary/10 transition-colors rounded-lg"
               type="button"
             >
-              <HiMiniLanguage className="text-primary mt-1 text-2xl" aria-hidden="true" />
+              <HiMiniLanguage className="text-primary mt-2 text-2xl" aria-hidden="true" />
               <span>
-                <span className="block text-left">{lang === 'fr' ? 'EN' : 'FR'}</span>
+                <span className="block text-left font-incognito">
+                  {lang === 'fr' ? 'EN' : 'FR'}
+                </span>
                 <span className="block text-xs text-muted-foreground font-normal">
                   {lang === 'fr' ? 'Switch to English' : 'Passer au français'}
                 </span>
@@ -82,13 +84,15 @@ export default function MobileNavigation() {
   );
 }
 
-function getNavigationIcon(label) {
+function getNavigationIcon(target) {
+  console.log(target);
+
   const iconMap = {
-    Home: HiOutlineHome,
-    About: HiUser,
-    Projects: HiBeaker,
-    Blog: HiBookmarkAlt,
-    Contact: HiGlobeAlt,
+    home: HiHome,
+    about: HiUser,
+    projects: HiBeaker,
+    blog: HiBookmarkAlt,
+    contact: HiPhone,
   };
-  return iconMap[label] || HiOutlineHome;
+  return iconMap[target] || HiHome;
 }

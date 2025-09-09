@@ -81,7 +81,7 @@ export function DownloadButton({
   children,
 
   // Options d'affichage
-  autoResetDelay = 5000, // Temps avant retour à l'état initial (3 secondes)
+  autoResetDelay = 20000, // Temps avant retour à l'état initial (3 secondes)
 }) {
   // ==========================================
   // HOOKS - Les "super-pouvoirs" de React
