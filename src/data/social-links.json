@@ -4,7 +4,7 @@
       "id": "linkedin",
       "platform": "LinkedIn",
       "url": "https://linkedin.com/in/samuel-sikati-kenmogne-57953a1b7",
-      "displayText": "LinkedIn Profile",
+      "displayText": "LinkedIn",
       "isProfessional": true,
       "priority": 1
     },
@@ -12,17 +12,41 @@
       "id": "github",
       "platform": "GitHub",
       "url": "https://github.com/sikatikenmogne",
-      "displayText": "GitHub Portfolio",
+      "displayText": "GitHub",
       "isProfessional": true,
       "priority": 2
+    },
+    {
+      "id": "wakatime",
+      "platform": "Wakatime",
+      "url": "https://wakatime.com/@sikatikenmogne",
+      "displayText": "Wakatime",
+      "isProfessional": true,
+      "priority": 4
+    },
+    {
+      "id": "roadmapdotsh",
+      "platform": "Roadmapdotsh",
+      "url": "https://roadmap.sh/u/samuelsikati",
+      "displayText": "Roadmap.sh",
+      "isProfessional": true,
+      "priority": 5
+    },
+    {
+      "id": "credly",
+      "platform": "Credly",
+      "url": "https://www.credly.com/users/sikati-samuel-kenmogne",
+      "displayText": "Credly",
+      "isProfessional": true,
+      "priority": 6
     },
     {
       "id": "x",
       "platform": "Twitter",
       "url": "https://x.com/KenmogneSikati",
-      "displayText": "@KenmogneSikati",
+      "displayText": "X",
       "isProfessional": true,
-      "priority": 3
+      "priority": 7
     }
   ]
 }

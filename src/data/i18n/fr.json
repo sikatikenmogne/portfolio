@@ -1,4 +1,45 @@
 {
+  "navLinks": [
+    {
+      "label": "Accueil",
+      "href": "/",
+      "description": "Page d'accueil du portfolio"
+    },
+    {
+      "label": "Projets",
+      "href": "/projects",
+      "description": "Mes réalisations et projets"
+    },
+    {
+      "label": "À propos",
+      "href": "/about",
+      "description": "En savoir plus sur moi"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog",
+      "description": "Articles et tutoriels"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact",
+      "description": "Me contacter"
+    }
+  ],
+  "CTA": [
+    {
+      "label": "Télécharger mon CV",
+      "href": "/cv/CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf"
+    },
+    {
+      "label": "En savoir plus",
+      "href": "/about"
+    }
+  ],
+  "Footer": {
+    "displayText": "Tous droits réservés.",
+    "portfolioGithubRepo": "https://github.com/sikatikenmogne/portfolio"
+  },
   "personal": {
     "hello": "Salut, je m'appelle",
     "fullName": "Samuel SIKATI",
@@ -22,12 +63,9 @@
   },
   "documents": {
     "cvPath": "/api/download?user=sikatikenmogne&repo=Awesome-CV&resource=CV-Samuel-SIKATI-KENMOGNE-Ingenieur-Logiciel-FR.pdf",
-    "cvPathEn": "/api/download?user=sikatikenmogne&repo=Awesome-CV&resource=CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-EN.pdf",
     "cvPathFallback": "/cv/CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf",
     "cvGithubRepo": "Awesome-CV",
     "cvGithubReleaseName": "CV-Samuel-SIKATI-KENMOGNE-Ingenieur-Logiciel-FR.pdf",
-    "cvGithubReleaseNameEn": "CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-EN.pdf",
-    "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf",
-    "cvFilenameEn": "CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-Full-Stack-Developer-[EN].pdf"
+    "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf"
   }
 }

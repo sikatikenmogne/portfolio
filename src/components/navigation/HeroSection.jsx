@@ -27,7 +27,17 @@ export function HeroSection({ profileData, socialLinks }) {
         </div>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <DownloadButton cvPath={documents.cvPath} filename={documents.cvFilename} />
+          <DownloadButton
+            githubUser={profileData.personal.githubUsername}
+            githubRepo={profileData.documents.cvGithubRepo}
+            githubFilename={profileData.documents.cvGithubReleaseName}
+            fallbackPath={profileData.documents.cvPathFallback}
+            fallbackFilename={profileData.documents.cvFilename}
+            showStatus={true}
+            showReleaseInfo={true}
+          >
+            Télécharger mon CV
+          </DownloadButton>
 
           <Button variant="outline" size="lg" asChild>
             <a href="#projects">
