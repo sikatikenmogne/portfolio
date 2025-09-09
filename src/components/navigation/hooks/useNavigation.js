@@ -3,64 +3,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
-const NAV_LINKS = {
-  fr: [
-    {
-      label: 'Accueil',
-      href: '/',
-      description: "Page d'accueil du portfolio",
-    },
-    {
-      label: 'Projets',
-      href: '/projects',
-      description: 'Mes réalisations et projets',
-    },
-    {
-      label: 'À propos',
-      href: '/about',
-      description: 'En savoir plus sur moi',
-    },
-    {
-      label: 'Blog',
-      href: '/blog',
-      description: 'Articles et tutoriels',
-    },
-    {
-      label: 'Contact',
-      href: '/contact',
-      description: 'Me contacter',
-    },
-  ],
-  en: [
-    {
-      label: 'Home',
-      href: '/en/',
-      description: 'Portfolio home page',
-    },
-    {
-      label: 'Projects',
-      href: '/en/projects',
-      description: 'My work and projects',
-    },
-    {
-      label: 'About',
-      href: '/en/about',
-      description: 'About me',
-    },
-    {
-      label: 'Blog',
-      href: '/en/blog',
-      description: 'Articles & tutorials',
-    },
-    {
-      label: 'Contact',
-      href: '/en/contact',
-      description: 'Get in touch',
-    },
-  ],
-};
-
-export const useNavigation = (navLinks) => {
+export const useNavigation = (navLinks = []) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
@@ -68,9 +11,8 @@ export const useNavigation = (navLinks) => {
 
   // Détection de la langue courante
   const lang = pathname.startsWith('/en') ? 'en' : 'fr';
-
   // Liens selon la langue
-  const navigationLinks = navLinks || NAV_LINKS[lang] || NAV_LINKS.fr;
+  const navigationLinks = navLinks;
 
   useEffect(() => {
     const checkScreenSize = () => {
