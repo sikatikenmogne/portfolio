@@ -1,36 +1,34 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "node",
   "packages": {
     ".": {
-      "release-type": "node",
-      "package-name": "portfolio",
       "changelog-sections": [
-        { "type": "feat", "section": "✨ Features", "hidden": false },
+        { "type": "feat", "section": "🚀 Features", "hidden": false },
         { "type": "fix", "section": "🐛 Bug Fixes", "hidden": false },
-        { "type": "perf", "section": "⚡ Performance Improvements", "hidden": false },
+        { "type": "perf", "section": "⚡ Performance", "hidden": false },
         { "type": "revert", "section": "🔄 Reverts", "hidden": false },
+        { "type": "refactor", "section": "♻️ Refactoring", "hidden": false },
         { "type": "docs", "section": "📚 Documentation", "hidden": false },
-        { "type": "style", "section": "🎨 Code Styling", "hidden": false },
-        { "type": "refactor", "section": "♻️ Code Refactoring", "hidden": false },
+        { "type": "style", "section": "💄 Styles", "hidden": false },
+        { "type": "chore", "section": "🔧 Maintenance", "hidden": false },
+        { "type": "ci", "section": "👷 CI/CD", "hidden": false },
         { "type": "test", "section": "🧪 Tests", "hidden": false },
-        { "type": "build", "section": "🏗️ Build System", "hidden": false },
-        { "type": "ci", "section": "👷 Continuous Integration", "hidden": false },
-        { "type": "chore", "section": "🔧 Miscellaneous Chores", "hidden": true }
+        { "type": "build", "section": "📦 Build", "hidden": false }
       ],
       "release-as": "1.0.0",
-      "bump-minor-pre-major": true,
-      "bump-patch-for-minor-pre-major": true,
+      "bump-minor-pre-major": false,
+      "bump-patch-for-minor-pre-major": false,
       "draft": false,
-      "prerelease": false,
-      "include-component-in-tag": false,
-      "include-v-in-tag": true,
-      "extra-files": [
-        {
-          "type": "json",
-          "path": "package.json",
-          "jsonpath": "$.version"
-        }
-      ]
+      "prerelease": false
     }
-  }
+  },
+  "group-pull-request-title-pattern": "chore: release${component} ${version}",
+  "pull-request-title-pattern": "chore: release${component} ${version}",
+  "pull-request-header": "Cette PR a été générée automatiquement par [Release Please](https://github.com/googleapis/release-please). Les changements sont basés sur [les commits conventionnels](https://conventionalcommits.org/) détectés depuis la dernière release.",
+  "separate-pull-requests": false,
+  "tag-separator": "@",
+  "include-component-in-tag": false,
+  "skip-github-release": false,
+  "draft-pull-request": false
 }
