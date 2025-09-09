@@ -7,6 +7,7 @@ import socialLinksData from '../data/social-links.json';
 import { Inter, Geist } from 'next/font/google';
 import { incognito } from './assets/font/font';
 import { gitlabmono } from './assets/font/font';
+
 import { cn } from '@/lib/utils';
 
 // FONT CONFIGURATION - Optimized for performance
@@ -19,6 +20,7 @@ const inter = Inter({
 
 const geist = Geist({
   subsets: ['latin'],
+
   variable: '--font-display',
   display: 'swap',
   preload: true,
@@ -242,6 +244,7 @@ export const viewport = {
     { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
   ],
 };
+
 
 export default function RootLayout({ children }) {
   return (
