@@ -9,26 +9,6 @@ import { incognito } from './assets/font/font';
 import { gitlabmono } from './assets/font/font';
 import { cn } from '@/lib/utils';
 
-/**
- * EDUCATIONAL GOALS FOR JUNIOR DEVELOPERS:
- *
- * 1. SEO STRATEGY FOR JUNIOR PROFILES:
- *    - Focus on skills and certifications over experience
- *    - Highlight education and technical competencies
- *    - Emphasize growth mindset and learning ability
- *    - Target keywords for junior positions
- *
- * 2. FONT OPTIMIZATION:
- *    - Next.js automatic font optimization
- *    - Performance-first loading strategy
- *    - Custom CSS properties for theming
- *
- * 3. METADATA BEST PRACTICES:
- *    - Structured data for better search visibility
- *    - Open Graph for professional social sharing
- *    - Multi-language support preparation
- */
-
 // FONT CONFIGURATION - Optimized for performance
 const inter = Inter({
   subsets: ['latin'],
@@ -309,22 +289,7 @@ export default function RootLayout({ children }) {
           'overflow-x-hidden'
         )}
       >
-        {/* 
-          MAIN CONTENT AREA
-          
-          Why no Navigation/Footer here?
-          - Flexibility: Each page can have different layouts
-          - Performance: Load only what's needed per page
-          - Maintenance: Easier to customize per page
-          
-          Children will contain the complete page structure
-        */}
         {children}
-
-        {/* 
-          PERFORMANCE OPTIMIZATION SCRIPTS
-          You can add analytics or other scripts here if needed
-        */}
       </body>
     </html>
   );
