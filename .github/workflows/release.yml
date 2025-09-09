@@ -67,19 +67,19 @@ jobs:
           
       - name: Install dependencies
         run: |
-            if [ -f pnpm-lock.yaml ]; then
+          if [ -f pnpm-lock.yaml ]; then
             pnpm install --frozen-lockfile
-            else
+          else
             pnpm install --no-frozen-lockfile
-            fi
+          fi
         
       - name: Build production
         run: pnpm run build
         
       - name: Create release archive
         run: |
-          # Create a clean build archive
-          tar -czf portfolio-${{ needs.release-please.outputs.version }}.tar.gz \
+          # Créer une archive propre du build
+          tar -czf "portfolio-${{ needs.release-please.outputs.version }}.tar.gz" \
             .next/ \
             package.json \
             pnpm-lock.yaml \
@@ -121,34 +121,114 @@ jobs:
           working-directory: ./
           
       - name: Update Release with Production URL
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             const { owner, repo } = context.repo;
             const tag = '${{ needs.release-please.outputs.tag-name }}';
             
-            // Get the release by tag
-            const { data: release } = await github.rest.repos.getReleaseByTag({
-              owner,
-              repo,
-              tag
-            });
-            
-            // Append production URL to release body
-            const updatedBody = release.body + `\n\n---\n\n### 🚀 Production Deployment\n\n**Live URL**: ${{ steps.vercel-production.outputs.preview-url }}\n**Deployed**: ${new Date().toISOString()}\n\n✅ This release has been automatically deployed to production.`;
-            
-            // Update the release
-            await github.rest.repos.updateRelease({
-              owner,
-              repo,
-              release_id: release.id,
-              body: updatedBody
-            });
-            
-            console.log(`✅ Release ${tag} updated with production URL`);
+            try {
+              // Récupérer la release par tag
+              const { data: release } = await github.rest.repos.getReleaseByTag({
+                owner,
+                repo,
+                tag
+              });
+              
+              // Ajouter l'URL de production au body de la release
+              const productionUrl = '${{ steps.vercel-production.outputs.preview-url }}';
+              const deploymentTime = new Date().toISOString();
+              
+              const updatedBody = `${release.body}
+
+              ---
+
+              ### 🚀 Production Deployment
+
+              **Live URL**: ${productionUrl}
+              **Deployed**: ${deploymentTime}
+
+              ✅ Cette release a été automatiquement déployée en production.`;
+              
+              // Mettre à jour la release
+              await github.rest.repos.updateRelease({
+                owner,
+                repo,
+                release_id: release.id,
+                body: updatedBody
+              });
+              
+              console.log(`✅ Release ${tag} mise à jour avec l'URL de production`);
+            } catch (error) {
+              console.error('Erreur lors de la mise à jour de la release:', error);
+              // Ne pas faire échouer le workflow pour cette étape
+            }
 
   # ===============================================
-  # JOB 4: NOTIFICATION & CLEANUP
+  # JOB 4: DEPLOY DIRECT HOTFIX (si pas de release)
+  # ===============================================
+  deploy-hotfix:
+    name: Deploy Hotfix
+    runs-on: ubuntu-latest
+    needs: release-please
+    if: needs.release-please.outputs.release-created != 'true'
+    environment: production
+    
+    steps:
+      - name: Log hotfix deployment
+        run: |
+          echo "🚨 Déploiement hotfix en production"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Ceci est un push direct sur main (pas via release)"
+          
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Deploy to Vercel Production
+        uses: amondnet/vercel-action@v25
+        id: vercel-hotfix
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./
+          
+      - name: Create hotfix deployment issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commitSha = '${{ github.sha }}';
+            const shortSha = commitSha.substring(0, 7);
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Hotfix Deployment - ${shortSha}`,
+              body: `## Hotfix Deployment
+              
+              ### 📋 Deployment Details
+              - **Commit**: ${shortSha}
+              - **Branch**: ${{ github.ref_name }}
+              - **Deployed**: ${new Date().toISOString()}
+              - **Production URL**: ${{ steps.vercel-hotfix.outputs.preview-url }}
+              
+              ### ⚠️ Action Required
+              - [ ] Verify deployment is working correctly
+              - [ ] Monitor for any issues
+              - [ ] Create proper release if this fixes critical bugs
+              
+              ---
+              
+              Ce déploiement a été déclenché par un push direct sur main.
+              Considérez créer une release appropriée si ce hotfix corrige des bugs critiques.
+              `,
+              labels: ['hotfix', 'deployment', 'production']
+            });
+
+  # ===============================================
+  # JOB 5: NOTIFICATION & CLEANUP
   # ===============================================
   post-release:
     name: Post-Release Actions
@@ -158,7 +238,7 @@ jobs:
     
     steps:
       - name: Create Release Summary Issue
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             const version = '${{ needs.release-please.outputs.version }}';
@@ -174,7 +254,6 @@ jobs:
               - **Version**: ${version}
               - **Tag**: ${tag}
               - **Release URL**: https://github.com/${context.repo.owner}/${context.repo.repo}/releases/tag/${tag}
-              - **Production URL**: Coming soon...
               
               ### ✅ Actions Completed
               - [x] Version calculated from conventional commits
