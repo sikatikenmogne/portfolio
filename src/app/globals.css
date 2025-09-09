@@ -189,7 +189,13 @@
   --font-sans: gitlabmono, Inter, ui-sans-serif, sans-serif, system-ui;
   --font-serif: Libre Baskerville, ui-serif, serif;
   --font-mono: Geist Mono, ui-monospace, monospace;
-  --radius: 1.3rem;
+  --radius: 0.8rem;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 6px);
   --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
   --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
   --shadow-sm:

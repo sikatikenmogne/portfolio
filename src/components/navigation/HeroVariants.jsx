@@ -137,7 +137,7 @@ export function HeroWithSubtleAvatar({ profileData, socialLinks }) {
  * Hero Split - Layout deux colonnes - CENTRAGE CORRIGÉ
  */
 export function HeroSplit({ profileData, socialLinks }) {
-  const { personal, professional, documents } = profileData;
+  const { personal, professional, documents, CTA } = profileData;
 
   const professionalLinks = socialLinks?.filter((link) => link.isProfessional) || [];
 
@@ -195,7 +195,7 @@ export function HeroSplit({ profileData, socialLinks }) {
                 showReleaseInfo={true}
                 className={'rounded-2xl'}
               >
-                Télécharger mon CV
+                {CTA[0].label}
               </DownloadButton>
 
               <Button
@@ -204,7 +204,7 @@ export function HeroSplit({ profileData, socialLinks }) {
                 size="lg"
                 asChild
               >
-                <a href="#contact">En savoir plus</a>
+                <a href="#contact">{CTA[1].label}</a>
               </Button>
             </div>
 

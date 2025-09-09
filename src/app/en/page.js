@@ -1,6 +1,6 @@
 import { NavigationHeader, Footer } from '@/components/navigation/Navigation';
-import portfolioData from '../data/i18n/fr.json';
-import socialLinksData from '../data/social-links.json';
+import portfolioData from '@/data/i18n/en.json';
+import socialLinksData from '@/data/social-links.json';
 import { HeroSplit } from '@/components/navigation/HeroVariants';
 
 export default function HomePage() {
@@ -10,8 +10,8 @@ export default function HomePage() {
         socialLinks={socialLinksData.socialLinks}
         sticky={true}
         logoText="Samuel"
-        ctaText="Me contacter"
-        ctaHref="/contact"
+        ctaText="Contact me"
+        ctaHref="/en/contact"
         className="border-primary/20"
         navLinks={portfolioData.navLinks}
       />

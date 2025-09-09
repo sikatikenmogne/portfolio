@@ -1,0 +1,71 @@
+{
+  "navLinks": [
+    {
+      "label": "Accueil",
+      "href": "/",
+      "description": "Page d'accueil du portfolio"
+    },
+    {
+      "label": "Projets",
+      "href": "/projects",
+      "description": "Mes réalisations et projets"
+    },
+    {
+      "label": "À propos",
+      "href": "/about",
+      "description": "En savoir plus sur moi"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog",
+      "description": "Articles et tutoriels"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact",
+      "description": "Me contacter"
+    }
+  ],
+  "CTA": [
+    {
+      "label": "Télécharger mon CV",
+      "href": "/cv/CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf"
+    },
+    {
+      "label": "En savoir plus",
+      "href": "/about"
+    }
+  ],
+  "Footer": {
+    "displayText": "Tous droits réservés.",
+    "portfolioGithubRepo": "https://github.com/sikatikenmogne/portfolio"
+  },
+  "personal": {
+    "hello": "Salut, je m'appelle",
+    "fullName": "Samuel SIKATI",
+    "title": "Ingénieur logiciel, Développeur web full Stack",
+    "tagline": "Je conçois des solutions numériques sur mesure qui résolvent vos défis et donnent vie à vos projets les plus ambitieux.",
+    "location": "Douala, Cameroun",
+    "email": "sikatikenmogne@email.com",
+    "phone": "+237 6XX XX XX XX",
+    "profileImage": "/images/profile-photo.jpg",
+    "githubUsername": "sikatikenmogne"
+  },
+  "professional": {
+    "yearsExperience": 3,
+    "availability": "Disponible pour nouvelles opportunités",
+    "specializations": [
+      "Développement web Full Stack",
+      "Redaction technique",
+      "Conception de site web wordpress"
+    ],
+    "currentFocus": "Solutions web performantes et accessibles"
+  },
+  "documents": {
+    "cvPath": "/api/download?user=sikatikenmogne&repo=Awesome-CV&resource=CV-Samuel-SIKATI-KENMOGNE-Ingenieur-Logiciel-FR.pdf",
+    "cvPathFallback": "/cv/CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf",
+    "cvGithubRepo": "Awesome-CV",
+    "cvGithubReleaseName": "CV-Samuel-SIKATI-KENMOGNE-Ingenieur-Logiciel-FR.pdf",
+    "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf"
+  }
+}

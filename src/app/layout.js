@@ -91,41 +91,23 @@ export default function RootLayout({ children }) {
     <html
       lang="fr"
       className={cn(
-        // Variables CSS pour les fonts
         incognito.variable,
         gitlabmono.variable,
         inter.variable,
         geist.variable,
-        // Support du thème sombre
         'h-full'
       )}
     >
       <body
         className={cn(
-          // Application du thème depuis globals.css
           'min-h-screen flex flex-col bg-background font-sans antialiased',
-          // Smooth scrolling
           'scroll-smooth'
         )}
       >
-        {/* Navigation principale - Couche Présentation */}
-        <NavigationHeader
-          sticky={true}
-          logoText="Samuel"
-          ctaText="Me contacter"
-          ctaHref="/contact"
-          className="border-primary/20"
-        />
-
-        {/* Layout principal */}
-
-        {/* Contenu principal */}
-        <main className="flex-1 container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-          {children}
-        </main>
-
-        {/* Footer optionnel */}
-        <Footer />
+        {/* SUPPRIMER NavigationHeader et Footer d'ici */}
+        {/* <main className="flex-1 container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6"> */}
+        {children}
+        {/* </main> */}
       </body>
     </html>
   );

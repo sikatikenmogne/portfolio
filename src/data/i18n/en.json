@@ -1,0 +1,71 @@
+{
+  "navLinks": [
+    {
+      "label": "Home",
+      "href": "/en/",
+      "description": "Portfolio home page"
+    },
+    {
+      "label": "Projects",
+      "href": "/en/projects",
+      "description": "My work and projects"
+    },
+    {
+      "label": "About",
+      "href": "/en/about",
+      "description": "About me"
+    },
+    {
+      "label": "Blog",
+      "href": "/en/blog",
+      "description": "Articles & tutorials"
+    },
+    {
+      "label": "Contact",
+      "href": "/en/contact",
+      "description": "Get in touch"
+    }
+  ],
+  "CTA": [
+    {
+      "label": "Download my resume",
+      "href": "/cv/CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-EN.pdf"
+    },
+    {
+      "label": "Know more",
+      "href": "/about"
+    }
+  ],
+  "Footer": {
+    "displayText": "All rights reserved.",
+    "portfolioGithubRepo": "https://github.com/sikatikenmogne/portfolio"
+  },
+  "personal": {
+    "hello": "Hi, I'm",
+    "fullName": "Samuel SIKATI",
+    "title": "Software Engineer, Full Stack Web Developer",
+    "tagline": "I design tailor-made digital solutions that solve your challenges and bring your most ambitious projects to life.",
+    "location": "Douala, Cameroon",
+    "email": "sikatikenmogne@email.com",
+    "phone": "+237 6XX XX XX XX",
+    "profileImage": "/images/profile-photo.jpg",
+    "githubUsername": "sikatikenmogne"
+  },
+  "professional": {
+    "yearsExperience": 3,
+    "availability": "Hireable for new opportunities",
+    "specializations": [
+      "Full Stack Web Development",
+      "Technical Writing",
+      "WordPress Website Design"
+    ],
+    "currentFocus": "High-performance and accessible web solutions"
+  },
+  "documents": {
+    "cvPath": "/api/download?user=sikatikenmogne&repo=Awesome-CV&resource=CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-EN.pdf",
+    "cvPathFallback": "/cv/CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-Full-Stack-Developer-[EN].pdf",
+    "cvGithubRepo": "Awesome-CV",
+    "cvGithubReleaseName": "CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-EN.pdf",
+    "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-Full-Stack-Developer-[EN].pdf"
+  }
+}
