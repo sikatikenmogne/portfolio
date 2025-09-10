@@ -10,6 +10,9 @@ import { gitlabmono } from './assets/font/font';
 
 import { cn } from '@/lib/utils';
 
+// Base site URL for absolute SEO URLs
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://samuelsikati.com';
+
 // FONT CONFIGURATION - Optimized for performance
 const inter = Inter({
   subsets: ['latin'],
@@ -40,6 +43,8 @@ const professionalLinks = socialLinksData.socialLinks?.filter((link) => link.isP
  * - Target both local (Cameroon) and international opportunities
  */
 export const metadata = {
+  // Ensure absolute URLs for canonical/hreflang/OG
+  metadataBase: new URL(siteUrl),
   // OPTIMIZED TITLE for Junior Positions
   // Format: "Name - Junior Software Engineer | Location | Key Skills"
   title: {
@@ -103,31 +108,35 @@ export const metadata = {
 
   // CANONICAL URL and Language Alternatives
   alternates: {
-    canonical: '/',
+    // Absolute canonical URL
+    canonical: siteUrl,
+    // Absolute hreflang URLs per locale
     languages: {
-      'fr-CM': '/', // French - Cameroon
-      'fr-FR': '/fr',
-      'en-US': '/en',
-      'en-GB': '/en',
+      'fr-CM': siteUrl,
+      'fr-FR': siteUrl,
+      'en-US': `${siteUrl}/en`,
+      'en-GB': `${siteUrl}/en`,
     },
   },
 
   // OPEN GRAPH for Social Media Sharing (LinkedIn, Twitter)
   openGraph: {
     title: `${personal.fullName} - Ingénieur Logiciel Junior`,
-    description: `Portfolio d'un développeur full stack junior. Spécialisations: .NET Core, React, Spring Boot. Disponible pour nouveaux défis à ${personal.location}.`,
+    description: `Ingénieur Logiciel Junior | Développeur web full stack | Disponible pour nouveaux défis à ${personal.location}.`,
     type: 'profile', // Use 'profile' for personal portfolios
     locale: 'fr_CM',
     alternateLocale: ['en_US', 'fr_FR'],
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://samuelsikati.com',
+    url: siteUrl,
     siteName: `${personal.fullName} - Portfolio Développeur`,
     // Add when you have a professional photo
-    // images: [{
-    //   url: '/images/profile-og.jpg',
-    //   width: 1200,
-    //   height: 630,
-    //   alt: personal.fullName + ' - Software Engineer'
-    // }],
+    images: [
+      {
+        url: `${siteUrl}/images/profile-photo.jpg`,
+        width: 1200,
+        height: 630,
+        alt: personal.fullName + ' - Software Engineer',
+      },
+    ],
   },
 
   // TWITTER CARD for Professional Sharing
@@ -135,7 +144,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: `${personal.fullName} - Développeur Full Stack Junior`,
     description: `Ingénieur logiciel spécialisé .NET Core & React. Portfolio avec projets concrets. Basé à ${personal.location}.`,
-    creator: '@samuelsikati', // Add your Twitter handle if you have one
+    creator: '@KenmogneSikati', // Add your Twitter handle if you have one
   },
 
   // ROBOTS and Indexing
@@ -172,7 +181,7 @@ export const metadata = {
         name: personal.location,
         address: {
           '@type': 'PostalAddress',
-          addressLocality: 'Yaoundé',
+          addressLocality: 'Douala',
           addressCountry: 'CM',
         },
       },
@@ -187,7 +196,7 @@ export const metadata = {
         {
           '@type': 'EducationalOrganization',
           name: "Institut Africain d'Informatique (IAI)",
-          location: 'Yaoundé, Cameroun',
+          location: 'Douala, Cameroun',
         },
       ],
 
@@ -244,7 +253,6 @@ export const viewport = {
     { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
   ],
 };
-
 
 export default function RootLayout({ children }) {
   return (
