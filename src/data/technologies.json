@@ -1,0 +1,76 @@
+{
+  "technologies": [
+    {
+      "name": "Next.js",
+      "category": "Frontend",
+      "color": "bg-black text-white",
+      "description": "React framework for production"
+    },
+    {
+      "name": "React",
+      "category": "Frontend",
+      "color": "bg-blue-500 text-white",
+      "description": "JavaScript library for building user interfaces"
+    },
+    {
+      "name": "Tailwind CSS",
+      "category": "Frontend",
+      "color": "bg-cyan-500 text-white",
+      "description": "Utility-first CSS framework"
+    },
+    {
+      "name": ".NET Core",
+      "category": "Backend",
+      "color": "bg-purple-600 text-white",
+      "description": "Cross-platform .NET framework"
+    },
+    {
+      "name": "Spring Boot",
+      "category": "Backend",
+      "color": "bg-green-600 text-white",
+      "description": "Java framework for microservices"
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Database",
+      "color": "bg-blue-700 text-white",
+      "description": "Open source relational database"
+    },
+    {
+      "name": "Docker",
+      "category": "DevOps",
+      "color": "bg-blue-400 text-white",
+      "description": "Containerization platform"
+    },
+    {
+      "name": "Vercel",
+      "category": "Deployment",
+      "color": "bg-gray-900 text-white",
+      "description": "Frontend cloud platform"
+    },
+    {
+      "name": "GitHub Actions",
+      "category": "DevOps",
+      "color": "bg-gray-800 text-white",
+      "description": "CI/CD automation platform"
+    },
+    {
+      "name": "JavaScript",
+      "category": "Language",
+      "color": "bg-yellow-500 text-black",
+      "description": "Programming language for web development"
+    },
+    {
+      "name": "Java",
+      "category": "Language",
+      "color": "bg-red-600 text-white",
+      "description": "Object-oriented programming language"
+    },
+    {
+      "name": "Python",
+      "category": "Language",
+      "color": "bg-yellow-600 text-white",
+      "description": "High-level programming language"
+    }
+  ]
+}

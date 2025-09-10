@@ -1,0 +1,80 @@
+---
+title: "Système de Gestion E-commerce"
+slug: "ecommerce-management-system"
+summary: "Plateforme e-commerce complète avec .NET Core, React et PostgreSQL"
+technologies: [".NET Core", "React", "PostgreSQL", "Docker", "Azure"]
+role: "Développeur Full Stack"
+status: "completed"
+featured: true
+date: "2025-07-20"
+cover: "/images/projects/placeholder.svg"
+demo: "https://demo-ecommerce.example.com"
+repo: "https://github.com/sikatikenmogne/ecommerce-system"
+---
+
+# Système de Gestion E-commerce
+
+## Contexte du Projet
+
+Développement d'une plateforme e-commerce complète pour une PME locale, incluant gestion des produits, commandes, paiements et analytics. Le projet devait être scalable et maintenable pour une équipe de 3 développeurs.
+
+## Défis Techniques
+
+- **Scalabilité**: Support de 1000+ produits et 100+ commandes/jour
+- **Sécurité**: Gestion sécurisée des paiements et données clients
+- **Performance**: Temps de réponse < 500ms pour les requêtes critiques
+- **Intégration**: APIs tierces (paiement, livraison, email)
+
+## Solutions Implémentées
+
+### Architecture Backend
+- **.NET Core 8** avec Clean Architecture
+- **Entity Framework Core** pour l'ORM
+- **PostgreSQL** pour la base de données
+- **Redis** pour le cache et les sessions
+
+### Frontend Moderne
+- **React 18** avec TypeScript
+- **Redux Toolkit** pour la gestion d'état
+- **Material-UI** pour l'interface utilisateur
+- **PWA** pour l'expérience mobile
+
+### DevOps & Déploiement
+- **Docker** pour la containerisation
+- **Azure** pour l'hébergement cloud
+- **GitHub Actions** pour le CI/CD
+- **Monitoring** avec Application Insights
+
+## Fonctionnalités Principales
+
+- Catalogue produits avec recherche et filtres
+- Panier et processus de commande
+- Gestion des utilisateurs et rôles
+- Dashboard admin avec analytics
+- Système de notifications email
+- API REST complète
+
+## Technologies Utilisées
+
+- **Backend**: .NET Core 8, Entity Framework, PostgreSQL, Redis
+- **Frontend**: React 18, TypeScript, Redux Toolkit, Material-UI
+- **DevOps**: Docker, Azure, GitHub Actions
+- **Monitoring**: Application Insights, Serilog
+
+## Résultats Obtenus
+
+- **Performance**: 99.9% uptime, < 200ms temps de réponse
+- **Scalabilité**: Support de 5000+ utilisateurs simultanés
+- **Sécurité**: 0 incident de sécurité, conformité RGPD
+- **Business**: +150% de ventes en ligne en 6 mois
+
+## Apprentissages
+
+Ce projet m'a permis de maîtriser l'architecture microservices et les patterns de développement enterprise. J'ai également appris les bonnes pratiques de sécurité web et de monitoring applicatif.
+
+## Prochaines Étapes
+
+- Migration vers .NET 9
+- Ajout de l'IA pour les recommandations
+- Intégration d'un système de chat en temps réel
+- Optimisation des performances avec CDN

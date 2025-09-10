@@ -1,0 +1,72 @@
+---
+title: "Portfolio Personnel JAMstack"
+slug: "portfolio-jamstack"
+summary: "Portfolio développeur moderne avec Next.js 15, optimisé pour la performance et le SEO"
+technologies: ["Next.js", "React", "Tailwind CSS", "Vercel", "GitHub Actions"]
+role: "Développeur Full Stack"
+status: "completed"
+featured: true
+date: "2025-08-15"
+cover: "/images/projects/placeholder.svg"
+demo: "https://samuelsikati.com"
+repo: "https://github.com/sikatikenmogne/portfolio"
+---
+
+# Portfolio Personnel JAMstack
+
+## Contexte du Projet
+
+Développement d'un portfolio professionnel moderne utilisant l'architecture JAMstack pour présenter mes compétences et projets. L'objectif était de créer une vitrine performante, accessible et optimisée SEO pour attirer des opportunités professionnelles.
+
+## Défis Techniques
+
+- **Performance**: Temps de chargement < 2s sur 3G
+- **SEO**: Score Lighthouse > 90 pour tous les critères
+- **Accessibilité**: Conformité WCAG 2.1 niveau AA
+- **Responsive**: Design mobile-first sur tous devices
+- **Maintenance**: Architecture modulaire et documentation complète
+
+## Solutions Implémentées
+
+### Architecture JAMstack
+- **Next.js 15** avec App Router pour le SSG
+- **Tailwind CSS** pour un design system cohérent
+- **Markdown + Front Matter** pour la gestion de contenu
+- **Vercel** pour le déploiement et CDN global
+
+### Optimisations Performance
+- Images optimisées avec `next/image` (WebP/AVIF)
+- Code splitting automatique
+- Fonts optimisées avec `display: swap`
+- Service Worker pour le cache offline
+
+### SEO & Accessibilité
+- Métadonnées dynamiques par page
+- Schema.org JSON-LD complet
+- Hreflang pour le support multilingue
+- Navigation clavier et contraste AA
+
+## Technologies Utilisées
+
+- **Frontend**: Next.js 15, React 18, Tailwind CSS 4
+- **Build**: pnpm, ESLint, Prettier
+- **Deploy**: Vercel, GitHub Actions
+- **Monitoring**: Vercel Analytics, Lighthouse CI
+
+## Résultats Obtenus
+
+- **Performance**: Score Lighthouse 95+ (Perf/SEO/A11y)
+- **Core Web Vitals**: LCP < 1.5s, CLS < 0.1
+- **SEO**: Indexation Google en 24h
+- **Accessibilité**: 100% des critères WCAG AA
+
+## Apprentissages
+
+Ce projet m'a permis de maîtriser l'architecture JAMstack moderne et les bonnes pratiques de performance web. J'ai également approfondi mes connaissances en SEO technique et accessibilité numérique.
+
+## Prochaines Étapes
+
+- Ajout d'un blog technique
+- Support multilingue complet (EN)
+- Intégration d'un CMS headless
+- Tests automatisés E2E

@@ -1,9 +1,13 @@
 import { NavigationHeader, Footer } from '@/components/navigation/Navigation';
+import { FeaturedProjects } from '@/components/projects/FeaturedProjects';
+import { getAllProjects } from '@/lib/content';
 import portfolioData from '../data/i18n/fr.json';
 import socialLinksData from '../data/social-links.json';
 import { HeroSplit } from '@/components/navigation/HeroVariants';
 
 export default function HomePage() {
+  const projects = getAllProjects();
+
   return (
     <>
       <NavigationHeader
@@ -15,8 +19,11 @@ export default function HomePage() {
         className="border-primary/20"
         navLinks={portfolioData.navLinks}
       />
-      <main className="flex-1 container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-        <HeroSplit profileData={portfolioData} socialLinks={socialLinksData.socialLinks} />
+      <main className="flex-1">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+          <HeroSplit profileData={portfolioData} socialLinks={socialLinksData.socialLinks} />
+        </div>
+        <FeaturedProjects projects={projects} locale="fr" />
       </main>
       <Footer
         CopyrightAuthor={portfolioData.personal.fullName}
