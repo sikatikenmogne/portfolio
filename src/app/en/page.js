@@ -22,6 +22,7 @@ export default function HomePage() {
         CopyrightAuthor={portfolioData.personal.fullName}
         displayText={portfolioData.Footer.displayText}
         portfolioGithubRepo={portfolioData.Footer.portfolioGithubRepo}
+        email={portfolioData.personal.email}
       />
     </>
   );

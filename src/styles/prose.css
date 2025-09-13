@@ -1,0 +1,423 @@
+/* src/styles/prose.css - Styles pour le contenu Markdown des projets */
+
+/* 
+  SECTION 1 : STYLES DE BASE
+  Ces styles définissent l'apparence générale du contenu
+*/
+
+.project-content {
+  /* Taille de texte et espacement entre les lignes */
+  @apply text-base leading-7;
+
+  /* Couleurs qui s'adaptent au mode sombre/clair */
+  @apply text-foreground;
+
+  /* Espacement entre les éléments */
+  @apply space-y-4;
+
+  /* Largeur maximale pour une lecture confortable */
+  max-width: 65ch;
+  /* 65 caractères = largeur optimale pour la lecture */
+}
+
+/* 
+  SECTION 2 : TITRES (H1, H2, H3...)
+  Hiérarchie visuelle claire pour organiser le contenu
+*/
+
+.project-content h1 {
+  @apply text-3xl font-bold text-foreground mt-8 mb-4;
+  /* Ligne en dessous du titre principal */
+  border-bottom: 2px solid hsl(var(--border));
+  padding-bottom: 0.5rem;
+}
+
+.project-content h2 {
+  @apply text-2xl font-semibold text-foreground mt-6 mb-3;
+}
+
+.project-content h3 {
+  @apply text-xl font-medium text-foreground mt-4 mb-2;
+}
+
+.project-content h4 {
+  @apply text-lg font-medium text-foreground mt-3 mb-2;
+}
+
+/* Espacement après les titres */
+.project-content h1 + *,
+.project-content h2 + *,
+.project-content h3 + * {
+  margin-top: 0 !important;
+}
+
+/* 
+  SECTION 3 : PARAGRAPHES ET TEXTE
+  Espacement et lisibilité du texte courant
+*/
+
+.project-content p {
+  @apply mb-4 text-muted-foreground leading-7;
+}
+
+.project-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Texte en gras et italique */
+.project-content strong {
+  @apply font-semibold text-foreground;
+}
+
+.project-content em {
+  @apply italic text-muted-foreground;
+}
+
+/* 
+  SECTION 4 : LIENS
+  Styles pour les liens avec états hover/focus
+*/
+
+.project-content a {
+  @apply text-primary underline decoration-primary/30;
+  @apply hover:decoration-primary transition-colors duration-200;
+
+  /* Épaisseur et position du soulignement */
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+/* Liens externes - ajout d'un indicateur */
+.project-content a[href^='http']:not([href*='localhost']):not([href*='127.0.0.1'])::after {
+  content: ' ↗';
+  @apply text-xs opacity-60 ml-1;
+}
+
+.project-content a:hover {
+  @apply text-primary/80;
+}
+
+/* 
+  SECTION 5 : LISTES (UL, OL)
+  Organisation claire des listes à puces et numérotées
+*/
+
+.project-content ul,
+.project-content ol {
+  @apply mb-4 ml-6 space-y-1;
+}
+
+.project-content ul {
+  @apply list-disc;
+}
+
+.project-content ol {
+  @apply list-decimal;
+}
+
+.project-content li {
+  @apply text-muted-foreground leading-7;
+}
+
+/* Listes imbriquées */
+.project-content li > ul,
+.project-content li > ol {
+  @apply mt-1 mb-1;
+}
+
+/* Listes de tâches (checkboxes) */
+.project-content li:has(input[type='checkbox']) {
+  @apply list-none flex items-start gap-2 -ml-6;
+}
+
+.project-content input[type='checkbox'] {
+  @apply mt-1 rounded border-border;
+}
+
+/* 
+  SECTION 6 : CODE
+  Styles pour le code inline et les blocs de code
+*/
+
+/* Code inline (dans le texte) */
+.project-content code:not(pre code) {
+  @apply px-2 py-1 rounded-md text-sm;
+  @apply bg-muted text-foreground;
+  @apply border border-border;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+}
+
+/* Blocs de code */
+.project-content pre {
+  @apply p-4 rounded-lg overflow-x-auto;
+  @apply bg-muted border border-border;
+  @apply text-sm leading-6;
+
+  /* Scrollbar personnalisée */
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground)) transparent;
+}
+
+.project-content pre code {
+  @apply p-0 bg-transparent border-0 text-inherit;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+}
+
+/* Titre des blocs de code (si présent) */
+.project-content pre[data-language]::before {
+  content: attr(data-language);
+  @apply block text-xs uppercase font-medium mb-2 text-muted-foreground;
+}
+
+/* 
+  SECTION 7 : CITATIONS (BLOCKQUOTE)
+  Style élégant pour les citations importantes
+*/
+
+.project-content blockquote {
+  @apply border-l-4 border-primary pl-4 py-2 my-4;
+  @apply bg-muted/30 rounded-r-lg;
+  @apply italic text-muted-foreground;
+}
+
+.project-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Citation avec auteur */
+.project-content blockquote cite {
+  @apply block text-right text-sm not-italic mt-2 text-muted-foreground/80;
+}
+
+.project-content blockquote cite::before {
+  content: '— ';
+}
+
+/* 
+  SECTION 8 : TABLEAUX
+  Tableaux responsive et bien stylés
+*/
+
+.project-content table {
+  @apply w-full border-collapse my-6;
+  @apply border border-border rounded-lg overflow-hidden;
+  @apply shadow-sm;
+}
+
+.project-content thead {
+  @apply bg-muted/50;
+}
+
+.project-content th {
+  @apply px-4 py-3 text-left font-semibold;
+  @apply text-sm text-foreground;
+  @apply border-b border-border;
+}
+
+.project-content td {
+  @apply px-4 py-3 text-sm text-muted-foreground;
+  @apply border-b border-border;
+}
+
+.project-content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.project-content tbody tr:hover {
+  @apply bg-muted/20 transition-colors;
+}
+
+/* 
+  SECTION 9 : IMAGES
+  Optimisation et styles pour les images
+*/
+
+.project-content img {
+  @apply rounded-lg shadow-md my-6 mx-auto;
+  @apply max-w-full h-auto;
+
+  /* Animation au survol */
+  @apply transition-transform duration-200 hover:scale-[1.02];
+}
+
+/* Légende d'image (texte en italique après l'image) */
+.project-content img + em {
+  @apply block text-center text-sm text-muted-foreground mt-2;
+  @apply -mt-4 mb-4;
+}
+
+/* 
+  SECTION 10 : ÉLÉMENTS SPÉCIAUX
+  Styles pour les éléments moins courants
+*/
+
+/* Ligne de séparation */
+.project-content hr {
+  @apply my-8 border-0 h-px;
+  @apply bg-gradient-to-r from-transparent via-border to-transparent;
+}
+
+/* Texte barré */
+.project-content del {
+  @apply line-through text-muted-foreground/60;
+}
+
+/* Texte surligné */
+.project-content mark {
+  @apply bg-yellow-200 text-yellow-900 px-1 rounded;
+  @apply dark:bg-yellow-900/30 dark:text-yellow-200;
+}
+
+/* 
+  SECTION 11 : COMPOSANTS PERSONNALISÉS
+  Classes pour des composants MDX custom
+*/
+
+/* Alerte/Callout */
+.project-content .alert {
+  @apply p-4 my-4 rounded-lg border-l-4;
+}
+
+.project-content .alert-info {
+  @apply bg-blue-50 border-blue-400 text-blue-900;
+  @apply dark:bg-blue-950/30 dark:border-blue-400 dark:text-blue-100;
+}
+
+.project-content .alert-warning {
+  @apply bg-yellow-50 border-yellow-400 text-yellow-900;
+  @apply dark:bg-yellow-950/30 dark:border-yellow-400 dark:text-yellow-100;
+}
+
+.project-content .alert-error {
+  @apply bg-red-50 border-red-400 text-red-900;
+  @apply dark:bg-red-950/30 dark:border-red-400 dark:text-red-100;
+}
+
+.project-content .alert-success {
+  @apply bg-green-50 border-green-400 text-green-900;
+  @apply dark:bg-green-950/30 dark:border-green-400 dark:text-green-100;
+}
+
+/* Badge technologie dans le texte */
+.project-content .tech-badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  @apply bg-primary/10 text-primary border border-primary/20;
+}
+
+/* 
+  SECTION 12 : RESPONSIVE DESIGN
+  Adaptations pour mobile et tablet
+*/
+
+@media (max-width: 640px) {
+  .project-content {
+    @apply text-sm leading-6;
+    max-width: none;
+  }
+
+  .project-content h1 {
+    @apply text-2xl;
+  }
+
+  .project-content h2 {
+    @apply text-xl;
+  }
+
+  .project-content h3 {
+    @apply text-lg;
+  }
+
+  .project-content ul,
+  .project-content ol {
+    @apply ml-4;
+  }
+
+  .project-content table {
+    @apply text-xs;
+  }
+
+  .project-content th,
+  .project-content td {
+    @apply px-2 py-2;
+  }
+
+  .project-content pre {
+    @apply text-xs px-3 py-3;
+  }
+}
+
+/* 
+  SECTION 13 : ACCESSIBILITÉ
+  Amélioration de l'accessibilité
+*/
+
+/* Focus visible pour les liens */
+.project-content a:focus {
+  @apply outline-2 outline-primary outline-offset-2;
+}
+
+/* Contraste élevé en mode focus */
+@media (prefers-contrast: high) {
+  .project-content {
+    @apply text-black dark:text-white;
+  }
+
+  .project-content code {
+    @apply border-2;
+  }
+}
+
+/* 
+  SECTION 14 : ANIMATIONS
+  Animations subtiles pour améliorer l'expérience
+*/
+
+/* Animation d'apparition du contenu */
+.project-content {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 
+  SECTION 15 : MODE IMPRESSION
+  Optimisations pour l'impression
+*/
+
+@media print {
+  .project-content {
+    @apply text-black;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+
+  .project-content a {
+    @apply text-black no-underline;
+  }
+
+  .project-content a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 10pt;
+  }
+
+  .project-content pre {
+    @apply border border-gray-400 bg-gray-100;
+    page-break-inside: avoid;
+  }
+
+  .project-content h1,
+  .project-content h2,
+  .project-content h3 {
+    page-break-after: avoid;
+  }
+}

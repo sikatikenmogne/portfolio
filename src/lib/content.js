@@ -1,84 +1,286 @@
+// src/lib/content.js - Chargeur de contenu avec support MDX
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { extractContentExcerpt } from './markdown';
 
-const contentDirectory = path.join(process.cwd(), 'content');
+// Chemin vers le dossier de contenu des projets
+const projectsDirectory = path.join(process.cwd(), 'content/projects');
 
+/**
+ * Récupère tous les projets disponibles
+ * Trie par date décroissante et met les projets vedettes en premier
+ */
 export function getAllProjects() {
-  const projectsDirectory = path.join(contentDirectory, 'projects');
+  try {
+    // Vérification que le dossier existe
+    if (!fs.existsSync(projectsDirectory)) {
+      console.warn("Le dossier content/projects n'existe pas");
+      return [];
+    }
 
-  if (!fs.existsSync(projectsDirectory)) {
+    const fileNames = fs.readdirSync(projectsDirectory);
+
+    const allProjects = fileNames
+      .filter((name) => name.endsWith('.md') || name.endsWith('.mdx'))
+      .map((fileName) => {
+        const slug = fileName.replace(/\.(md|mdx)$/, '');
+        return getProjectBySlug(slug);
+      })
+      .filter((project) => project !== null) // Filtre les projets invalides
+      .sort((a, b) => {
+        // Tri : projets vedettes d'abord, puis par date décroissante
+        if (a.featured && !b.featured) return -1;
+        if (!a.featured && b.featured) return 1;
+
+        const dateA = new Date(a.date || '1970-01-01');
+        const dateB = new Date(b.date || '1970-01-01');
+        return dateB.getTime() - dateA.getTime();
+      });
+
+    return allProjects;
+  } catch (error) {
+    console.error('Erreur lors du chargement des projets:', error);
+    return [];
+  }
+}
+
+/**
+ * Récupère un projet spécifique par son slug
+ * Charge et parse le fichier Markdown/MDX correspondant
+ */
+export function getProjectBySlug(slug) {
+  try {
+    // Recherche du fichier avec extensions .md ou .mdx
+    const possibleExtensions = ['md', 'mdx'];
+    let filePath = null;
+    let fileExtension = null;
+
+    for (const ext of possibleExtensions) {
+      const testPath = path.join(projectsDirectory, `${slug}.${ext}`);
+      if (fs.existsSync(testPath)) {
+        filePath = testPath;
+        fileExtension = ext;
+        break;
+      }
+    }
+
+    if (!filePath) {
+      console.warn(`Projet non trouvé: ${slug}`);
+      return null;
+    }
+
+    // Lecture et parsing du fichier
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const { data, content } = matter(fileContents);
+
+    // Validation des champs obligatoires
+    if (!data.title) {
+      console.warn(`Projet ${slug}: titre manquant`);
+      return null;
+    }
+
+    // Construction de l'objet projet avec valeurs par défaut
+    const project = {
+      slug,
+      title: data.title,
+      summary: data.summary || extractContentExcerpt(content, 160),
+      content,
+      fileExtension,
+
+      // Métadonnées techniques
+      technologies: Array.isArray(data.technologies) ? data.technologies : [],
+      role: data.role || 'Développeur',
+      status: data.status || 'completed',
+
+      // Indicateurs
+      featured: Boolean(data.featured),
+
+      // Dates
+      date: data.date || new Date().toISOString().split('T')[0],
+      lastModified: getFileLastModified(filePath),
+
+      // Médias
+      cover: data.cover || '/images/projects/default-cover.jpg',
+      gallery: Array.isArray(data.gallery) ? data.gallery : [],
+
+      // Liens externes
+      demo: data.demo || null,
+      repo: data.repo || null,
+
+      // SEO et métadonnées
+      seoTitle: data.seoTitle || data.title,
+      seoDescription: data.seoDescription || data.summary,
+      keywords: Array.isArray(data.keywords) ? data.keywords : data.technologies || [],
+
+      // Données additionnelles du front matter
+      ...data,
+    };
+
+    return project;
+  } catch (error) {
+    console.error(`Erreur lors du chargement du projet ${slug}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Récupère les projets vedettes pour l'affichage sur la page d'accueil
+ */
+export function getFeaturedProjects(limit = 3) {
+  const allProjects = getAllProjects();
+  return allProjects.filter((project) => project.featured).slice(0, limit);
+}
+
+/**
+ * Récupère les projets par technologie
+ */
+export function getProjectsByTechnology(technology) {
+  const allProjects = getAllProjects();
+  return allProjects.filter((project) => project.technologies.includes(technology));
+}
+
+/**
+ * Récupère les technologies utilisées dans tous les projets
+ * Utile pour générer des filtres ou des statistiques
+ */
+export function getAllTechnologies() {
+  const allProjects = getAllProjects();
+  const technologiesSet = new Set();
+
+  allProjects.forEach((project) => {
+    project.technologies.forEach((tech) => {
+      technologiesSet.add(tech);
+    });
+  });
+
+  return Array.from(technologiesSet).sort();
+}
+
+/**
+ * Recherche dans les projets par terme
+ */
+export function searchProjects(searchTerm) {
+  if (!searchTerm || searchTerm.length < 2) {
     return [];
   }
 
-  const fileNames = fs.readdirSync(projectsDirectory);
-  const allProjectsData = fileNames
-    .filter((name) => name.endsWith('.md'))
-    .map((name) => {
-      const fullPath = path.join(projectsDirectory, name);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
+  const allProjects = getAllProjects();
+  const term = searchTerm.toLowerCase();
 
-      return {
-        slug: data.slug || name.replace(/\.md$/, ''),
-        content,
-        ...data,
-      };
-    })
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+  return allProjects.filter((project) => {
+    const searchableContent = [
+      project.title,
+      project.summary,
+      project.content,
+      ...(project.technologies || []),
+      project.role,
+    ]
+      .join(' ')
+      .toLowerCase();
 
-  return allProjectsData;
+    return searchableContent.includes(term);
+  });
 }
 
-export function getProjectBySlug(slug) {
-  const projects = getAllProjects();
-  return projects.find((project) => project.slug === slug);
-}
+/**
+ * Récupère les statistiques des projets
+ * Utile pour des dashboards ou des métriques
+ */
+export function getProjectsStats() {
+  const allProjects = getAllProjects();
 
-export function getFeaturedProjects() {
-  const projects = getAllProjects();
-  return projects.filter((project) => project.featured);
-}
+  const stats = {
+    total: allProjects.length,
+    featured: allProjects.filter((p) => p.featured).length,
+    byStatus: {},
+    byYear: {},
+    technologies: {},
+  };
 
-export function getProjectsByTechnology(technology) {
-  const projects = getAllProjects();
-  return projects.filter(
-    (project) => project.technologies && project.technologies.includes(technology)
-  );
-}
+  allProjects.forEach((project) => {
+    // Statistiques par statut
+    const status = project.status || 'completed';
+    stats.byStatus[status] = (stats.byStatus[status] || 0) + 1;
 
-export function getProjectsByStatus(status) {
-  const projects = getAllProjects();
-  return projects.filter((project) => project.status === status);
-}
+    // Statistiques par année
+    const year = new Date(project.date).getFullYear();
+    stats.byYear[year] = (stats.byYear[year] || 0) + 1;
 
-export function filterProjects(projects, filters) {
-  if (!filters || filters.length === 0) {
-    return projects;
-  }
-
-  return projects.filter((project) => {
-    return filters.every((filter) => {
-      if (filter.type === 'technology') {
-        return project.technologies && project.technologies.includes(filter.value);
-      }
-      if (filter.type === 'status') {
-        return project.status === filter.value;
-      }
-      return true;
+    // Statistiques par technologie
+    project.technologies.forEach((tech) => {
+      stats.technologies[tech] = (stats.technologies[tech] || 0) + 1;
     });
   });
+
+  return stats;
 }
 
-export function getAllTechnologies() {
-  const projects = getAllProjects();
-  const technologies = new Set();
-
-  projects.forEach((project) => {
-    if (project.technologies) {
-      project.technologies.forEach((tech) => technologies.add(tech));
-    }
-  });
-
-  return Array.from(technologies).sort();
+/**
+ * Fonction utilitaire pour récupérer la date de dernière modification d'un fichier
+ */
+function getFileLastModified(filePath) {
+  try {
+    const stats = fs.statSync(filePath);
+    return stats.mtime.toISOString().split('T')[0];
+  } catch (error) {
+    return new Date().toISOString().split('T')[0];
+  }
 }
+
+/**
+ * Valide la structure d'un projet
+ * Utile pour vérifier l'intégrité des données
+ */
+export function validateProject(project) {
+  const errors = [];
+
+  if (!project.title) {
+    errors.push('Titre manquant');
+  }
+
+  if (!project.summary || project.summary.length < 10) {
+    errors.push('Résumé trop court (minimum 10 caractères)');
+  }
+
+  if (!project.technologies || project.technologies.length === 0) {
+    errors.push('Aucune technologie spécifiée');
+  }
+
+  if (!project.date || isNaN(Date.parse(project.date))) {
+    errors.push('Date invalide');
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+  };
+}
+
+/**
+ * Génère un slug à partir d'un titre
+ * Utile pour créer automatiquement des slugs
+ */
+export function generateSlug(title) {
+  return title
+    .toLowerCase()
+    .normalize('NFD') // Normalise les accents
+    .replace(/[\u0300-\u036f]/g, '') // Supprime les accents
+    .replace(/[^\w\s-]/g, '') // Garde seulement lettres, chiffres, espaces et tirets
+    .replace(/\s+/g, '-') // Remplace les espaces par des tirets
+    .replace(/-+/g, '-') // Supprime les tirets multiples
+    .trim();
+}
+
+// Export par défaut pour la compatibilité
+export default {
+  getAllProjects,
+  getProjectBySlug,
+  getFeaturedProjects,
+  getProjectsByTechnology,
+  getAllTechnologies,
+  searchProjects,
+  getProjectsStats,
+  validateProject,
+  generateSlug,
+};
