@@ -72,5 +72,95 @@
     "cvGithubRepo": "Awesome-CV",
     "cvGithubReleaseName": "CV-Samuel-SIKATI-KENMOGNE-Ingenieur-Logiciel-FR.pdf",
     "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "subtitle": "Développeur Full Stack passionné par la création d'applications web performantes et innovantes",
+    "profile": {
+      "introduction": [
+        "Fort de plusieurs années d'expérience dans le développement web, je me spécialise dans la création d'applications web modernes et performantes. Ma passion pour le code propre et les bonnes pratiques de développement me pousse à constamment améliorer mes compétences et à rester à jour avec les dernières technologies.",
+        "En tant que développeur Full Stack, j'ai une compréhension approfondie de l'ensemble de la pile technologique, du backend au frontend, ce qui me permet de concevoir des solutions complètes et cohérentes pour répondre aux besoins des clients."
+      ]
+    },
+    "specialties": {
+      "title": "Mes spécialités",
+      "items": [
+        {
+          "title": "Développement Web Full Stack",
+          "description": "Conception et développement d'applications web complètes utilisant les technologies modernes comme React, Next.js, Node.js et les bases de données SQL/NoSQL."
+        },
+        {
+          "title": "Développement WordPress",
+          "description": "Création de sites web personnalisés avec WordPress, développement de thèmes et plugins sur mesure, optimisation des performances et de la sécurité."
+        }
+      ]
+    },
+    "skills": {
+      "title": "Compétences techniques",
+      "sections": {
+        "frontend": {
+          "title": "Frontend",
+          "skills": [
+            { "name": "React", "level": "Avancé" },
+            { "name": "Next.js", "level": "Avancé" },
+            { "name": "TypeScript", "level": "Avancé" },
+            { "name": "Tailwind CSS", "level": "Avancé" },
+            { "name": "Redux", "level": "Intermédiaire" },
+            { "name": "Material UI", "level": "Intermédiaire" }
+          ]
+        },
+        "backend": {
+          "title": "Backend",
+          "skills": [
+            { "name": "Node.js", "level": "Avancé" },
+            { "name": "Express", "level": "Avancé" },
+            { "name": "PostgreSQL", "level": "Intermédiaire" },
+            { "name": "MongoDB", "level": "Intermédiaire" },
+            { "name": "GraphQL", "level": "Intermédiaire" },
+            { "name": "REST API", "level": "Avancé" }
+          ]
+        },
+        "tools": {
+          "title": "Outils & Pratiques",
+          "skills": [
+            { "name": "Git", "level": "Avancé" },
+            { "name": "Docker", "level": "Intermédiaire" },
+            { "name": "CI/CD", "level": "Intermédiaire" },
+            { "name": "Jest", "level": "Avancé" },
+            { "name": "Agile/Scrum", "level": "Intermédiaire" },
+            { "name": "Clean Code", "level": "Avancé" }
+          ]
+        }
+      }
+    },
+    "bestPractices": {
+      "title": "Bonnes pratiques",
+      "items": [
+        {
+          "title": "Architecture propre et maintenable",
+          "description": "Application des principes SOLID et de l'architecture en couches"
+        },
+        {
+          "title": "Tests automatisés et TDD",
+          "description": "Couverture de tests complète et développement piloté par les tests"
+        },
+        {
+          "title": "Optimisation des performances",
+          "description": "Techniques d'optimisation frontend et backend pour des applications rapides"
+        },
+        {
+          "title": "Sécurité des applications",
+          "description": "Implémentation des meilleures pratiques de sécurité OWASP"
+        },
+        {
+          "title": "Documentation détaillée",
+          "description": "Documentation technique claire et maintenable"
+        },
+        {
+          "title": "Revue de code et collaboration",
+          "description": "Participation active aux revues de code et mentorat"
+        }
+      ]
+    }
   }
 }

@@ -72,5 +72,95 @@
     "cvGithubRepo": "Awesome-CV",
     "cvGithubReleaseName": "CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-EN.pdf",
     "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-Full-Stack-Developer-[EN].pdf"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Full Stack Developer passionate about building high-performance and innovative web applications",
+    "profile": {
+      "introduction": [
+        "With several years of experience in web development, I specialize in creating modern and performant web applications. My passion for clean code and development best practices drives me to constantly improve my skills and stay up-to-date with the latest technologies.",
+        "As a Full Stack Developer, I have a deep understanding of the entire technology stack, from backend to frontend, enabling me to design comprehensive and coherent solutions that meet client needs."
+      ]
+    },
+    "specialties": {
+      "title": "My Specialties",
+      "items": [
+        {
+          "title": "Full Stack Web Development",
+          "description": "Design and development of complete web applications using modern technologies like React, Next.js, Node.js, and SQL/NoSQL databases."
+        },
+        {
+          "title": "WordPress Development",
+          "description": "Creation of custom WordPress websites, development of tailored themes and plugins, performance and security optimization."
+        }
+      ]
+    },
+    "skills": {
+      "title": "Technical Skills",
+      "sections": {
+        "frontend": {
+          "title": "Frontend",
+          "skills": [
+            { "name": "React", "level": "Advanced" },
+            { "name": "Next.js", "level": "Advanced" },
+            { "name": "TypeScript", "level": "Advanced" },
+            { "name": "Tailwind CSS", "level": "Advanced" },
+            { "name": "Redux", "level": "Intermediate" },
+            { "name": "Material UI", "level": "Intermediate" }
+          ]
+        },
+        "backend": {
+          "title": "Backend",
+          "skills": [
+            { "name": "Node.js", "level": "Advanced" },
+            { "name": "Express", "level": "Advanced" },
+            { "name": "PostgreSQL", "level": "Intermediate" },
+            { "name": "MongoDB", "level": "Intermediate" },
+            { "name": "GraphQL", "level": "Intermediate" },
+            { "name": "REST API", "level": "Advanced" }
+          ]
+        },
+        "tools": {
+          "title": "Tools & Practices",
+          "skills": [
+            { "name": "Git", "level": "Advanced" },
+            { "name": "Docker", "level": "Intermediate" },
+            { "name": "CI/CD", "level": "Intermediate" },
+            { "name": "Jest", "level": "Advanced" },
+            { "name": "Agile/Scrum", "level": "Intermediate" },
+            { "name": "Clean Code", "level": "Advanced" }
+          ]
+        }
+      }
+    },
+    "bestPractices": {
+      "title": "Best Practices",
+      "items": [
+        {
+          "title": "Clean and Maintainable Architecture",
+          "description": "Application of SOLID principles and layered architecture"
+        },
+        {
+          "title": "Automated Testing and TDD",
+          "description": "Complete test coverage and test-driven development"
+        },
+        {
+          "title": "Performance Optimization",
+          "description": "Frontend and backend optimization techniques for fast applications"
+        },
+        {
+          "title": "Application Security",
+          "description": "Implementation of OWASP security best practices"
+        },
+        {
+          "title": "Detailed Documentation",
+          "description": "Clear and maintainable technical documentation"
+        },
+        {
+          "title": "Code Review and Collaboration",
+          "description": "Active participation in code reviews and mentoring"
+        }
+      ]
+    }
   }
 }
