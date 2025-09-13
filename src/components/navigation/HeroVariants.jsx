@@ -84,7 +84,6 @@ export function HeroWithSubtleAvatar({ profileData, socialLinks }) {
         <div className="mx-auto flex max-w-4xl flex-col gap-8">
           {/* Avatar centré automatiquement par parent text-center */}
           <div className="mx-auto">
-
             <Avatar className="w-full max-w-xs mx-auto rounded-full border-2 flex items-center justify-center">
               <AvatarImage
                 src={personal.profileImage}
@@ -92,7 +91,6 @@ export function HeroWithSubtleAvatar({ profileData, socialLinks }) {
                 className="w-full h-full object-cover rounded-full"
               />
               <AvatarFallback className="bg-primary/10 text-primary font-semibold w-full h-full flex items-center justify-center rounded-full aspect-square">
-
                 {getInitials(personal.fullName)}
               </AvatarFallback>
             </Avatar>
@@ -141,7 +139,6 @@ export function HeroWithSubtleAvatar({ profileData, socialLinks }) {
  * Hero Split - Layout deux colonnes - CENTRAGE CORRIGÉ
  */
 export function HeroSplit({ profileData, socialLinks }) {
-
   const { personal, professional, documents, CTA } = profileData;
 
   const professionalLinks = socialLinks?.filter((link) => link.isProfessional) || [];
@@ -157,7 +154,7 @@ export function HeroSplit({ profileData, socialLinks }) {
   };
 
   return (
-    <section className="lg:py-32">
+    <section className="lg:py-24">
       {/* 
         Conteneur principal centré avec padding responsive
         - container : largeur responsive prédéfinie
@@ -250,7 +247,6 @@ export function HeroSplit({ profileData, socialLinks }) {
                   {getInitials(profileData.personal.fullName)}
                 </AvatarFallback>
               </Avatar>
-
             </div>
           </div>
         </div>

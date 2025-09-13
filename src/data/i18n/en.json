@@ -162,5 +162,42 @@
         }
       ]
     }
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "Let's talk about your project",
+    "description": "Have a project in mind? I'd love to discuss it with you and see how I can help bring it to life.",
+    "form": {
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Your full name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your.email@example.com"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "What is your message about?"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Describe your project or request..."
+      },
+      "submit": "Send Message",
+      "success": "Message sent successfully! I'll get back to you as soon as possible.",
+      "error": "An error occurred. Please try again.",
+      "requiredField": "This field is required",
+      "gdpr": {
+        "label": "I agree to the processing of my data",
+        "description": "By submitting this form, I agree that my personal data will be used to contact me back. No commercial use will be made of this data.",
+        "error": "You must accept the privacy policy to send the message."
+      }
+    },
+    "alternateContact": {
+      "title": "Other ways to reach me",
+      "email": "By email",
+      "social": "On social media"
+    }
   }
 }

@@ -162,5 +162,42 @@
         }
       ]
     }
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "subtitle": "Parlons de votre projet",
+    "description": "Vous avez un projet en tête ? Je serais ravi d'en discuter avec vous et de voir comment je peux vous aider à le réaliser.",
+    "form": {
+      "name": {
+        "label": "Nom complet",
+        "placeholder": "Votre nom complet"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "votre.email@exemple.com"
+      },
+      "subject": {
+        "label": "Sujet",
+        "placeholder": "L'objet de votre message"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Décrivez votre projet ou votre demande..."
+      },
+      "submit": "Envoyer le message",
+      "success": "Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.",
+      "error": "Une erreur s'est produite. Veuillez réessayer.",
+      "requiredField": "Ce champ est obligatoire",
+      "gdpr": {
+        "label": "J'accepte que mes données soient traitées",
+        "description": "En soumettant ce formulaire, j'accepte que mes données personnelles soient utilisées pour me recontacter. Aucune utilisation commerciale ne sera faite de ces données.",
+        "error": "Vous devez accepter la politique de confidentialité pour envoyer le message."
+      }
+    },
+    "alternateContact": {
+      "title": "Autres moyens de me contacter",
+      "email": "Par email",
+      "social": "Sur les réseaux sociaux"
+    }
   }
 }

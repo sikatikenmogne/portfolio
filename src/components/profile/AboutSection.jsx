@@ -55,7 +55,7 @@ export function AboutSection({
 
   if (isPreview) {
     return (
-      <section className={`lg:py-32 ${className}`}>
+      <section className={`lg:py-24 max-sm:py-16 ${className}`}>
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Contenu texte */}

@@ -5,6 +5,7 @@ import portfolioData from '../data/i18n/fr.json';
 import socialLinksData from '../data/social-links.json';
 import { HeroSplit } from '@/components/navigation/HeroVariants';
 import { AboutSection } from '@/components/profile/AboutSection';
+import { ContactSection } from '@/components/contact/ContactSection';
 
 export default function HomePage() {
   const projects = getAllProjects();
@@ -25,6 +26,11 @@ export default function HomePage() {
           <HeroSplit profileData={portfolioData} socialLinks={socialLinksData.socialLinks} />
           <AboutSection profileData={portfolioData} variant="preview" />
           <FeaturedProjects projects={projects} locale="fr" />
+          <ContactSection
+            profileData={portfolioData}
+            socialLinks={socialLinksData.socialLinks}
+            variant="preview"
+          />
         </div>
       </main>
       <Footer

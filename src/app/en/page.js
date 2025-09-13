@@ -5,6 +5,7 @@ import { HeroSplit } from '@/components/navigation/HeroVariants';
 import { AboutSection } from '@/components/profile/AboutSection';
 import { getAllProjects } from '@/lib/content';
 import { FeaturedProjects } from '@/components/projects/FeaturedProjects';
+import { ContactSection } from '@/components/contact/ContactSection';
 
 export default function HomePage() {
   const projects = getAllProjects();
@@ -26,6 +27,11 @@ export default function HomePage() {
         </div>
         <AboutSection profileData={portfolioData} variant="preview" />
         <FeaturedProjects projects={projects} locale="en" />
+        <ContactSection
+          profileData={portfolioData}
+          socialLinks={socialLinksData.socialLinks}
+          variant="preview"
+        />
       </main>
       <Footer
         CopyrightAuthor={portfolioData.personal.fullName}
