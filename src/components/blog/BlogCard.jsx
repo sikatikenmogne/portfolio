@@ -30,7 +30,7 @@ export function BlogCard({ post, locale = '' }) {
           {post.tags.map((tag) => (
             <Link
               key={tag}
-              href={`/${locale ? locale + '/' : ''}blog/tag/${tag.toLowerCase()}`}
+              href={`/${locale === 'en' ? locale + '/' : ''}blog/tag/${tag.toLowerCase()}`}
               className="text-sm text-primary hover:text-foreground"
             >
               {tag.toUpperCase().replace(' ', '-')}
@@ -38,7 +38,10 @@ export function BlogCard({ post, locale = '' }) {
           ))}
         </div>
       )}
-      <Link href={`/${locale ? locale + '/' : ''}blog/${post.slug}`} className="absolute inset-0">
+      <Link
+        href={`/${locale === 'en' ? locale + '/' : ''}blog/${post.slug}`}
+        className="absolute inset-0"
+      >
         <span className="sr-only">Voir l'article {post.title}</span>
       </Link>
     </article>
