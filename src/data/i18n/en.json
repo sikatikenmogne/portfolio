@@ -1,4 +1,29 @@
 {
+  "blog": {
+    "title": "Blog",
+    "description": "Technical articles, tutorials and insights about web development.",
+    "readingTime": "min read",
+    "notFound": {
+      "title": "Post not found",
+      "description": "The article you are looking for does not exist."
+    },
+    "recentPosts": {
+      "title": "Recent Articles",
+      "subtitle": "Latest posts from the blog",
+      "allLink": "View all"
+    },
+    "tags": {
+      "title": "Posts about {tag}",
+      "count": "{count} post{plural} tagged #{tag}"
+    },
+    "navigation": {
+      "previous": "Previous post",
+      "next": "Next post"
+    },
+    "search": {
+      "placeholder": "Search a post..."
+    }
+  },
   "navLinks": [
     {
       "target": "home",

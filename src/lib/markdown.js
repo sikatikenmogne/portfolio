@@ -98,6 +98,36 @@ export function estimateReadingTime(content) {
 }
 
 /**
+ * Génère la table des matières à partir du contenu Markdown
+ */
+export function generateTableOfContents(content) {
+  if (!content) return [];
+
+  const headingRegex = /^(#{1,6})\s+(.+)$/gm;
+  const toc = [];
+  let match;
+
+  while ((match = headingRegex.exec(content)) !== null) {
+    const level = match[1].length;
+    const text = match[2]
+      .replace(/`(.*?)`/g, '$1') // Supprime le formatage de code
+      .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Supprime les liens Markdown
+      .replace(/[^\w\s-]/g, '') // Retire les caractères spéciaux
+      .trim();
+
+    const slug = text.toLowerCase().replace(/\s+/g, '-'); // Remplace les espaces par des tirets
+
+    toc.push({
+      value: text,
+      depth: level,
+      url: '#' + slug,
+    });
+  }
+
+  return toc;
+}
+
+/**
  * Ajoute des classes Tailwind spécifiques aux éléments HTML
  * Cette fonction assure la cohérence visuelle avec votre design system
  */
@@ -321,34 +351,4 @@ export function extractContentExcerpt(content, maxLength = 200) {
   }
 
   return truncated + '...';
-}
-
-/**
- * Génère une table des matières à partir du contenu Markdown
- * Utile pour la navigation dans les longs articles
- */
-export function generateTableOfContents(content) {
-  if (!content) return [];
-
-  const headings = [];
-  const headingRegex = /^(#{1,6})\s+(.+)$/gm;
-  let match;
-
-  while ((match = headingRegex.exec(content)) !== null) {
-    const level = match[1].length;
-    const text = match[2].trim();
-    const slug = text
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '') // Retire les caractères spéciaux
-      .replace(/\s+/g, '-') // Remplace les espaces par des tirets
-      .trim();
-
-    headings.push({
-      level,
-      text,
-      slug,
-    });
-  }
-
-  return headings;
 }

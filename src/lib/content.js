@@ -3,9 +3,70 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { extractContentExcerpt } from './markdown';
+import { compileMDX } from 'next-mdx-remote/rsc';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
-// Chemin vers le dossier de contenu des projets
+// Chemins vers les dossiers de contenu
 const projectsDirectory = path.join(process.cwd(), 'content/projects');
+const blogDirectory = path.join(process.cwd(), 'content/blog');
+
+/**
+ * Récupère un article de blog par son slug
+ */
+export async function getPostBySlug(slug) {
+  if (!slug) return null;
+
+  try {
+    const fullPath = path.join(blogDirectory, `${slug}.mdx`);
+
+    if (!fs.existsSync(fullPath)) {
+      console.warn(`Article non trouvé: ${fullPath}`);
+      return null;
+    }
+
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const { frontmatter, content } = await getCompiledMDX(fileContents);
+
+    return {
+      slug,
+      ...frontmatter,
+      content,
+    };
+  } catch (error) {
+    console.error(`Erreur lors du chargement de l'article ${slug}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Charge et compile le contenu MDX d'un fichier
+ */
+async function getCompiledMDX(content) {
+  if (!content) return { frontmatter: {}, content: null };
+
+  const { frontmatter, content: mdxContent } = matter(content);
+
+  const mdx = await compileMDX({
+    source: mdxContent,
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [
+          rehypeHighlight,
+          rehypeSlug,
+          [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+        ],
+      },
+    },
+  });
+
+  return {
+    frontmatter,
+    content: mdx,
+  };
+}
 
 /**
  * Récupère tous les projets disponibles
@@ -272,8 +333,10 @@ export function generateSlug(title) {
     .trim();
 }
 
+// Note: Les fonctions de blog sont exportées directement depuis content-blog.js
+
 // Export par défaut pour la compatibilité
-export default {
+const contentUtils = {
   getAllProjects,
   getProjectBySlug,
   getFeaturedProjects,
@@ -284,3 +347,5 @@ export default {
   validateProject,
   generateSlug,
 };
+
+export default contentUtils;

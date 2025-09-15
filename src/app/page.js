@@ -5,6 +5,7 @@ import portfolioData from '../data/i18n/fr.json';
 import socialLinksData from '../data/social-links.json';
 import { HeroSplit } from '@/components/navigation/HeroVariants';
 import { AboutSection } from '@/components/profile/AboutSection';
+import { RecentPosts } from '@/components/blog/RecentPosts';
 import { ContactSection } from '@/components/contact/ContactSection';
 
 export default function HomePage() {
@@ -26,6 +27,7 @@ export default function HomePage() {
           <HeroSplit profileData={portfolioData} socialLinks={socialLinksData.socialLinks} />
           <AboutSection profileData={portfolioData} variant="preview" />
           <FeaturedProjects projects={projects} locale="fr" />
+          <RecentPosts locale="fr" limit={3} />
           <ContactSection
             profileData={portfolioData}
             socialLinks={socialLinksData.socialLinks}

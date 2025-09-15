@@ -5,20 +5,40 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { TOCInline } from './TOCInline';
 
-// Composant pour les images optimisées
-function CustomImage({ src, alt, width = 800, height = 400, ...props }) {
+// (Utilisation de Prism complet pour éviter l'enregistrement manuel ici)
+
+// (Anciennes définitions de tableau supprimées pour éviter conflits)
+
+// Composant pour les images optimisées avec gestion portrait/paysage
+function CustomImage({ src, alt, width = 0, height = 0, maxHeight = 650, caption, ...props }) {
+  const fallbackWidth = 1200;
+  const fallbackHeight = 630;
+  const w = width || fallbackWidth;
+  const h = height || fallbackHeight;
+  const isPortrait = h > w * 1.1;
+  const Wrapper = caption ? 'div' : 'span';
   return (
-    <div className="my-8 rounded-lg overflow-hidden border">
+    <Wrapper className={`block my-8 ${isPortrait ? 'mx-auto max-w-sm' : ''}`}>
       <Image
         src={src}
         alt={alt}
-        width={width}
-        height={height}
-        className="w-full h-auto"
+        width={w}
+        height={h}
+        className={[
+          'rounded-lg border',
+          isPortrait
+            ? 'h-auto max-h-[650px] w-auto object-contain mx-auto'
+            : 'w-full h-auto object-cover',
+        ].join(' ')}
+        style={isPortrait ? { maxHeight: maxHeight } : undefined}
         {...props}
       />
-    </div>
+      {caption && (
+        <span className="mt-2 block text-center text-sm text-muted-foreground">{caption}</span>
+      )}
+    </Wrapper>
   );
 }
 
@@ -51,41 +71,37 @@ function CustomLink({ href, children, ...props }) {
   );
 }
 
-// Composant pour les blocs de code
-function CustomCodeBlock({ children, className, ...props }) {
-  const match = /language-(\w+)/.exec(className || '');
-  const language = match?.[1] || 'text';
+// Code inline personnalisé (pas de fond/bordure, couleur complémentaire)
+const InlineCode = ({ children }) => (
+  <code className="font-mono text-[15px] text-complement tracking-tight bg-complement-foreground rounded px-1 py-0.5">
+    {children}
+  </code>
+);
 
+// Bloc de code
+const CodeBlock = ({ className = '', children }) => {
+  const match = /language-(\w+)/.exec(className);
+  const lang = match?.[1] || 'text';
   return (
-    <div className="my-6">
-      <SyntaxHighlighter
-        style={oneDark}
-        language={language}
-        PreTag="div"
-        className="rounded-lg !bg-card border"
-        showLineNumbers={language !== 'text'}
-        customStyle={{
-          margin: 0,
-          padding: '1rem',
-          background: 'hsl(var(--card))',
-          fontSize: '14px',
-        }}
-        {...props}
-      >
-        {String(children).replace(/\n$/, '')}
-      </SyntaxHighlighter>
-    </div>
+    <SyntaxHighlighter
+      language={lang}
+      style={oneDark}
+      showLineNumbers={lang !== 'text'}
+      PreTag="div"
+      CodeTag="code"
+      customStyle={{
+        margin: '1.25rem 0',
+        padding: '1rem 0.75rem',
+        borderRadius: '0.5rem',
+        fontSize: '13px',
+        background: 'hsl(var(--muted))',
+      }}
+      wrapLongLines
+    >
+      {String(children).replace(/\n$/, '')}
+    </SyntaxHighlighter>
   );
-}
-
-// Composant pour le code inline
-function InlineCode({ children }) {
-  return (
-    <code className="px-1.5 py-0.5 rounded text-sm bg-muted text-foreground font-mono">
-      {children}
-    </code>
-  );
-}
+};
 
 // Composant pour les alertes/callouts
 function Callout({ type = 'info', children }) {
@@ -103,16 +119,11 @@ function Callout({ type = 'info', children }) {
 }
 
 // Composant pour les tableaux
-function CustomTable({ children }) {
-  return (
-    <div className="my-8 overflow-x-auto">
-      <table className="w-full border-collapse border border-border rounded-lg">{children}</table>
-    </div>
-  );
-}
-
 // Mapping des composants MDX
 export const mdxComponents = {
+  // Composant TOC
+  TOCInline,
+
   // Headers avec styles personnalisés
   h1: (props) => (
     <h1
@@ -150,23 +161,48 @@ export const mdxComponents = {
   ),
 
   // Code
-  pre: CustomCodeBlock,
   code: InlineCode,
-
-  // Médias
-  img: CustomImage,
-  Image: CustomImage,
-
-  // Liens
-  a: CustomLink,
-  Link: CustomLink,
+  pre: ({ children }) => {
+    // next-mdx-remote enveloppe le contenu du bloc de code dans <pre><code/></pre>
+    const child = Array.isArray(children) ? children[0] : children;
+    if (child?.props?.className?.startsWith('language-')) {
+      return <CodeBlock className={child.props.className}>{child.props.children}</CodeBlock>;
+    }
+    return <pre className="overflow-x-auto rounded bg-muted p-4 text-sm">{children}</pre>;
+  },
 
   // Tableaux
-  table: CustomTable,
-  th: (props) => (
-    <th className="border border-border px-4 py-2 text-left font-medium bg-muted" {...props} />
+  table: (props) => (
+    <div className="my-6 overflow-x-auto not-prose">
+      <table className="w-full text-sm border border-border/60 rounded-md overflow-hidden [&_th]:bg-muted/60 [&_th]:font-semibold [&_th]:text-foreground/90 [&_td]:align-top [&_td,th]:border [&_td,th]:border-border/50">
+        {props.children}
+      </table>
+    </div>
   ),
-  td: (props) => <td className="border border-border px-4 py-2" {...props} />,
+  thead: (props) => <thead className="bg-muted/40" {...props} />,
+  tbody: (props) => <tbody className="divide-y divide-border" {...props} />,
+  tr: (props) => <tr className="even:bg-muted/30" {...props} />,
+  th: (props) => (
+    <th className="px-4 py-2 text-left font-semibold border border-border" {...props} />
+  ),
+  td: (props) => <td className="px-4 py-2 border border-border align-top" {...props} />,
+
+  // Médias & liens
+  // Images markdown simples -> wrapper neutre pour éviter figure dans <p>
+  img: (props) => (
+    <span className="block my-6">
+      <Image
+        alt={props.alt || ''}
+        src={props.src}
+        width={props.width || 1200}
+        height={props.height || 630}
+        className="w-full h-auto rounded-lg border object-contain max-h-[650px]"
+      />
+    </span>
+  ),
+  Image: CustomImage,
+  a: CustomLink,
+  Link: CustomLink,
 
   // Composants personnalisés
   Callout,

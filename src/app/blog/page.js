@@ -1,35 +1,34 @@
 import { NavigationHeader, Footer } from '@/components/navigation/Navigation';
-import { ProjectsGrid } from '@/components/projects/ProjectsGrid';
-import { getAllProjects } from '@/lib/content';
+import { BlogContent } from '@/components/blog/BlogContent';
+import { getAllPosts } from '@/lib/content-blog';
 import portfolioData from '../../data/i18n/fr.json';
 import socialLinksData from '../../data/social-links.json';
 
-// Base site URL for absolute SEO URLs
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://samuelsikati.com';
 
 export async function generateMetadata() {
   const fullName = portfolioData?.personal?.fullName || 'Samuel Sikati';
-  const title = `Projets - ${fullName} | Portfolio Développeur`;
-  const description = `Découvrez mes projets de développement web full stack : applications React, APIs .NET Core, solutions Spring Boot et plus encore.`;
-  const ogImage = `${siteUrl}/images/projects/og-projects.jpg`;
+  const title = `Blog - ${fullName} | Portfolio Développeur`;
+  const description = `Articles techniques, tutoriels et retours d'expérience sur le développement web, DevOps et les bonnes pratiques.`;
+  const ogImage = `${siteUrl}/images/blog/og-blog.jpg`;
 
   return {
     title,
     description,
     alternates: {
-      canonical: `${siteUrl}/projects`,
+      canonical: `${siteUrl}/blog`,
       languages: {
-        'fr-CM': `${siteUrl}/projects`,
-        'fr-FR': `${siteUrl}/projects`,
-        'en-US': `${siteUrl}/en/projects`,
-        'en-GB': `${siteUrl}/en/projects`,
+        'fr-CM': `${siteUrl}/blog`,
+        'fr-FR': `${siteUrl}/blog`,
+        'en-US': `${siteUrl}/en/blog`,
+        'en-GB': `${siteUrl}/en/blog`,
       },
     },
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/projects`,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: `${fullName} - Projets` }],
+      url: `${siteUrl}/blog`,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${fullName} - Blog` }],
       locale: 'fr_FR',
       alternateLocale: ['en_US'],
     },
@@ -42,8 +41,9 @@ export async function generateMetadata() {
   };
 }
 
-export default function ProjectsPage() {
-  const projects = getAllProjects();
+export default function BlogPage() {
+  const posts = getAllPosts();
+  const tags = [...new Set(posts.flatMap((post) => post.tags || []))].sort();
 
   return (
     <>
@@ -57,20 +57,18 @@ export default function ProjectsPage() {
         navLinks={portfolioData.navLinks}
       />
 
-      <main className="flex-1 container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+      <main className="flex-1 container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         {/* Header Section */}
-        <div className="text-center mb-12">
+        <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4">
-            Mes Projets
+            {portfolioData.blog.title}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Découvrez mes réalisations en développement web full stack, de la conception à la mise
-            en production.
+            {portfolioData.blog.description}
           </p>
         </div>
-
-        {/* Projects Grid */}
-        <ProjectsGrid projects={projects} locale="fr" />
+        <hr className="mt-6 mb-8 border-t border-secondary/10" />
+        <BlogContent initialPosts={posts} locale="fr" />
       </main>
 
       <Footer

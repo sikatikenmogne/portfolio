@@ -6,6 +6,7 @@ import { AboutSection } from '@/components/profile/AboutSection';
 import { getAllProjects } from '@/lib/content';
 import { FeaturedProjects } from '@/components/projects/FeaturedProjects';
 import { ContactSection } from '@/components/contact/ContactSection';
+import { RecentPosts } from '@/components/blog/RecentPosts';
 
 export default function HomePage() {
   const projects = getAllProjects();
@@ -27,6 +28,7 @@ export default function HomePage() {
         </div>
         <AboutSection profileData={portfolioData} variant="preview" />
         <FeaturedProjects projects={projects} locale="en" />
+        <RecentPosts locale="en" limit={3} />
         <ContactSection
           profileData={portfolioData}
           socialLinks={socialLinksData.socialLinks}

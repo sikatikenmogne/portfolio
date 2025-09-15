@@ -421,3 +421,12 @@
     page-break-after: avoid;
   }
 }
+
+/* MDX blog specific image constraints (vertical images) */
+.mdx-content img,
+.mdx-content span > img,
+.mdx-content picture img {
+  max-height: 650px;
+  width: auto;
+  object-fit: contain;
+}

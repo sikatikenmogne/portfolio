@@ -1,4 +1,29 @@
 {
+  "blog": {
+    "title": "Blog",
+    "description": "Articles techniques, tutoriels et retours d'expérience sur le développement web.",
+    "readingTime": "min de lecture",
+    "notFound": {
+      "title": "Article introuvable",
+      "description": "L'article que vous recherchez n'existe pas."
+    },
+    "recentPosts": {
+      "title": "Articles récents",
+      "subtitle": "Les derniers articles du blog",
+      "allLink": "Tous les articles"
+    },
+    "tags": {
+      "title": "Articles sur {tag}",
+      "count": "{count} article{plural} tagué{plural} #{tag}"
+    },
+    "navigation": {
+      "previous": "Article précédent",
+      "next": "Article suivant"
+    },
+    "search": {
+      "placeholder": "Rechercher un article..."
+    }
+  },
   "navLinks": [
     {
       "target": "home",
@@ -56,6 +81,7 @@
     "profileImage": "/images/profile-photo.jpg",
     "githubUsername": "sikatikenmogne"
   },
+
   "professional": {
     "yearsExperience": 3,
     "availability": "Disponible pour nouvelles opportunités",

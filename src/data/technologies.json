@@ -155,6 +155,24 @@
       "category": "CMS",
       "color": "bg-blue-500 text-white",
       "description": "Content Management System"
+    },
+    {
+      "name": "Flutter",
+      "category": "Mobile",
+      "color": "bg-sky-500 text-white",
+      "description": "Cross-platform UI toolkit by Google"
+    },
+    {
+      "name": "Dart",
+      "category": "Language",
+      "color": "bg-sky-600 text-white",
+      "description": "Programming language for Flutter"
+    },
+    {
+      "name": "Supabase",
+      "category": "Backend",
+      "color": "bg-emerald-500 text-white",
+      "description": "Open source Firebase alternative (Postgres + Auth + Storage + Realtime)"
     }
   ]
 }

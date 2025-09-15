@@ -8,15 +8,11 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 const mdx = withMDX({
   extension: /\.mdx?$/,
   options: {
-    // Plugins remark (traitement Markdown)
-    remarkPlugins: [
-      remarkGfm, // Support GitHub Flavored Markdown (tables, strikethrough, etc.)
-    ],
-    // Plugins rehype (traitement HTML)
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [
-      rehypeSlug, // Ajoute des IDs aux headings
+      rehypeSlug,
       [
-        rehypeAutolinkHeadings, // Ajoute des liens vers les headings
+        rehypeAutolinkHeadings,
         {
           behavior: 'wrap',
           properties: {
@@ -26,9 +22,9 @@ const mdx = withMDX({
         },
       ],
       [
-        rehypeHighlight, // Coloration syntaxique du code
+        rehypeHighlight,
         {
-          theme: 'github-dark', // Thème sombre par défaut
+          theme: 'github-dark',
           detectLanguage: true,
         },
       ],
@@ -41,15 +37,20 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+    domains: ['localhost'],
   },
   experimental: {
     optimizeCss: false,
     optimizePackageImports: ['react-syntax-highlighter'],
+    mdxRs: true,
   },
-  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-  ...(process.env.ANALYZE === 'true' && {
-    plugins: [(await import('@next/bundle-analyzer')).default({ enabled: true })],
-  }),
+  pageExtensions: ['js', 'jsx', 'mdx', 'md'],
 };
 
 export default mdx(nextConfig);
