@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-
+@import '../styles/prose.css';
 @custom-variant dark (&:is(.dark *));
 
 /* Design System CSS Variables */
@@ -49,6 +49,10 @@
     --success-foreground: 355 7% 97%;
     --warning: 43 96% 56%;
     --warning-foreground: 26 83% 14%;
+
+    /* Complementary color (approx opposite of tech-medium #57B9FF) */
+    --complement: 24 100% 62%; /* hsl(24,100%,62%) ~ #FF9333 */
+    --complement-foreground: 0 0% 100%;
   }
 
   /* DARK MODE THEME */
@@ -78,6 +82,10 @@
     --success-foreground: 144 61% 20%;
     --warning: 43 96% 56%;
     --warning-foreground: 26 83% 14%;
+
+    /* Dark mode complementary adjustments */
+    --complement: 24 100% 56%;
+    --complement-foreground: 224 71.4% 4.1%;
   }
 }
 
@@ -105,6 +113,8 @@
   --accent-foreground: oklch(0.6723 0.1606 244.9955);
   --destructive: oklch(0.6188 0.2376 25.7658);
   --destructive-foreground: oklch(1 0 0);
+  --complement: oklch(74.121% 0.13306 70.27);
+  --complement-foreground: oklch(1 0 0);
   --border: oklch(0.9317 0.0118 231.6594);
   --input: oklch(0.9809 0.0025 228.7836);
   --ring: oklch(0.6818 0.1584 243.354);
@@ -173,6 +183,8 @@
   --border: oklch(0.2674 0.0047 248.0045);
   --input: oklch(0.302 0.0288 244.8244);
   --ring: oklch(0.6818 0.1584 243.354);
+  --complement: oklch(75.946% 0.16362 53.801 / 0.664);
+  --complement-foreground: oklch(0.1884 0.0128 248.5103);
   --chart-1: oklch(0.6723 0.1606 244.9955);
   --chart-2: oklch(0.6907 0.1554 160.3454);
   --chart-3: oklch(0.8214 0.16 82.5337);
@@ -190,7 +202,6 @@
   --font-serif: Libre Baskerville, ui-serif, serif;
   --font-mono: Geist Mono, ui-monospace, monospace;
   --radius: 0.8rem;
-
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -231,6 +242,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-complement: var(--complement);
+  --color-complement-foreground: var(--complement-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);

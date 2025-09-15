@@ -38,6 +38,7 @@ import { FaHashnode, FaHashtag, FaSquareXTwitter } from 'react-icons/fa6';
  * Configuration-driven with icons and accessibility
  */
 export function SocialLinks({ socialLinks, className }) {
+  console.log(socialLinks);
   // Sort links by priority
   const sortedLinks =
     socialLinks?.filter((link) => link.isProfessional).sort((a, b) => a.priority - b.priority) ||
@@ -47,7 +48,7 @@ export function SocialLinks({ socialLinks, className }) {
 
   return (
     <div className={cn('space-y-4', className)}>
-      <Small className="text-center">Suivez-moi sur:</Small>
+      {/* <Small className="text-center">Suivez-moi sur:</Small> */}
 
       <div className="flex flex-wrap items-center justify-center gap-3">
         {sortedLinks.map((link, index) => (
@@ -65,7 +66,7 @@ export function SocialLinks({ socialLinks, className }) {
  * Individual Social Link with Icon and Shadcn Button
  */
 export function SocialLinkItem({ link }) {
-  const IconComponent = getSocialIcon(link.platform);
+  const IconComponent = getSocialIcon(link.platform, link.icon);
 
   return (
     <Button
@@ -101,7 +102,7 @@ export function SocialBadges({ socialLinks, className }) {
   return (
     <div className={cn('flex flex-wrap items-center justify-center gap-2', className)}>
       {sortedLinks.map((link) => {
-        const IconComponent = getSocialIcon(link.platform);
+        const IconComponent = getSocialIcon(link.platform, link.icon);
 
         return (
           <Badge
@@ -129,7 +130,22 @@ export function SocialBadges({ socialLinks, className }) {
 /**
  * Get appropriate icon for social platform
  */
-function getSocialIcon(platform) {
+function getSocialIcon(platform, iconName) {
+  // If an icon name is provided in the config, use it
+  if (iconName) {
+    const iconComponents = {
+      SiLinkedin,
+      SiGithub,
+      RiTwitterXLine,
+      SiWakatime,
+      SiRoadmapdotsh,
+      SiCredly,
+      Globe,
+    };
+    return iconComponents[iconName] || ExternalLink;
+  }
+
+  // Fallback to platform-based mapping
   const iconMap = {
     LinkedIn: SiLinkedin,
     GitHub: SiGithub,

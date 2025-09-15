@@ -1,0 +1,48 @@
+{
+  "categories": [
+    {
+      "id": "tutorial",
+      "name": {
+        "fr": "Tutoriels",
+        "en": "Tutorials"
+      },
+      "description": {
+        "fr": "Guides pratiques et tutoriels détaillés",
+        "en": "Practical guides and detailed tutorials"
+      }
+    },
+    {
+      "id": "case-study",
+      "name": {
+        "fr": "Études de cas",
+        "en": "Case Studies"
+      },
+      "description": {
+        "fr": "Analyses approfondies de projets et solutions",
+        "en": "In-depth analysis of projects and solutions"
+      }
+    },
+    {
+      "id": "opinion",
+      "name": {
+        "fr": "Opinion",
+        "en": "Opinion"
+      },
+      "description": {
+        "fr": "Points de vue et réflexions techniques",
+        "en": "Technical viewpoints and insights"
+      }
+    },
+    {
+      "id": "tips",
+      "name": {
+        "fr": "Astuces",
+        "en": "Tips"
+      },
+      "description": {
+        "fr": "Conseils et astuces de développement",
+        "en": "Development tips and tricks"
+      }
+    }
+  ]
+}

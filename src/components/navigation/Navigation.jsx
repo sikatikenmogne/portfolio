@@ -14,7 +14,7 @@ import { SunIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { GithubIcon } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
-
+import { SiGmail } from 'react-icons/si';
 /**
  * 🧭 Composant Navigation Principal
  *
@@ -200,9 +200,10 @@ export const DesktopSidebarNavigation = ({ className = '', ...props }) => {
 };
 
 export function Footer({
-  CopyrightAuthor = 'Samuel SIKATI',
+  CopyrightAuthor = 'SIKATI KENMOGNE Samuel',
   displayText = 'Tous droits réservés.',
   portfolioGithubRepo = 'https://github.com/sikatikenmogne/portfolio',
+  email = 'sikatikenmogne@gmail.com',
 }) {
   const [year, setYear] = useState(2025);
 
@@ -230,11 +231,21 @@ export function Footer({
     <footer className="border-t border-border/50 bg-muted/20 mt-auto">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex items-center justify-between w-full px-4 md:px-6">
-          <p className="text-xs text-muted-foreground">
-            Copyright &copy; {year} {CopyrightAuthor}. {displayText}{' '}
+          <p className="text-sm text-muted-foreground">
+            &copy; {year} {CopyrightAuthor}. {displayText}{' '}
             <span className="sr-only">- Tous droits réservés.</span>
           </p>
           <div className="flex space-x-4 text-sm px-2">
+            <a
+              href={`mailto:${email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors text-xs"
+              aria-label="Envoyer un email"
+            >
+              <SiGmail size={18} />
+              {/* <span>Code source</span> */}
+            </a>
             <a
               href={portfolioGithubRepo}
               target="_blank"

@@ -1,4 +1,29 @@
 {
+  "blog": {
+    "title": "Blog",
+    "description": "Technical articles, tutorials and insights about web development.",
+    "readingTime": "min read",
+    "notFound": {
+      "title": "Post not found",
+      "description": "The article you are looking for does not exist."
+    },
+    "recentPosts": {
+      "title": "Recent Articles",
+      "subtitle": "Latest posts from the blog",
+      "allLink": "View all"
+    },
+    "tags": {
+      "title": "Posts about {tag}",
+      "count": "{count} post{plural} tagged #{tag}"
+    },
+    "navigation": {
+      "previous": "Previous post",
+      "next": "Next post"
+    },
+    "search": {
+      "placeholder": "Search a post..."
+    }
+  },
   "navLinks": [
     {
       "target": "home",
@@ -37,8 +62,8 @@
       "href": "/cv/CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-EN.pdf"
     },
     {
-      "label": "More about me",
-      "href": "/about"
+      "label": "See my projects",
+      "href": "/en/projects"
     }
   ],
   "Footer": {
@@ -72,5 +97,132 @@
     "cvGithubRepo": "Awesome-CV",
     "cvGithubReleaseName": "CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-EN.pdf",
     "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Software-Engineer-Full-Stack-Developer-[EN].pdf"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Full Stack Developer passionate about building high-performance and innovative web applications",
+    "profile": {
+      "introduction": [
+        "With several years of experience in web development, I specialize in creating modern and performant web applications. My passion for clean code and development best practices drives me to constantly improve my skills and stay up-to-date with the latest technologies.",
+        "As a Full Stack Developer, I have a deep understanding of the entire technology stack, from backend to frontend, enabling me to design comprehensive and coherent solutions that meet client needs."
+      ]
+    },
+    "specialties": {
+      "title": "My Specialties",
+      "items": [
+        {
+          "title": "Full Stack Web Development",
+          "description": "Design and development of complete web applications using modern technologies like React, Next.js, Node.js, and SQL/NoSQL databases."
+        },
+        {
+          "title": "WordPress Development",
+          "description": "Creation of custom WordPress websites, development of tailored themes and plugins, performance and security optimization."
+        }
+      ]
+    },
+    "skills": {
+      "title": "Technical Skills",
+      "sections": {
+        "frontend": {
+          "title": "Frontend",
+          "skills": [
+            { "name": "React", "level": "Intermediate" },
+            { "name": "Next.js", "level": "Intermediate" },
+            { "name": "TypeScript", "level": "Intermediate" },
+            { "name": "Tailwind CSS", "level": "Intermediate" },
+            { "name": "Redux", "level": "Intermediate" },
+            { "name": "Material UI", "level": "Intermediate" }
+          ]
+        },
+        "backend": {
+          "title": "Backend",
+          "skills": [
+            { "name": ".NET Core", "level": "Intermediate" },
+            { "name": "Django", "level": "Intermediate" },
+            { "name": "PostgreSQL", "level": "Intermediate" },
+            { "name": "MongoDB", "level": "Intermediate" },
+            { "name": "GraphQL", "level": "Intermediate" },
+            { "name": "REST API", "level": "Intermediate" }
+          ]
+        },
+        "tools": {
+          "title": "Tools & Practices",
+          "skills": [
+            { "name": "Git", "level": "Intermediate" },
+            { "name": "Docker", "level": "Intermediate" },
+            { "name": "CI/CD", "level": "Intermediate" },
+            { "name": "Jest", "level": "Intermediate" },
+            { "name": "Agile/Scrum", "level": "Intermediate" },
+            { "name": "Clean Code", "level": "Intermediate" }
+          ]
+        }
+      }
+    },
+    "bestPractices": {
+      "title": "Best Practices",
+      "items": [
+        {
+          "title": "Clean and Maintainable Architecture",
+          "description": "Application of SOLID principles and layered architecture"
+        },
+        {
+          "title": "Automated Testing and TDD",
+          "description": "Complete test coverage and test-driven development"
+        },
+        {
+          "title": "Performance Optimization",
+          "description": "Frontend and backend optimization techniques for fast applications"
+        },
+        {
+          "title": "Application Security",
+          "description": "Implementation of OWASP security best practices"
+        },
+        {
+          "title": "Detailed Documentation",
+          "description": "Clear and maintainable technical documentation"
+        },
+        {
+          "title": "Code Review and Collaboration",
+          "description": "Active participation in code reviews and mentoring"
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "Let's talk about your project",
+    "description": "Have a project in mind? I'd love to discuss it with you and see how I can help bring it to life.",
+    "form": {
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Your full name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your.email@example.com"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "What is your message about?"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Describe your project or request..."
+      },
+      "submit": "Send Message",
+      "success": "Message sent successfully! I'll get back to you as soon as possible.",
+      "error": "An error occurred. Please try again.",
+      "requiredField": "This field is required",
+      "gdpr": {
+        "label": "I agree to the processing of my data",
+        "description": "By submitting this form, I agree that my personal data will be used to contact me back. No commercial use will be made of this data.",
+        "error": "You must accept the privacy policy to send the message."
+      }
+    },
+    "alternateContact": {
+      "title": "Other ways to reach me",
+      "email": "By email",
+      "social": "On social media"
+    }
   }
 }

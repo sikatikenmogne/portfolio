@@ -1,4 +1,29 @@
 {
+  "blog": {
+    "title": "Blog",
+    "description": "Articles techniques, tutoriels et retours d'expérience sur le développement web.",
+    "readingTime": "min de lecture",
+    "notFound": {
+      "title": "Article introuvable",
+      "description": "L'article que vous recherchez n'existe pas."
+    },
+    "recentPosts": {
+      "title": "Articles récents",
+      "subtitle": "Les derniers articles du blog",
+      "allLink": "Tous les articles"
+    },
+    "tags": {
+      "title": "Articles sur {tag}",
+      "count": "{count} article{plural} tagué{plural} #{tag}"
+    },
+    "navigation": {
+      "previous": "Article précédent",
+      "next": "Article suivant"
+    },
+    "search": {
+      "placeholder": "Rechercher un article..."
+    }
+  },
   "navLinks": [
     {
       "target": "home",
@@ -37,8 +62,8 @@
       "href": "/cv/CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf"
     },
     {
-      "label": "En savoir plus",
-      "href": "/about"
+      "label": "Voir mes projets",
+      "href": "/projects"
     }
   ],
   "Footer": {
@@ -56,6 +81,7 @@
     "profileImage": "/images/profile-photo.jpg",
     "githubUsername": "sikatikenmogne"
   },
+
   "professional": {
     "yearsExperience": 3,
     "availability": "Disponible pour nouvelles opportunités",
@@ -72,5 +98,132 @@
     "cvGithubRepo": "Awesome-CV",
     "cvGithubReleaseName": "CV-Samuel-SIKATI-KENMOGNE-Ingenieur-Logiciel-FR.pdf",
     "cvFilename": "CV-Samuel-SIKATI-KENMOGNE-Ingénieur-Logiciel-Développeur-Full-Stack-[FR].pdf"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "subtitle": "Développeur Full Stack passionné par la création d'applications web performantes et innovantes",
+    "profile": {
+      "introduction": [
+        "Fort de plusieurs années d'expérience dans le développement web, je me spécialise dans la création d'applications web modernes et performantes. Ma passion pour le code propre et les bonnes pratiques de développement me pousse à constamment améliorer mes compétences et à rester à jour avec les dernières technologies.",
+        "En tant que développeur Full Stack, j'ai une compréhension approfondie de l'ensemble de la pile technologique, du backend au frontend, ce qui me permet de concevoir des solutions complètes et cohérentes pour répondre aux besoins des clients."
+      ]
+    },
+    "specialties": {
+      "title": "Mes spécialités",
+      "items": [
+        {
+          "title": "Développement Web Full Stack",
+          "description": "Conception et développement d'applications web complètes utilisant les technologies modernes comme React, Next.js, Node.js et les bases de données SQL/NoSQL."
+        },
+        {
+          "title": "Développement WordPress",
+          "description": "Création de sites web personnalisés avec WordPress, développement de thèmes et plugins sur mesure, optimisation des performances et de la sécurité."
+        }
+      ]
+    },
+    "skills": {
+      "title": "Compétences techniques",
+      "sections": {
+        "frontend": {
+          "title": "Frontend",
+          "skills": [
+            { "name": "React", "level": "Intermédiaire" },
+            { "name": "Next.js", "level": "Intermédiaire" },
+            { "name": "TypeScript", "level": "Intermédiaire" },
+            { "name": "Tailwind CSS", "level": "Intermédiaire" },
+            { "name": "Redux", "level": "Intermédiaire" },
+            { "name": "Material UI", "level": "Intermédiaire" }
+          ]
+        },
+        "backend": {
+          "title": "Backend",
+          "skills": [
+            { "name": ".NET Core", "level": "Intermédiaire" },
+            { "name": "Django", "level": "Intermédiaire" },
+            { "name": "PostgreSQL", "level": "Intermédiaire" },
+            { "name": "MongoDB", "level": "Intermédiaire" },
+            { "name": "GraphQL", "level": "Intermédiaire" },
+            { "name": "REST API", "level": "Intermédiaire" }
+          ]
+        },
+        "tools": {
+          "title": "Outils & Pratiques",
+          "skills": [
+            { "name": "Git", "level": "Intermédiaire" },
+            { "name": "Docker", "level": "Intermédiaire" },
+            { "name": "CI/CD", "level": "Intermédiaire" },
+            { "name": "Jest", "level": "Intermédiaire" },
+            { "name": "Agile/Scrum", "level": "Intermédiaire" },
+            { "name": "Clean Code", "level": "Intermédiaire" }
+          ]
+        }
+      }
+    },
+    "bestPractices": {
+      "title": "Bonnes pratiques",
+      "items": [
+        {
+          "title": "Architecture propre et maintenable",
+          "description": "Application des principes SOLID et de l'architecture en couches"
+        },
+        {
+          "title": "Tests automatisés et TDD",
+          "description": "Couverture de tests complète et développement piloté par les tests"
+        },
+        {
+          "title": "Optimisation des performances",
+          "description": "Techniques d'optimisation frontend et backend pour des applications rapides"
+        },
+        {
+          "title": "Sécurité des applications",
+          "description": "Implémentation des meilleures pratiques de sécurité OWASP"
+        },
+        {
+          "title": "Documentation détaillée",
+          "description": "Documentation technique claire et maintenable"
+        },
+        {
+          "title": "Revue de code et collaboration",
+          "description": "Participation active aux revues de code et mentorat"
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "subtitle": "Parlons de votre projet",
+    "description": "Vous avez un projet en tête ? Je serais ravi d'en discuter avec vous et de voir comment je peux vous aider à le réaliser.",
+    "form": {
+      "name": {
+        "label": "Nom complet",
+        "placeholder": "Votre nom complet"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "votre.email@exemple.com"
+      },
+      "subject": {
+        "label": "Sujet",
+        "placeholder": "L'objet de votre message"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Décrivez votre projet ou votre demande..."
+      },
+      "submit": "Envoyer le message",
+      "success": "Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.",
+      "error": "Une erreur s'est produite. Veuillez réessayer.",
+      "requiredField": "Ce champ est obligatoire",
+      "gdpr": {
+        "label": "J'accepte que mes données soient traitées",
+        "description": "En soumettant ce formulaire, j'accepte que mes données personnelles soient utilisées pour me recontacter. Aucune utilisation commerciale ne sera faite de ces données.",
+        "error": "Vous devez accepter la politique de confidentialité pour envoyer le message."
+      }
+    },
+    "alternateContact": {
+      "title": "Autres moyens de me contacter",
+      "email": "Par email",
+      "social": "Sur les réseaux sociaux"
+    }
   }
 }

@@ -1,0 +1,196 @@
+{
+  "technologies": [
+    {
+      "name": "Next.js",
+      "category": "Frontend",
+      "color": "bg-black text-white",
+      "description": "React framework for production"
+    },
+    {
+      "name": "React",
+      "category": "Frontend",
+      "color": "bg-blue-500 text-white",
+      "description": "JavaScript library for building user interfaces"
+    },
+    {
+      "name": "TypeScript",
+      "category": "Frontend",
+      "color": "bg-blue-600 text-white",
+      "description": "Typed superset of JavaScript"
+    },
+    {
+      "name": "Tailwind CSS",
+      "category": "Frontend",
+      "color": "bg-cyan-500 text-white",
+      "description": "Utility-first CSS framework"
+    },
+    {
+      "name": "Redux",
+      "category": "Frontend",
+      "color": "bg-purple-500 text-white",
+      "description": "State management library for React"
+    },
+    {
+      "name": "Material UI",
+      "category": "Frontend",
+      "color": "bg-blue-400 text-white",
+      "description": "React UI component library"
+    },
+    {
+      "name": "Node.js",
+      "category": "Backend",
+      "color": "bg-green-600 text-white",
+      "description": "JavaScript runtime environment"
+    },
+    {
+      "name": "Express",
+      "category": "Backend",
+      "color": "bg-gray-700 text-white",
+      "description": "Web application framework for Node.js"
+    },
+    {
+      "name": ".NET Core",
+      "category": "Backend",
+      "color": "bg-purple-600 text-white",
+      "description": "Cross-platform .NET framework"
+    },
+    {
+      "name": "Spring Boot",
+      "category": "Backend",
+      "color": "bg-green-600 text-white",
+      "description": "Java framework for microservices"
+    },
+    {
+      "name": "GraphQL",
+      "category": "Backend",
+      "color": "bg-pink-600 text-white",
+      "description": "Query language for APIs"
+    },
+    {
+      "name": "REST API",
+      "category": "Backend",
+      "color": "bg-blue-500 text-white",
+      "description": "RESTful API architecture"
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Database",
+      "color": "bg-blue-700 text-white",
+      "description": "Open source relational database"
+    },
+    {
+      "name": "MongoDB",
+      "category": "Database",
+      "color": "bg-green-500 text-white",
+      "description": "NoSQL document database"
+    },
+    {
+      "name": "Docker",
+      "category": "DevOps",
+      "color": "bg-blue-400 text-white",
+      "description": "Containerization platform"
+    },
+    {
+      "name": "CI/CD",
+      "category": "DevOps",
+      "color": "bg-gray-600 text-white",
+      "description": "Continuous Integration and Deployment"
+    },
+    {
+      "name": "Git",
+      "category": "DevOps",
+      "color": "bg-orange-600 text-white",
+      "description": "Version control system"
+    },
+    {
+      "name": "Jest",
+      "category": "Testing",
+      "color": "bg-red-500 text-white",
+      "description": "JavaScript testing framework"
+    },
+    {
+      "name": "Vercel",
+      "category": "Deployment",
+      "color": "bg-gray-900 text-white",
+      "description": "Frontend cloud platform"
+    },
+    {
+      "name": "GitHub Actions",
+      "category": "DevOps",
+      "color": "bg-gray-800 text-white",
+      "description": "CI/CD automation platform"
+    },
+    {
+      "name": "JavaScript",
+      "category": "Language",
+      "color": "bg-yellow-500 text-black",
+      "description": "Programming language for web development"
+    },
+    {
+      "name": "Java",
+      "category": "Language",
+      "color": "bg-red-600 text-white",
+      "description": "Object-oriented programming language"
+    },
+    {
+      "name": "Python",
+      "category": "Language",
+      "color": "bg-yellow-600 text-white",
+      "description": "High-level programming language"
+    },
+    {
+      "name": "Agile/Scrum",
+      "category": "Methodology",
+      "color": "bg-blue-300 text-gray-800",
+      "description": "Agile project management framework"
+    },
+    {
+      "name": "Clean Code",
+      "category": "Best Practices",
+      "color": "bg-emerald-600 text-white",
+      "description": "Writing maintainable and readable code"
+    },
+    {
+      "name": "WordPress",
+      "category": "CMS",
+      "color": "bg-blue-500 text-white",
+      "description": "Content Management System"
+    },
+    {
+      "name": "Flutter",
+      "category": "Mobile",
+      "color": "bg-sky-500 text-white",
+      "description": "Cross-platform UI toolkit by Google"
+    },
+    {
+      "name": "Dart",
+      "category": "Language",
+      "color": "bg-sky-600 text-white",
+      "description": "Programming language for Flutter"
+    },
+    {
+      "name": "Supabase",
+      "category": "Backend",
+      "color": "bg-emerald-500 text-white",
+      "description": "Open source Firebase alternative (Postgres + Auth + Storage + Realtime)"
+    },
+    {
+      "name": "Django",
+      "category": "Backend",
+      "color": "bg-emerald-700 text-white",
+      "description": "High-level Python web framework"
+    },
+    {
+      "name": "Vue.js",
+      "category": "Frontend",
+      "color": "bg-emerald-500 text-white",
+      "description": "Progressive JavaScript framework"
+    },
+    {
+      "name": "DRF",
+      "category": "Backend",
+      "color": "bg-red-700 text-white",
+      "description": "Django REST Framework for building Web APIs"
+    }
+  ]
+}
