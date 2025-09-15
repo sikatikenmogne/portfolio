@@ -64,20 +64,18 @@ export function ContactSection({ profileData, socialLinks, variant = 'full' }) {
 
   return (
     <section
-      className={`lg:py-24 max-sm:px-4 max-sm:py-16 lg:mx-8 ${variant === 'preview' ? '' : ''}`}
+      className={`max-sm:px-4 max-sm:py-6 lg:mx-8 ${variant === 'preview' ? 'lg:py-24' : 'lg:py-8'}`}
     >
       <h2
-        className={`text-3xl font-bold tracking-tight  ${variant === 'preview' ? 'mb-8' : 'mb-4 text-center'}`}
+        className={`text-3xl font-bold tracking-tight  ${variant === 'preview' ? 'mb-1 text-center' : 'mb-4 text-center text-4xl'}`}
       >
         {profileData.contact.title}
       </h2>
-      {variant === 'full' && (
-        <p
-          className={`mt-2 mb-6 text-muted-foreground ${variant === 'preview' ? '' : 'text-center'}`}
-        >
-          {profileData.contact.description}
-        </p>
-      )}{' '}
+      <p
+        className={`mt-2 mb-6 text-muted-foreground ${variant === 'preview' ? 'text-center' : 'text-center'}`}
+      >
+        {profileData.contact.description}
+      </p>
       <div className="container mx-auto max-w-7xl p-8 bg-primary/10 rounded-lg shadow-sm">
         <div className="max-w-5xl mx-auto">
           {/* <p className="text-lg text-muted-foreground">{profileData.contact.subtitle}</p> */}
