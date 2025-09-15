@@ -93,7 +93,7 @@ export function AboutSection({
             </div>
 
             {/* Compétences */}
-            <div className="bg-card rounded-lg border p-6 shadow-sm">
+            <div className="bg-primary/10 rounded-lg border p-6 shadow-sm">
               <h3 className="text-xl font-semibold text-foreground mb-6">{about.skills.title}</h3>
               <div className="space-y-8">
                 {Object.entries(about.skills.sections)
@@ -145,7 +145,7 @@ export function AboutSection({
           {about.specialties.items.map((specialty, index) => (
             <div
               key={index}
-              className="relative p-6 bg-card rounded-lg border hover:border-primary transition-colors"
+              className="relative p-6 bg-primary/10 rounded-lg border hover:border-primary transition-colors"
             >
               <div className="space-y-4">
                 <h3 className="font-semibold text-lg text-card-foreground">{specialty.title}</h3>
