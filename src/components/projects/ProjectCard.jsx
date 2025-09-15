@@ -26,7 +26,7 @@ export function ProjectCard({ project, locale = 'fr' }) {
 
   return (
     <>
-      <Card className="group h-full flex flex-col hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 border-border/50 hover:-translate-y-1 bg-card/50 hover:bg-card">
+      <Card className="group h-full flex flex-col hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 border-border/50 hover:-translate-y-1 bg-primary/10">
         <div className="relative overflow-hidden rounded-t-lg">
           <Image
             src={project.cover || '/images/projects/default-cover.jpg'}
