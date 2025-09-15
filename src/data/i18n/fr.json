@@ -127,10 +127,10 @@
         "frontend": {
           "title": "Frontend",
           "skills": [
-            { "name": "React", "level": "Avancé" },
-            { "name": "Next.js", "level": "Avancé" },
-            { "name": "TypeScript", "level": "Avancé" },
-            { "name": "Tailwind CSS", "level": "Avancé" },
+            { "name": "React", "level": "Intermédiaire" },
+            { "name": "Next.js", "level": "Intermédiaire" },
+            { "name": "TypeScript", "level": "Intermédiaire" },
+            { "name": "Tailwind CSS", "level": "Intermédiaire" },
             { "name": "Redux", "level": "Intermédiaire" },
             { "name": "Material UI", "level": "Intermédiaire" }
           ]
@@ -138,23 +138,23 @@
         "backend": {
           "title": "Backend",
           "skills": [
-            { "name": "Node.js", "level": "Avancé" },
-            { "name": "Express", "level": "Avancé" },
+            { "name": ".NET Core", "level": "Intermédiaire" },
+            { "name": "Django", "level": "Intermédiaire" },
             { "name": "PostgreSQL", "level": "Intermédiaire" },
             { "name": "MongoDB", "level": "Intermédiaire" },
             { "name": "GraphQL", "level": "Intermédiaire" },
-            { "name": "REST API", "level": "Avancé" }
+            { "name": "REST API", "level": "Intermédiaire" }
           ]
         },
         "tools": {
           "title": "Outils & Pratiques",
           "skills": [
-            { "name": "Git", "level": "Avancé" },
+            { "name": "Git", "level": "Intermédiaire" },
             { "name": "Docker", "level": "Intermédiaire" },
             { "name": "CI/CD", "level": "Intermédiaire" },
-            { "name": "Jest", "level": "Avancé" },
+            { "name": "Jest", "level": "Intermédiaire" },
             { "name": "Agile/Scrum", "level": "Intermédiaire" },
-            { "name": "Clean Code", "level": "Avancé" }
+            { "name": "Clean Code", "level": "Intermédiaire" }
           ]
         }
       }

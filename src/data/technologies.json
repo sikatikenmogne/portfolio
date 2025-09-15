@@ -173,6 +173,24 @@
       "category": "Backend",
       "color": "bg-emerald-500 text-white",
       "description": "Open source Firebase alternative (Postgres + Auth + Storage + Realtime)"
+    },
+    {
+      "name": "Django",
+      "category": "Backend",
+      "color": "bg-emerald-700 text-white",
+      "description": "High-level Python web framework"
+    },
+    {
+      "name": "Vue.js",
+      "category": "Frontend",
+      "color": "bg-emerald-500 text-white",
+      "description": "Progressive JavaScript framework"
+    },
+    {
+      "name": "DRF",
+      "category": "Backend",
+      "color": "bg-red-700 text-white",
+      "description": "Django REST Framework for building Web APIs"
     }
   ]
 }
