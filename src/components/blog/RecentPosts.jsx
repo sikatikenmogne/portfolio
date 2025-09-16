@@ -19,7 +19,10 @@ export function RecentPosts({ locale = 'fr', limit = 3 }) {
   }
 
   return (
-    <section className="lg:py-24" aria-labelledby="recent-posts-heading">
+    <section
+      className="lg:py-24 max-sm:px-4 max-sm:py-14 lg:mx-8"
+      aria-labelledby="recent-posts-heading"
+    >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between mb-10">
           <div>

@@ -191,6 +191,78 @@
       "category": "Backend",
       "color": "bg-red-700 text-white",
       "description": "Django REST Framework for building Web APIs"
+    },
+    {
+      "name": "PHP",
+      "category": "Backend",
+      "color": "bg-indigo-600 text-white",
+      "description": "Scripting language for server-side web development"
+    },
+    {
+      "name": "MySQL",
+      "category": "Database",
+      "color": "bg-cyan-700 text-white",
+      "description": "Relational database management system"
+    },
+    {
+      "name": "CSS3",
+      "category": "Frontend",
+      "color": "bg-sky-600 text-white",
+      "description": "Latest evolution of the Cascading Style Sheets language"
+    },
+    {
+      "name": "HTML5",
+      "category": "Frontend",
+      "color": "bg-orange-500 text-white",
+      "description": "Standard markup language for Web pages"
+    },
+    {
+      "name": "Responsive Design",
+      "category": "Best Practices",
+      "color": "bg-teal-600 text-white",
+      "description": "Approach to make web pages render well on all devices"
+    },
+    {
+      "name": "Provider",
+      "category": "Mobile",
+      "color": "bg-purple-700 text-white",
+      "description": "Flutter state management library"
+    },
+    {
+      "name": "Material Design",
+      "category": "Design System",
+      "color": "bg-red-500 text-white",
+      "description": "Design language developed by Google"
+    },
+    {
+      "name": "Swagger/OpenAPI",
+      "category": "Documentation",
+      "color": "bg-green-700 text-white",
+      "description": "API description and documentation standard"
+    },
+    {
+      "name": "Poetry",
+      "category": "DevOps",
+      "color": "bg-indigo-500 text-white",
+      "description": "Python dependency management and packaging tool"
+    },
+    {
+      "name": "pnpm",
+      "category": "Build Tool",
+      "color": "bg-yellow-600 text-white",
+      "description": "Fast, disk space efficient package manager"
+    },
+    {
+      "name": "Prettier",
+      "category": "Tooling",
+      "color": "bg-pink-500 text-white",
+      "description": "Opinionated code formatter"
+    },
+    {
+      "name": "ESLint",
+      "category": "Tooling",
+      "color": "bg-indigo-700 text-white",
+      "description": "Pluggable JavaScript linter"
     }
   ]
 }
